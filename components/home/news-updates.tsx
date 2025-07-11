@@ -12,6 +12,7 @@ import {
   Megaphone,
 } from "lucide-react";
 import Image from "next/image";
+import { heroImages } from "@/app/constants/images";
 
 const blogPosts = [
   {
@@ -19,7 +20,7 @@ const blogPosts = [
     title: "5 Health Benefits of Regular Blood Donation You Didn't Know",
     excerpt:
       "Discover the surprising health benefits that come with being a regular blood donor, from improved cardiovascular health to...",
-    image: "/placeholder.svg?height=200&width=300",
+    image: heroImages.slide1,
     date: "March 10, 2024",
     readTime: "4 min read",
     category: "Health & Wellness",
@@ -30,7 +31,7 @@ const blogPosts = [
     title: "Breaking Myths: Common Blood Donation Misconceptions",
     excerpt:
       "Let's debunk the most common myths about blood donation and provide you with facts that might surprise you...",
-    image: "/placeholder.svg?height=200&width=300",
+    image: heroImages.slide2,
     date: "March 8, 2024",
     readTime: "6 min read",
     category: "Education",
@@ -41,7 +42,7 @@ const blogPosts = [
     title: "How Technology is Revolutionizing Blood Donation",
     excerpt:
       "From mobile apps to AI-powered matching systems, explore how technology is making blood donation more efficient...",
-    image: "/placeholder.svg?height=200&width=300",
+    image: heroImages.slide3,
     date: "March 5, 2024",
     readTime: "5 min read",
     category: "Innovation",

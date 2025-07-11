@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { heroImages } from "@/app/constants/images";
 
 const upcomingDrives = [
   {
@@ -14,7 +15,7 @@ const upcomingDrives = [
     location: "University of Lagos, Main Campus",
     expectedDonors: 200,
     registered: 156,
-    image: "/placeholder.svg?height=300&width=400",
+    image: heroImages.slide1,
     status: "Open",
   },
   {
@@ -25,7 +26,7 @@ const upcomingDrives = [
     location: "Victoria Island Business District",
     expectedDonors: 150,
     registered: 89,
-    image: "/placeholder.svg?height=300&width=400",
+    image: heroImages.slide2,
     status: "Open",
   },
   {
@@ -36,7 +37,7 @@ const upcomingDrives = [
     location: "National Stadium, Surulere",
     expectedDonors: 300,
     registered: 234,
-    image: "/placeholder.svg?height=300&width=400",
+    image: heroImages.slide3,
     status: "Almost Full",
   },
 ];
@@ -47,7 +48,7 @@ const recentHighlights = [
     title: "Record-Breaking February Drive",
     description:
       "Collected 450 units in a single day at Lagos State University",
-    image: "/placeholder.svg?height=200&width=300",
+    image: heroImages.slide4,
     date: "Feb 28, 2024",
     impact: "1,350 lives potentially saved",
   },
@@ -56,7 +57,7 @@ const recentHighlights = [
     title: "Youth Engagement Success",
     description:
       "Over 200 first-time donors registered through our youth program",
-    image: "/placeholder.svg?height=200&width=300",
+    image: heroImages.slide5,
     date: "Feb 25, 2024",
     impact: "200 new lifelong donors",
   },

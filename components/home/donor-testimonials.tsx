@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight, Play, Quote, Star } from "lucide-react";
 import Image from "next/image";
+import { avatarImage, heroImages } from "@/app/constants/images";
 
 const testimonials = [
   {
@@ -13,8 +14,8 @@ const testimonials = [
     name: "Sarah Johnson",
     role: "Regular Donor",
     location: "Lagos, Nigeria",
-    image: "/placeholder.svg?height=300&width=300",
-    videoThumbnail: "/placeholder.svg?height=400&width=600",
+    image: avatarImage.image1,
+    videoThumbnail: heroImages.slide1,
     quote:
       "Donating blood has become a meaningful part of my life. Knowing that my donation can save up to three lives gives me incredible purpose.",
     rating: 5,
@@ -26,7 +27,7 @@ const testimonials = [
     name: "Michael Adebayo",
     role: "First-time Donor",
     location: "Abuja, Nigeria",
-    image: "/placeholder.svg?height=300&width=300",
+    image: avatarImage.image1,
     quote:
       "I was nervous about my first donation, but the TBDN team made me feel so comfortable. The process was smooth and I felt like a hero afterwards!",
     rating: 5,
@@ -38,8 +39,8 @@ const testimonials = [
     name: "Dr. Amina Hassan",
     role: "Medical Professional",
     location: "Kano, Nigeria",
-    image: "/placeholder.svg?height=300&width=300",
-    videoThumbnail: "/placeholder.svg?height=400&width=600",
+    image: avatarImage.image1,
+    videoThumbnail: heroImages.slide2,
     quote:
       "As a doctor, I've seen firsthand how blood donations save lives. TBDN's work is crucial for our healthcare system.",
     rating: 5,
@@ -51,7 +52,7 @@ const testimonials = [
     name: "Grace Okafor",
     role: "Volunteer Coordinator",
     location: "Port Harcourt, Nigeria",
-    image: "/placeholder.svg?height=300&width=300",
+    image: avatarImage.image1,
     quote:
       "Volunteering with TBDN has been incredibly rewarding. Seeing the community come together to save lives is truly inspiring.",
     rating: 5,
