@@ -1,7 +1,45 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { heroImages } from "@/app/constants/images";
+const visionSlides = [
+  {
+    image: heroImages.slide1,
+    headline: "A Nigeria Where No Life is Lost Due to Blood Shortage",
+    description:
+      "We envision a future where every Nigerian has access to safe, adequate blood supply when they need it most, supported by a thriving community of voluntary donors and cutting-edge technology.",
+    stats: [
+      { label: "Target Year", value: "2030" },
+      { label: "Full Coverage", value: "36 States" },
+      { label: "Preventable Deaths", value: "Zero" },
+    ],
+  },
+  {
+    image: heroImages.slide2,
+    headline: "Empowering Communities, Saving Lives",
+    description:
+      "Our vision is to empower every community with the resources and knowledge to ensure no one suffers due to blood shortage.",
+    stats: [
+      { label: "Target Year", value: "2030" },
+      { label: "Communities Reached", value: "500+" },
+      { label: "Lives Impacted", value: "100,000+" },
+    ],
+  },
+  {
+    image: heroImages.slide3,
+    headline: "Innovation for Lifesaving Impact",
+    description:
+      "Harnessing technology and compassion to build a future where blood is always available for those in need.",
+    stats: [
+      { label: "Tech Solutions", value: "AI & Blockchain" },
+      { label: "Donor Network", value: "50,000+" },
+      { label: "Hospitals Partnered", value: "100+" },
+    ],
+  },
+];
 import {
   Heart,
   Shield,
@@ -161,39 +199,86 @@ const missionBreakdown = [
 ];
 
 export function VisionMissionPage() {
+  const [currentVision, setCurrentVision] = useState(0);
+
+  // Auto-rotate slides
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentVision((prev) => (prev + 1) % visionSlides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // const slide = visionSlides[currentVision];
+
   return (
     <div className="space-y-16 md:space-y-24">
-      {/* Vision Statement */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-red-600 to-pink-600 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <Badge className="bg-white/20 text-white border-white/30">
-              Our Vision
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              A Nigeria Where No Life is Lost Due to Blood Shortage
-            </h1>
-            <p className="text-xl md:text-2xl opacity-90 leading-relaxed">
-              We envision a future where every Nigerian has access to safe,
-              adequate blood supply when they need it most, supported by a
-              thriving community of voluntary donors and cutting-edge
-              technology.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold">2030</div>
-                <div className="text-sm opacity-75">Target Year</div>
+      {/* Vision Statement - Sliding Hero */}
+      <section className="relative min-h-[60vh] md:min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-600 to-pink-600 text-white">
+        {/* Background Image with fade animation */}
+        <div className="absolute inset-0 z-0">
+          {visionSlides.map((s, idx) => (
+            <div
+              key={idx}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                idx === currentVision ? "opacity-100 z-10" : "opacity-0 z-0"
+              }`}
+              style={{ pointerEvents: idx === currentVision ? "auto" : "none" }}
+            >
+              <Image
+                src={s.image}
+                alt="Vision Slide"
+                fill
+                className="object-cover"
+                priority={idx === currentVision}
+                sizes="100vw"
+              />
+              <div className="absolute inset-0 bg-black/40" />
+            </div>
+          ))}
+        </div>
+        {/* Content with fade animation */}
+        <div className="relative z-10 container mx-auto px-4">
+          {visionSlides.map((s, idx) => (
+            <div
+              key={idx}
+              className={`max-w-4xl mx-auto text-center space-y-8 transition-opacity duration-1000 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full ${
+                idx === currentVision ? "opacity-100 z-10" : "opacity-0 z-0"
+              }`}
+              style={{ pointerEvents: idx === currentVision ? "auto" : "none" }}
+            >
+              <Badge className="bg-white/20 text-white border-white/30">
+                Our Vision
+              </Badge>
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+                {s.headline}
+              </h1>
+              <p className="text-xl md:text-2xl opacity-90 leading-relaxed">
+                {s.description}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+                {s.stats.map((stat) => (
+                  <div className="text-center" key={stat.label}>
+                    <div className="text-3xl font-bold">{stat.value}</div>
+                    <div className="text-sm opacity-75">{stat.label}</div>
+                  </div>
+                ))}
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold">36 States</div>
-                <div className="text-sm opacity-75">Full Coverage</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold">Zero</div>
-                <div className="text-sm opacity-75">Preventable Deaths</div>
+              {/* Slide Indicators */}
+              <div className="flex justify-center gap-2 pt-4">
+                {visionSlides.map((_, idx2) => (
+                  <button
+                    key={idx2}
+                    onClick={() => setCurrentVision(idx2)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      idx2 === currentVision ? "bg-white w-8" : "bg-white/40"
+                    }`}
+                    aria-label={`Go to slide ${idx2 + 1}`}
+                  />
+                ))}
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 

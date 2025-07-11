@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play, Heart, Users, Award, Target, Globe, Zap } from "lucide-react";
 import Image from "next/image";
+import { heroImages } from "@/app/constants/images";
 
 const foundationHistory = [
   {
@@ -138,7 +139,8 @@ const focusAreas = [
 
 export function OurStoryPage() {
   const [playingVideo, setPlayingVideo] = useState(false);
-  console.log("Playing video:", playingVideo);
+  // Replace with your YouTube or direct video link
+  const videoUrl = "https://www.youtube.com/embed/2Vv-BfVoq4g"; // Example YouTube embed link
 
   return (
     <div className="space-y-16 md:space-y-24">
@@ -160,23 +162,49 @@ export function OurStoryPage() {
               {/* Video Section */}
               <div className="relative">
                 <div className="relative bg-gray-900 rounded-2xl overflow-hidden aspect-video">
-                  <Image
-                    src="/placeholder.svg"
-                    alt="Founder's message video thumbnail"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 600px"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <Button
-                      size="lg"
-                      className="bg-red-600 hover:bg-red-700 rounded-full w-20 h-20"
-                      onClick={() => setPlayingVideo(true)}
-                    >
-                      <Play className="h-8 w-8 ml-1" />
-                    </Button>
-                  </div>
+                  {/* If playingVideo, show video player, else show image with play button */}
+                  {playingVideo ? (
+                    <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/90">
+                      {/* YouTube or video embed */}
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        <iframe
+                          src={videoUrl}
+                          title="Founder's message video"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="w-full h-full rounded-2xl aspect-video border-none"
+                        ></iframe>
+                        <Button
+                          size="sm"
+                          className="absolute top-4 right-4 bg-white text-gray-900 hover:bg-gray-200 rounded-full shadow"
+                          aria-label="Close video"
+                          onClick={() => setPlayingVideo(false)}
+                        >
+                          ✕
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <Image
+                        src={heroImages.slide1}
+                        alt="Founder's message video thumbnail"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 600px"
+                        priority
+                      />
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <Button
+                          size="lg"
+                          className="bg-red-600 hover:bg-red-700 rounded-full w-20 h-20"
+                          onClick={() => setPlayingVideo(true)}
+                        >
+                          <Play className="h-8 w-8 ml-1" />
+                        </Button>
+                      </div>
+                    </>
+                  )}
                 </div>
                 <Badge className="absolute -bottom-4 left-4 bg-white text-gray-900 shadow-lg">
                   Message from our Founder
