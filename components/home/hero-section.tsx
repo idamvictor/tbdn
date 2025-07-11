@@ -4,26 +4,28 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Play, Heart, Users, Droplets, Award } from "lucide-react";
+
 import Image from "next/image";
+import { heroImages } from "@/app/constants/images";
 
 const heroSlides = [
   {
     id: 1,
-    image: "/placeholder.svg?height=600&width=1200",
+    image: heroImages.slide1,
     title: "Every Drop Counts, Every Donor Matters",
     subtitle: "Join thousands of heroes saving lives through blood donation",
     cta: "Donate Blood Now",
   },
   {
     id: 2,
-    image: "/placeholder.svg?height=600&width=1200",
+    image: heroImages.slide2,
     title: "Be Someone's Hero Today",
     subtitle: "Your single donation can save up to three lives",
     cta: "Find Blood Drive",
   },
   {
     id: 3,
-    image: "/placeholder.svg?height=600&width=1200",
+    image: heroImages.slide3,
     title: "Together We Save Lives",
     subtitle: "Join our community of voluntary blood donors",
     cta: "Register Now",
