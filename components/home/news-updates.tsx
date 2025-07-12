@@ -12,7 +12,7 @@ import {
   Megaphone,
 } from "lucide-react";
 import Image from "next/image";
-import { heroImages } from "@/app/constants/images";
+import { heroImages } from "@/constants/images";
 
 const blogPosts = [
   {

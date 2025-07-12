@@ -13,12 +13,13 @@ import {
   Calendar,
 } from "lucide-react";
 import Image from "next/image";
+import { avatarImage } from "@/constants/images";
 
 const leadershipTeam = [
   {
     name: "Dr. Adebayo Ogundimu",
     role: "Founder & CEO",
-    image: "/placeholder.svg?height=300&width=300",
+    image: avatarImage.image1,
     bio: "Dr. Ogundimu is a medical doctor with over 15 years of experience in public health. He founded TBDN after losing his brother due to blood shortage during an emergency.",
     education: "MBBS, MPH - University of Lagos",
     experience: "15+ years in Public Health",
@@ -33,7 +34,7 @@ const leadershipTeam = [
   {
     name: "Sarah Johnson",
     role: "Chief Operating Officer",
-    image: "/placeholder.svg?height=300&width=300",
+    image: avatarImage.image2,
     bio: "Sarah brings 12 years of operations management experience from leading healthcare organizations. She oversees all operational aspects of TBDN's blood donation network.",
     education: "MBA - Lagos Business School",
     experience: "12+ years in Healthcare Operations",
@@ -48,7 +49,7 @@ const leadershipTeam = [
   {
     name: "Michael Adebayo",
     role: "Chief Technology Officer",
-    image: "/placeholder.svg?height=300&width=300",
+    image: avatarImage.image3,
     bio: "Michael is a software engineer passionate about using technology for social good. He leads the development of TBDN's digital platforms and AI systems.",
     education: "BSc Computer Science - University of Ibadan",
     experience: "10+ years in Software Development",
@@ -60,7 +61,7 @@ const leadershipTeam = [
   {
     name: "Dr. Amina Hassan",
     role: "Chief Medical Officer",
-    image: "/placeholder.svg?height=300&width=300",
+    image: avatarImage.image4,
     bio: "Dr. Hassan is a hematologist with extensive experience in blood banking and transfusion medicine. She ensures all medical protocols meet international standards.",
     education: "MBBS, Hematology Specialty - Ahmadu Bello University",
     experience: "18+ years in Hematology",
@@ -80,28 +81,28 @@ const advisoryBoard = [
     role: "Medical Advisor",
     organization: "University of Lagos Teaching Hospital",
     expertise: "Transfusion Medicine",
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image1,
   },
   {
     name: "Mrs. Funmi Ogbonna",
     role: "Strategic Advisor",
     organization: "Former Director, Federal Ministry of Health",
     expertise: "Public Health Policy",
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image2,
   },
   {
     name: "Dr. James Okafor",
     role: "Technology Advisor",
     organization: "Microsoft Nigeria",
     expertise: "Healthcare Technology",
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image3,
   },
   {
     name: "Aisha Abdullahi",
     role: "Community Engagement Advisor",
     organization: "Civil Society Coalition",
     expertise: "Community Mobilization",
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image4,
   },
 ];
 
@@ -186,7 +187,7 @@ const volunteerCoordinators = [
     region: "Lagos State",
     volunteers: 150,
     drives: 24,
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image1,
     contact: "emeka.lagos@tbdn.org",
   },
   {
@@ -194,7 +195,7 @@ const volunteerCoordinators = [
     region: "Kano State",
     volunteers: 89,
     drives: 18,
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image2,
     contact: "aisha.kano@tbdn.org",
   },
   {
@@ -202,7 +203,7 @@ const volunteerCoordinators = [
     region: "Rivers State",
     volunteers: 76,
     drives: 15,
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image3,
     contact: "chidi.rivers@tbdn.org",
   },
   {
@@ -210,7 +211,7 @@ const volunteerCoordinators = [
     region: "FCT Abuja",
     volunteers: 112,
     drives: 21,
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image4,
     contact: "fatima.abuja@tbdn.org",
   },
   {
@@ -218,7 +219,7 @@ const volunteerCoordinators = [
     region: "Oyo State",
     volunteers: 94,
     drives: 19,
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image1,
     contact: "tunde.oyo@tbdn.org",
   },
   {
@@ -226,7 +227,7 @@ const volunteerCoordinators = [
     region: "Cross River State",
     volunteers: 67,
     drives: 12,
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image2,
     contact: "grace.crossriver@tbdn.org",
   },
 ];

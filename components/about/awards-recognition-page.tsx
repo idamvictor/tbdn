@@ -14,6 +14,7 @@ import {
   Quote,
   Play,
 } from "lucide-react";
+import { avatarImage, heroImages } from "@/constants/images";
 
 const certifications = [
   {
@@ -63,7 +64,7 @@ const governmentRecognition = [
     date: "March 2024",
     description:
       "Highest national recognition for exceptional contribution to healthcare sector and saving lives through innovative blood donation network.",
-    image: "/placeholder.svg?height=300&width=400",
+    image: heroImages.slide1,
     significance: "National",
   },
   {
@@ -72,7 +73,7 @@ const governmentRecognition = [
     date: "December 2023",
     description:
       "Official recognition as a key partner in Nigeria's national blood transfusion service improvement initiative.",
-    image: "/placeholder.svg?height=300&width=400",
+    image: heroImages.slide2,
     significance: "Federal",
   },
   {
@@ -81,7 +82,7 @@ const governmentRecognition = [
     date: "October 2023",
     description:
       "Recognition for innovative approaches to blood donation and community health engagement in Lagos State.",
-    image: "/placeholder.svg?height=300&width=400",
+    image: heroImages.slide3,
     significance: "State",
   },
   {
@@ -90,7 +91,7 @@ const governmentRecognition = [
     date: "August 2023",
     description:
       "Official partnership recognition for engaging youth corps members in blood donation drives nationwide.",
-    image: "/placeholder.svg?height=300&width=400",
+    image: heroImages.slide4,
     significance: "National",
   },
 ];
@@ -100,7 +101,7 @@ const partnerTestimonials = [
     name: "Dr. Folake Adeyemi",
     role: "Chief Medical Director",
     organization: "Lagos University Teaching Hospital",
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image1,
     testimonial:
       "TBDN has been instrumental in ensuring we have adequate blood supply for our patients. Their efficient system and dedicated team have saved countless lives in our hospital.",
     rating: 5,
@@ -110,7 +111,7 @@ const partnerTestimonials = [
     name: "Prof. Ibrahim Mohammed",
     role: "Director of Blood Transfusion Services",
     organization: "Ahmadu Bello University Teaching Hospital",
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image2,
     testimonial:
       "The partnership with TBDN has revolutionized our blood banking operations. Their technology platform and donor network have significantly improved our service delivery.",
     rating: 5,
@@ -120,7 +121,7 @@ const partnerTestimonials = [
     name: "Mrs. Grace Okafor",
     role: "Hospital Administrator",
     organization: "National Hospital Abuja",
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image1,
     testimonial:
       "TBDN's professionalism and commitment to quality have made them our preferred blood donation partner. They consistently exceed our expectations.",
     rating: 5,
@@ -130,7 +131,7 @@ const partnerTestimonials = [
     name: "Dr. Chidi Nnamdi",
     role: "Head of Emergency Medicine",
     organization: "University of Port Harcourt Teaching Hospital",
-    image: "/placeholder.svg?height=200&width=200",
+    image: avatarImage.image2,
     testimonial:
       "In emergency situations, TBDN's rapid response and reliable blood supply have been life-saving. We couldn't ask for a better partner.",
     rating: 5,
@@ -146,7 +147,7 @@ const mediaCoverage = [
     date: "February 2024",
     description:
       "Feature story on TBDN's innovative approach to blood donation and its impact on Nigerian healthcare.",
-    thumbnail: "/placeholder.svg?height=200&width=300",
+    thumbnail: heroImages.slide1,
     duration: "12 min",
     views: "2.3M",
   },
@@ -157,7 +158,7 @@ const mediaCoverage = [
     date: "January 2024",
     description:
       "Discussion on how TBDN is setting new standards for blood donation across Africa.",
-    thumbnail: "/placeholder.svg?height=200&width=300",
+    thumbnail: heroImages.slide2,
     duration: "25 min",
     views: "1.8M",
   },
@@ -168,7 +169,7 @@ const mediaCoverage = [
     date: "December 2023",
     description:
       "Profile of TBDN's founder and the organization's journey from startup to national impact.",
-    thumbnail: "/placeholder.svg?height=200&width=300",
+    thumbnail: heroImages.slide3,
     duration: "8 min read",
     views: "500K",
   },
@@ -179,7 +180,7 @@ const mediaCoverage = [
     date: "November 2023",
     description:
       "Deep dive into TBDN's technology platform and AI-powered donor matching system.",
-    thumbnail: "/placeholder.svg?height=200&width=300",
+    thumbnail: heroImages.slide4,
     duration: "6 min read",
     views: "750K",
   },
@@ -190,7 +191,7 @@ const mediaCoverage = [
     date: "October 2023",
     description:
       "30-minute documentary featuring TBDN's work and stories from donors and recipients.",
-    thumbnail: "/placeholder.svg?height=200&width=300",
+    thumbnail: heroImages.slide5,
     duration: "30 min",
     views: "3.1M",
   },
@@ -201,7 +202,7 @@ const mediaCoverage = [
     date: "September 2023",
     description:
       "Front-page feature on TBDN's expansion and impact on regional healthcare systems.",
-    thumbnail: "/placeholder.svg?height=200&width=300",
+    thumbnail: heroImages.slide1,
     duration: "5 min read",
     views: "1.2M",
   },

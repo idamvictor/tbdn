@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight, Play, Quote, Star } from "lucide-react";
 import Image from "next/image";
-import { avatarImage, heroImages } from "@/app/constants/images";
+import { avatarImage, heroImages } from "@/constants/images";
 
 const testimonials = [
   {

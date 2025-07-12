@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { heroImages } from "@/app/constants/images";
+import { heroImages } from "@/constants/images";
 const visionSlides = [
   {
     image: heroImages.slide1,

@@ -15,4 +15,10 @@ export const heroImages = {
 export const avatarImage = {
   image1:
     "https://res.cloudinary.com/dyp8gtllq/image/upload/v1740053198/man-with-glasses-blue-shirt-standing-with-his-arms-crossed-transparent-background_838900-93620_xrsq9b.jpg",
+  image2:
+    "https://res.cloudinary.com/dyp8gtllq/image/upload/v1737506531/vco-LT_M58j9DIAxlS1Cv9uvzbRhB6cYIZJS7ocZksWRqoEPat_QXb6fVFi77lciJZQ_w526-h296-rw_lmkjh2.webp",
+  image3:
+    "https://res.cloudinary.com/dyp8gtllq/image/upload/v1737075755/cld-sample.jpg",
+  image4:
+    "https://res.cloudinary.com/dyp8gtllq/image/upload/v1737075755/samples/upscale-face-1.jpg",
 };

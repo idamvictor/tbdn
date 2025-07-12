@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play, Heart, Users, Award, Target, Globe, Zap } from "lucide-react";
 import Image from "next/image";
-import { heroImages } from "@/app/constants/images";
+import { heroImages } from "@/constants/images";
 
 const foundationHistory = [
   {
