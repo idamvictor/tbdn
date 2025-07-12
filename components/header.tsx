@@ -22,9 +22,9 @@ const aboutLinks = [
 ];
 
 const getInvolvedLinks = [
-  { title: "Become a Donor", href: "/become-donor" },
-  { title: "Volunteer", href: "/volunteer" },
-  { title: "Partner with Us", href: "/partners" },
+  { title: "Become a Donor", href: "/get-involved/become-donor" },
+  { title: "Volunteer", href: "/get-involved/volunteer" },
+  { title: "Partner with Us", href: "/get-involved/partners" },
 ];
 
 const programsLinks = [
