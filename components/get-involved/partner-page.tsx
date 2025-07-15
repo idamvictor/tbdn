@@ -108,7 +108,7 @@ export function PartnerPage() {
         <div className="text-center space-y-4">
           <h3 className="text-3xl font-bold">Partnership Types</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Choose the partnership model that best aligns with your organization's goals and capabilities.
+            Choose the partnership model that best aligns with your organization&apos;s goals and capabilities.
           </p>
         </div>
         <div className="grid lg:grid-cols-3 gap-6">
@@ -163,7 +163,7 @@ export function PartnerPage() {
         <div className="text-center space-y-4">
           <h3 className="text-3xl font-bold">Our Partners</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            We're proud to work with leading organizations across various sectors.
+            We&apos;re proud to work with leading organizations across various sectors.
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -192,14 +192,14 @@ export function PartnerPage() {
         <div className="text-center space-y-4">
           <h3 className="text-3xl font-bold">Partnership Application</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Ready to partner with us? Fill out this form and we'll get back to you within 48 hours.
+            Ready to partner with us? Fill out this form and we&apos;ll get back to you within 48 hours.
           </p>
         </div>
         <Card className="max-w-3xl mx-auto">
           <CardHeader>
             <CardTitle>Apply for Partnership</CardTitle>
             <CardDescription>
-              Tell us about your organization and how you'd like to collaborate with TBDN.
+              Tell us about your organization and how you&apos;d like to collaborate with TBDN.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -346,7 +346,7 @@ export function PartnerPage() {
             <CardContent className="space-y-3">
               <div className="flex items-start gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />
-                <span className="text-sm">Alignment with TBDN's mission and values</span>
+                <span className="text-sm">Alignment with TBDN&apos;s mission and values</span>
               </div>
               <div className="flex items-start gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />

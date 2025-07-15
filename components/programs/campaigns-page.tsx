@@ -1,13 +1,24 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useState } from "react";
+import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Camera,
   Video,
@@ -21,30 +32,30 @@ import {
   Calendar,
   MapPin,
   Target,
-} from "lucide-react"
+} from "lucide-react";
 
 interface Campaign {
-  id: string
-  title: string
-  description: string
-  startDate: string
-  endDate: string
-  status: "Active" | "Completed" | "Upcoming"
-  location: string
-  targetDonors: number
-  actualDonors: number
-  bloodUnitsCollected: number
-  livesImpacted: number
-  images: string[]
-  videos: string[]
-  volunteers: number
-  mediaLinks: string[]
+  id: string;
+  title: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  status: "Active" | "Completed" | "Upcoming";
+  location: string;
+  targetDonors: number;
+  actualDonors: number;
+  bloodUnitsCollected: number;
+  livesImpacted: number;
+  images: string[];
+  videos: string[];
+  volunteers: number;
+  mediaLinks: string[];
   testimonials: {
-    name: string
-    role: string
-    content: string
-    avatar: string
-  }[]
+    name: string;
+    role: string;
+    content: string;
+    avatar: string;
+  }[];
 }
 
 const campaigns: Campaign[] = [
@@ -66,7 +77,10 @@ const campaigns: Campaign[] = [
       "/placeholder.svg?height=300&width=400",
       "/placeholder.svg?height=300&width=400",
     ],
-    videos: ["/placeholder.svg?height=200&width=300", "/placeholder.svg?height=200&width=300"],
+    videos: [
+      "/placeholder.svg?height=200&width=300",
+      "/placeholder.svg?height=200&width=300",
+    ],
     volunteers: 234,
     mediaLinks: ["https://example.com/news1", "https://example.com/news2"],
     testimonials: [
@@ -89,7 +103,8 @@ const campaigns: Campaign[] = [
   {
     id: "2",
     title: "Youth Blood Heroes",
-    description: "Targeting young adults aged 18-30 to build a sustainable donor base for the future.",
+    description:
+      "Targeting young adults aged 18-30 to build a sustainable donor base for the future.",
     startDate: "2023-09-01",
     endDate: "2023-12-31",
     status: "Completed",
@@ -98,7 +113,10 @@ const campaigns: Campaign[] = [
     actualDonors: 6234,
     bloodUnitsCollected: 5890,
     livesImpacted: 17670,
-    images: ["/placeholder.svg?height=300&width=400", "/placeholder.svg?height=300&width=400"],
+    images: [
+      "/placeholder.svg?height=300&width=400",
+      "/placeholder.svg?height=300&width=400",
+    ],
     videos: ["/placeholder.svg?height=200&width=300"],
     volunteers: 156,
     mediaLinks: ["https://example.com/youth-news1"],
@@ -112,11 +130,16 @@ const campaigns: Campaign[] = [
       },
     ],
   },
-]
+];
 
 export function CampaignsPage() {
-  const [selectedCampaign, setSelectedCampaign] = useState<Campaign>(campaigns[0])
-  const [selectedMedia, setSelectedMedia] = useState<{ type: "image" | "video"; src: string } | null>(null)
+  const [selectedCampaign, setSelectedCampaign] = useState<Campaign>(
+    campaigns[0]
+  );
+  const [selectedMedia, setSelectedMedia] = useState<{
+    type: "image" | "video";
+    src: string;
+  } | null>(null);
 
   return (
     <div className="space-y-8">
@@ -124,8 +147,8 @@ export function CampaignsPage() {
       <section className="text-center space-y-4">
         <h2 className="text-3xl font-bold">Blood Donation Campaigns</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Explore our impactful campaigns that have mobilized communities, saved lives, and created lasting change
-          across Nigeria.
+          Explore our impactful campaigns that have mobilized communities, saved
+          lives, and created lasting change across Nigeria.
         </p>
       </section>
 
@@ -144,15 +167,17 @@ export function CampaignsPage() {
                 <div className="flex items-start justify-between">
                   <div>
                     <CardTitle className="text-lg">{campaign.title}</CardTitle>
-                    <CardDescription className="mt-2">{campaign.description}</CardDescription>
+                    <CardDescription className="mt-2">
+                      {campaign.description}
+                    </CardDescription>
                   </div>
                   <Badge
                     className={
                       campaign.status === "Active"
                         ? "bg-green-100 text-green-800"
                         : campaign.status === "Completed"
-                          ? "bg-blue-100 text-blue-800"
-                          : "bg-orange-100 text-orange-800"
+                        ? "bg-blue-100 text-blue-800"
+                        : "bg-orange-100 text-orange-800"
                     }
                   >
                     {campaign.status}
@@ -203,7 +228,9 @@ export function CampaignsPage() {
                   <Heart className="h-5 w-5 text-red-600" />
                   {selectedCampaign.title}
                 </CardTitle>
-                <CardDescription>{selectedCampaign.description}</CardDescription>
+                <CardDescription>
+                  {selectedCampaign.description}
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -213,8 +240,13 @@ export function CampaignsPage() {
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Duration:</span>
                         <span>
-                          {new Date(selectedCampaign.startDate).toLocaleDateString()} -{" "}
-                          {new Date(selectedCampaign.endDate).toLocaleDateString()}
+                          {new Date(
+                            selectedCampaign.startDate
+                          ).toLocaleDateString()}{" "}
+                          -{" "}
+                          {new Date(
+                            selectedCampaign.endDate
+                          ).toLocaleDateString()}
                         </span>
                       </div>
                       <div className="flex justify-between">
@@ -228,8 +260,8 @@ export function CampaignsPage() {
                             selectedCampaign.status === "Active"
                               ? "bg-green-100 text-green-800"
                               : selectedCampaign.status === "Completed"
-                                ? "bg-blue-100 text-blue-800"
-                                : "bg-orange-100 text-orange-800"
+                              ? "bg-blue-100 text-blue-800"
+                              : "bg-orange-100 text-orange-800"
                           }
                         >
                           {selectedCampaign.status}
@@ -244,7 +276,8 @@ export function CampaignsPage() {
                         <div className="flex justify-between text-sm mb-1">
                           <span>Donor Registration</span>
                           <span>
-                            {selectedCampaign.actualDonors}/{selectedCampaign.targetDonors}
+                            {selectedCampaign.actualDonors}/
+                            {selectedCampaign.targetDonors}
                           </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
@@ -252,8 +285,10 @@ export function CampaignsPage() {
                             className="bg-red-600 h-2 rounded-full"
                             style={{
                               width: `${Math.min(
-                                (selectedCampaign.actualDonors / selectedCampaign.targetDonors) * 100,
-                                100,
+                                (selectedCampaign.actualDonors /
+                                  selectedCampaign.targetDonors) *
+                                  100,
+                                100
                               )}%`,
                             }}
                           ></div>
@@ -282,7 +317,9 @@ export function CampaignsPage() {
                       <div
                         key={index}
                         className="relative aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
-                        onClick={() => setSelectedMedia({ type: "image", src: image })}
+                        onClick={() =>
+                          setSelectedMedia({ type: "image", src: image })
+                        }
                       >
                         <Image
                           src={image || "/placeholder.svg"}
@@ -293,7 +330,10 @@ export function CampaignsPage() {
                       </div>
                     ))}
                   </div>
-                  <Button variant="outline" className="w-full mt-4 bg-transparent">
+                  <Button
+                    variant="outline"
+                    className="w-full mt-4 bg-transparent"
+                  >
                     View All Photos ({selectedCampaign.images.length})
                   </Button>
                 </CardContent>
@@ -313,7 +353,9 @@ export function CampaignsPage() {
                       <div
                         key={index}
                         className="relative aspect-video rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity bg-gray-100"
-                        onClick={() => setSelectedMedia({ type: "video", src: video })}
+                        onClick={() =>
+                          setSelectedMedia({ type: "video", src: video })
+                        }
                       >
                         <Image
                           src={video || "/placeholder.svg"}
@@ -329,7 +371,10 @@ export function CampaignsPage() {
                       </div>
                     ))}
                   </div>
-                  <Button variant="outline" className="w-full mt-4 bg-transparent">
+                  <Button
+                    variant="outline"
+                    className="w-full mt-4 bg-transparent"
+                  >
                     View All Videos ({selectedCampaign.videos.length})
                   </Button>
                 </CardContent>
@@ -344,7 +389,9 @@ export function CampaignsPage() {
                   <div className="text-3xl font-bold text-red-600">
                     {selectedCampaign.actualDonors.toLocaleString()}
                   </div>
-                  <div className="text-sm text-muted-foreground">Total Donors</div>
+                  <div className="text-sm text-muted-foreground">
+                    Total Donors
+                  </div>
                 </CardContent>
               </Card>
               <Card>
@@ -352,7 +399,9 @@ export function CampaignsPage() {
                   <div className="text-3xl font-bold text-blue-600">
                     {selectedCampaign.bloodUnitsCollected.toLocaleString()}
                   </div>
-                  <div className="text-sm text-muted-foreground">Blood Units Collected</div>
+                  <div className="text-sm text-muted-foreground">
+                    Blood Units Collected
+                  </div>
                 </CardContent>
               </Card>
               <Card>
@@ -360,13 +409,19 @@ export function CampaignsPage() {
                   <div className="text-3xl font-bold text-green-600">
                     {selectedCampaign.livesImpacted.toLocaleString()}
                   </div>
-                  <div className="text-sm text-muted-foreground">Lives Impacted</div>
+                  <div className="text-sm text-muted-foreground">
+                    Lives Impacted
+                  </div>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-bold text-purple-600">{selectedCampaign.volunteers}</div>
-                  <div className="text-sm text-muted-foreground">Volunteers</div>
+                  <div className="text-3xl font-bold text-purple-600">
+                    {selectedCampaign.volunteers}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    Volunteers
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -387,24 +442,37 @@ export function CampaignsPage() {
                         <div className="w-2 h-2 bg-red-600 rounded-full mt-2"></div>
                         <span className="text-sm">
                           Exceeded target by{" "}
-                          {((selectedCampaign.actualDonors / selectedCampaign.targetDonors) * 100 - 100).toFixed(1)}%
+                          {(
+                            (selectedCampaign.actualDonors /
+                              selectedCampaign.targetDonors) *
+                              100 -
+                            100
+                          ).toFixed(1)}
+                          %
                         </span>
                       </li>
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-red-600 rounded-full mt-2"></div>
                         <span className="text-sm">
-                          Collected {selectedCampaign.bloodUnitsCollected.toLocaleString()} units of safe blood
+                          Collected{" "}
+                          {selectedCampaign.bloodUnitsCollected.toLocaleString()}{" "}
+                          units of safe blood
                         </span>
                       </li>
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-red-600 rounded-full mt-2"></div>
                         <span className="text-sm">
-                          Potentially saved {selectedCampaign.livesImpacted.toLocaleString()} lives
+                          Potentially saved{" "}
+                          {selectedCampaign.livesImpacted.toLocaleString()}{" "}
+                          lives
                         </span>
                       </li>
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-red-600 rounded-full mt-2"></div>
-                        <span className="text-sm">Engaged {selectedCampaign.volunteers} dedicated volunteers</span>
+                        <span className="text-sm">
+                          Engaged {selectedCampaign.volunteers} dedicated
+                          volunteers
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -417,7 +485,10 @@ export function CampaignsPage() {
                           <span>40%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-red-600 h-2 rounded-full" style={{ width: "40%" }}></div>
+                          <div
+                            className="bg-red-600 h-2 rounded-full"
+                            style={{ width: "40%" }}
+                          ></div>
                         </div>
                       </div>
                       <div>
@@ -426,7 +497,10 @@ export function CampaignsPage() {
                           <span>35%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-blue-600 h-2 rounded-full" style={{ width: "35%" }}></div>
+                          <div
+                            className="bg-blue-600 h-2 rounded-full"
+                            style={{ width: "35%" }}
+                          ></div>
                         </div>
                       </div>
                       <div>
@@ -435,7 +509,10 @@ export function CampaignsPage() {
                           <span>25%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-green-600 h-2 rounded-full" style={{ width: "25%" }}></div>
+                          <div
+                            className="bg-green-600 h-2 rounded-full"
+                            style={{ width: "25%" }}
+                          ></div>
                         </div>
                       </div>
                     </div>
@@ -453,27 +530,40 @@ export function CampaignsPage() {
                   Volunteer Recognition
                 </CardTitle>
                 <CardDescription>
-                  Celebrating the dedicated volunteers who made this campaign successful
+                  Celebrating the dedicated volunteers who made this campaign
+                  successful
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid md:grid-cols-3 gap-4">
                   <Card>
                     <CardContent className="p-6 text-center">
-                      <div className="text-2xl font-bold text-blue-600">{selectedCampaign.volunteers}</div>
-                      <div className="text-sm text-muted-foreground">Total Volunteers</div>
+                      <div className="text-2xl font-bold text-blue-600">
+                        {selectedCampaign.volunteers}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        Total Volunteers
+                      </div>
                     </CardContent>
                   </Card>
                   <Card>
                     <CardContent className="p-6 text-center">
-                      <div className="text-2xl font-bold text-green-600">1,240</div>
-                      <div className="text-sm text-muted-foreground">Volunteer Hours</div>
+                      <div className="text-2xl font-bold text-green-600">
+                        1,240
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        Volunteer Hours
+                      </div>
                     </CardContent>
                   </Card>
                   <Card>
                     <CardContent className="p-6 text-center">
-                      <div className="text-2xl font-bold text-purple-600">45</div>
-                      <div className="text-sm text-muted-foreground">Team Leaders</div>
+                      <div className="text-2xl font-bold text-purple-600">
+                        45
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        Team Leaders
+                      </div>
                     </CardContent>
                   </Card>
                 </div>
@@ -501,9 +591,15 @@ export function CampaignsPage() {
                         avatar: "/placeholder.svg?height=40&width=40",
                       },
                     ].map((volunteer, index) => (
-                      <div key={index} className="flex items-center gap-4 p-4 bg-muted/50 rounded-lg">
+                      <div
+                        key={index}
+                        className="flex items-center gap-4 p-4 bg-muted/50 rounded-lg"
+                      >
                         <Avatar>
-                          <AvatarImage src={volunteer.avatar || "/placeholder.svg"} alt={volunteer.name} />
+                          <AvatarImage
+                            src={volunteer.avatar || "/placeholder.svg"}
+                            alt={volunteer.name}
+                          />
                           <AvatarFallback>
                             {volunteer.name
                               .split(" ")
@@ -513,11 +609,17 @@ export function CampaignsPage() {
                         </Avatar>
                         <div className="flex-1">
                           <h5 className="font-medium">{volunteer.name}</h5>
-                          <p className="text-sm text-muted-foreground">{volunteer.role}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {volunteer.role}
+                          </p>
                         </div>
                         <div className="text-right">
-                          <div className="font-semibold">{volunteer.hours}h</div>
-                          <div className="text-sm text-muted-foreground">Volunteer Hours</div>
+                          <div className="font-semibold">
+                            {volunteer.hours}h
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            Volunteer Hours
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -538,13 +640,20 @@ export function CampaignsPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {selectedCampaign.mediaLinks.map((link, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 border rounded-lg">
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 p-3 border rounded-lg"
+                    >
                       <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                         <Newspaper className="h-5 w-5 text-blue-600" />
                       </div>
                       <div className="flex-1">
-                        <h5 className="font-medium">News Article {index + 1}</h5>
-                        <p className="text-sm text-muted-foreground">Media coverage of campaign activities</p>
+                        <h5 className="font-medium">
+                          News Article {index + 1}
+                        </h5>
+                        <p className="text-sm text-muted-foreground">
+                          Media coverage of campaign activities
+                        </p>
                       </div>
                       <Button variant="outline" size="sm">
                         <Share2 className="h-4 w-4 mr-2" />
@@ -567,7 +676,10 @@ export function CampaignsPage() {
                     <div key={index} className="p-4 border rounded-lg">
                       <div className="flex items-start gap-3 mb-3">
                         <Avatar>
-                          <AvatarImage src={testimonial.avatar || "/placeholder.svg"} alt={testimonial.name} />
+                          <AvatarImage
+                            src={testimonial.avatar || "/placeholder.svg"}
+                            alt={testimonial.name}
+                          />
                           <AvatarFallback>
                             {testimonial.name
                               .split(" ")
@@ -577,10 +689,14 @@ export function CampaignsPage() {
                         </Avatar>
                         <div>
                           <h5 className="font-medium">{testimonial.name}</h5>
-                          <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {testimonial.role}
+                          </p>
                         </div>
                       </div>
-                      <p className="text-sm italic">"{testimonial.content}"</p>
+                      <p className="text-sm italic">
+                        &quot;{testimonial.content}&quot;
+                      </p>
                     </div>
                   ))}
                 </CardContent>
@@ -591,10 +707,17 @@ export function CampaignsPage() {
       </section>
 
       {/* Media Dialog */}
-      <Dialog open={!!selectedMedia} onOpenChange={() => setSelectedMedia(null)}>
+      <Dialog
+        open={!!selectedMedia}
+        onOpenChange={() => setSelectedMedia(null)}
+      >
         <DialogContent className="max-w-4xl">
           <DialogHeader>
-            <DialogTitle>{selectedMedia?.type === "image" ? "Campaign Photo" : "Campaign Video"}</DialogTitle>
+            <DialogTitle>
+              {selectedMedia?.type === "image"
+                ? "Campaign Photo"
+                : "Campaign Video"}
+            </DialogTitle>
           </DialogHeader>
           {selectedMedia && (
             <div className="relative aspect-video">
@@ -609,5 +732,5 @@ export function CampaignsPage() {
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }

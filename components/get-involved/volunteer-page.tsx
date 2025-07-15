@@ -1,15 +1,36 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Users, Calendar, Heart, Megaphone, GraduationCap, Clock, MapPin, Award } from "lucide-react"
+import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Users,
+  Calendar,
+  Heart,
+  Megaphone,
+  GraduationCap,
+  Clock,
+  MapPin,
+  Award,
+} from "lucide-react";
 
 export function VolunteerPage() {
   const opportunities = [
@@ -41,7 +62,7 @@ export function VolunteerPage() {
       commitment: "Flexible hours",
       skills: ["Public Speaking", "Social Media", "Marketing"],
     },
-  ]
+  ];
 
   const trainingSchedule = [
     {
@@ -65,7 +86,7 @@ export function VolunteerPage() {
       location: "Abuja Center",
       type: "In-person",
     },
-  ]
+  ];
 
   return (
     <div className="space-y-12">
@@ -74,20 +95,32 @@ export function VolunteerPage() {
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative grid lg:grid-cols-2 gap-8 p-8 lg:p-12">
           <div className="space-y-6">
-            <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
+            <Badge
+              variant="secondary"
+              className="bg-white/20 text-white border-white/30"
+            >
               Make a Difference
             </Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight">Volunteer with TBDN</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
+              Volunteer with TBDN
+            </h2>
             <p className="text-xl text-blue-100">
-              Join our team of dedicated volunteers and help save lives in your community. Every hour you contribute
-              makes a meaningful impact.
+              Join our team of dedicated volunteers and help save lives in your
+              community. Every hour you contribute makes a meaningful impact.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
+              <Button
+                size="lg"
+                className="bg-white text-blue-600 hover:bg-blue-50"
+              >
                 <Users className="h-5 w-5 mr-2" />
                 Join Our Team
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-transparent">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white/10 bg-transparent"
+              >
                 Learn More
               </Button>
             </div>
@@ -109,7 +142,8 @@ export function VolunteerPage() {
         <div className="text-center space-y-4">
           <h3 className="text-3xl font-bold">Volunteer Opportunities</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Choose from various volunteer roles that match your skills and availability.
+            Choose from various volunteer roles that match your skills and
+            availability.
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-6">
@@ -121,8 +155,12 @@ export function VolunteerPage() {
                     <opportunity.icon className="h-6 w-6 text-blue-600" />
                   </div>
                   <div className="flex-1">
-                    <CardTitle className="text-xl">{opportunity.title}</CardTitle>
-                    <CardDescription className="mt-2">{opportunity.description}</CardDescription>
+                    <CardTitle className="text-xl">
+                      {opportunity.title}
+                    </CardTitle>
+                    <CardDescription className="mt-2">
+                      {opportunity.description}
+                    </CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -141,7 +179,9 @@ export function VolunteerPage() {
                     ))}
                   </div>
                 </div>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">Apply for This Role</Button>
+                <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                  Apply for This Role
+                </Button>
               </CardContent>
             </Card>
           ))}
@@ -152,12 +192,17 @@ export function VolunteerPage() {
       <section className="space-y-8">
         <div className="text-center space-y-4">
           <h3 className="text-3xl font-bold">Volunteer Registration</h3>
-          <p className="text-muted-foreground max-w-2xl mx-auto">Fill out this form to join our volunteer team.</p>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Fill out this form to join our volunteer team.
+          </p>
         </div>
         <Card className="max-w-2xl mx-auto">
           <CardHeader>
             <CardTitle>Join Our Volunteer Team</CardTitle>
-            <CardDescription>We'll contact you within 48 hours to discuss volunteer opportunities.</CardDescription>
+            <CardDescription>
+              We&apos;ll contact you within 48 hours to discuss volunteer
+              opportunities.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid md:grid-cols-2 gap-4">
@@ -173,7 +218,11 @@ export function VolunteerPage() {
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="vol-email">Email Address *</Label>
-                <Input id="vol-email" type="email" placeholder="Enter your email" />
+                <Input
+                  id="vol-email"
+                  type="email"
+                  placeholder="Enter your email"
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="vol-phone">Phone Number *</Label>
@@ -225,10 +274,18 @@ export function VolunteerPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="vol-motivation">Why do you want to volunteer?</Label>
-              <Textarea id="vol-motivation" placeholder="Tell us what motivates you to volunteer with TBDN" rows={3} />
+              <Label htmlFor="vol-motivation">
+                Why do you want to volunteer?
+              </Label>
+              <Textarea
+                id="vol-motivation"
+                placeholder="Tell us what motivates you to volunteer with TBDN"
+                rows={3}
+              />
             </div>
-            <Button className="w-full bg-blue-600 hover:bg-blue-700">Submit Application</Button>
+            <Button className="w-full bg-blue-600 hover:bg-blue-700">
+              Submit Application
+            </Button>
           </CardContent>
         </Card>
       </section>
@@ -238,7 +295,8 @@ export function VolunteerPage() {
         <div className="text-center space-y-4">
           <h3 className="text-3xl font-bold">Training Schedule</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            All volunteers receive comprehensive training before starting their roles.
+            All volunteers receive comprehensive training before starting their
+            roles.
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
@@ -247,7 +305,13 @@ export function VolunteerPage() {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <GraduationCap className="h-5 w-5 text-blue-600" />
-                  <Badge variant={training.type === "Virtual" ? "secondary" : "default"}>{training.type}</Badge>
+                  <Badge
+                    variant={
+                      training.type === "Virtual" ? "secondary" : "default"
+                    }
+                  >
+                    {training.type}
+                  </Badge>
                 </div>
                 <CardTitle className="text-lg">{training.title}</CardTitle>
                 <CardDescription>{training.date}</CardDescription>
@@ -261,7 +325,10 @@ export function VolunteerPage() {
                   <MapPin className="h-4 w-4" />
                   <span>{training.location}</span>
                 </div>
-                <Button variant="outline" className="w-full mt-4 bg-transparent">
+                <Button
+                  variant="outline"
+                  className="w-full mt-4 bg-transparent"
+                >
                   Register
                 </Button>
               </CardContent>
@@ -313,7 +380,9 @@ export function VolunteerPage() {
               <CardTitle>Volunteer Community</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">Connect with other volunteers and share experiences.</p>
+              <p className="text-sm text-muted-foreground mb-4">
+                Connect with other volunteers and share experiences.
+              </p>
               <Button variant="outline" className="w-full bg-transparent">
                 Join Forum
               </Button>
@@ -322,5 +391,5 @@ export function VolunteerPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
