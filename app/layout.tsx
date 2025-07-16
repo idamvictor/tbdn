@@ -5,6 +5,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Suspense } from "react";
 import LoadingScreen from "@/components/loading-screen";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </Suspense>
+        <Toaster />
       </body>
     </html>
   );
