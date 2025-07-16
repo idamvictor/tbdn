@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,7 +13,7 @@ import {
   Megaphone,
 } from "lucide-react";
 import Image from "next/image";
-import { heroImages } from "@/constants/images";
+import { heroImages } from "@/constants/images"; // Import the new constants file
 
 const blogPosts = [
   {
@@ -88,13 +89,59 @@ const achievements = [
   },
 ];
 
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.1,
+      when: "beforeChildren",
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const cardHoverVariants = {
+  hover: {
+    scale: 1.02,
+    boxShadow:
+      "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+    transition: {
+      duration: 0.2,
+    },
+  },
+  tap: {
+    scale: 0.98,
+  },
+};
+
+const linkHoverVariants = {
+  hover: {
+    x: 5,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
+
 export function NewsUpdates() {
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <motion.section
+      className="py-16 md:py-24 bg-gray-50"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       <div className="container mx-auto px-4">
         <div className="space-y-12">
           {/* Section Header */}
-          <div className="text-center space-y-4">
+          <motion.div className="text-center space-y-4" variants={itemVariants}>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               News & Updates
             </h2>
@@ -102,152 +149,210 @@ export function NewsUpdates() {
               Stay informed with our latest blog posts, media coverage, and
               organizational achievements
             </p>
-          </div>
+          </motion.div>
 
           {/* Latest Blog Posts */}
           <div className="space-y-8">
-            <div className="flex items-center justify-between">
+            <motion.div
+              className="flex items-center justify-between"
+              variants={itemVariants}
+            >
               <h3 className="text-2xl font-bold text-gray-900 flex items-center">
                 <Newspaper className="h-6 w-6 mr-2 text-red-600" />
                 Latest Blog Posts
               </h3>
-              <Button variant="outline" className="hidden sm:flex">
+              <Button
+                variant="outline"
+                className="hidden sm:flex group bg-transparent"
+              >
                 View All Posts
-                <ArrowRight className="h-4 w-4 ml-2" />
+                <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </motion.div>
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              variants={containerVariants}
+            >
               {blogPosts.map((post) => (
-                <Card
+                <motion.div
                   key={post.id}
-                  className="group hover:shadow-lg transition-all duration-300 cursor-pointer"
+                  variants={itemVariants}
+                  whileHover="hover"
+                  whileTap="tap"
+                  viewport={{ once: true, amount: 0.5 }}
                 >
-                  <CardContent className="p-0">
-                    <div className="relative overflow-hidden">
-                      <Image
-                        src={post.image || "/placeholder.svg"}
-                        alt={post.title}
-                        width={400}
-                        height={200}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                        priority={true}
-                      />
-                      <Badge className="absolute top-4 left-4 bg-red-600">
-                        {post.category}
-                      </Badge>
-                    </div>
-                    <div className="p-6 space-y-3">
-                      <div className="flex items-center text-sm text-gray-500 space-x-4">
-                        <div className="flex items-center">
-                          <Calendar className="h-4 w-4 mr-1" />
-                          {post.date}
+                  <motion.div
+                    variants={cardHoverVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                    className="h-full"
+                  >
+                    <Card className="group border border-gray-100 rounded-xl overflow-hidden h-full p-0">
+                      <CardContent className="p-0">
+                        <div className="relative overflow-hidden">
+                          <Image
+                            src={post.image || "/placeholder.svg"}
+                            alt={post.title}
+                            width={400}
+                            height={200}
+                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                            priority={true}
+                          />
+                          <Badge className="absolute top-4 left-4 bg-red-600 text-white">
+                            {post.category}
+                          </Badge>
                         </div>
-                        <span>{post.readTime}</span>
-                      </div>
-                      <h4 className="text-lg font-semibold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
-                        {post.title}
-                      </h4>
-                      <p className="text-gray-600 text-sm line-clamp-3">
-                        {post.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between pt-2">
-                        <span className="text-sm text-gray-500">
-                          By {post.author}
-                        </span>
-                        <ArrowRight className="h-4 w-4 text-red-600 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                        <div className="p-6 space-y-3">
+                          <div className="flex items-center text-sm text-gray-500 space-x-4">
+                            <div className="flex items-center">
+                              <Calendar className="h-4 w-4 mr-1" />
+                              {post.date}
+                            </div>
+                            <span>{post.readTime}</span>
+                          </div>
+                          <h4 className="text-lg font-semibold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
+                            {post.title}
+                          </h4>
+                          <p className="text-gray-600 text-sm line-clamp-3">
+                            {post.excerpt}
+                          </p>
+                          <motion.div
+                            className="flex items-center justify-between pt-2"
+                            variants={linkHoverVariants}
+                          >
+                            <span className="text-sm text-gray-500">
+                              By {post.author}
+                            </span>
+                            <ArrowRight className="h-4 w-4 text-red-600 group-hover:translate-x-1 transition-transform" />
+                          </motion.div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </motion.div>
               ))}
-            </div>
-
-            <div className="text-center sm:hidden">
-              <Button variant="outline">
+            </motion.div>
+            <motion.div
+              className="text-center sm:hidden"
+              variants={itemVariants}
+            >
+              <Button variant="outline" className="group bg-transparent">
                 View All Posts
-                <ArrowRight className="h-4 w-4 ml-2" />
+                <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-            </div>
+            </motion.div>
           </div>
 
           {/* Media Mentions & Achievements */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Media Mentions */}
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-gray-900 flex items-center">
+              <motion.h3
+                className="text-2xl font-bold text-gray-900 flex items-center"
+                variants={itemVariants}
+              >
                 <Megaphone className="h-6 w-6 mr-2 text-blue-600" />
                 Media Mentions
-              </h3>
-              <div className="space-y-4">
+              </motion.h3>
+              <motion.div className="space-y-4" variants={containerVariants}>
                 {mediaMentions.map((mention) => (
-                  <Card
+                  <motion.div
                     key={mention.id}
-                    className="hover:shadow-md transition-shadow"
+                    variants={itemVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                    viewport={{ once: true, amount: 0.5 }}
                   >
-                    <CardContent className="p-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1 space-y-2">
-                          <h4 className="font-semibold text-gray-900 hover:text-blue-600 transition-colors">
-                            {mention.title}
-                          </h4>
-                          <div className="flex items-center text-sm text-gray-500 space-x-2">
-                            <span>{mention.source}</span>
-                            <span>•</span>
-                            <span>{mention.date}</span>
+                    <motion.div
+                      variants={cardHoverVariants}
+                      whileHover="hover"
+                      whileTap="tap"
+                      className="h-full"
+                    >
+                      <Card className="h-full hover:shadow-md transition-shadow">
+                        <CardContent className="p-4">
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1 space-y-2">
+                              <h4 className="font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+                                {mention.title}
+                              </h4>
+                              <div className="flex items-center text-sm text-gray-500 space-x-2">
+                                <span>{mention.source}</span>
+                                <span>•</span>
+                                <span>{mention.date}</span>
+                              </div>
+                            </div>
+                            <Button variant="ghost" size="sm" className="group">
+                              <ExternalLink className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                            </Button>
                           </div>
-                        </div>
-                        <Button variant="ghost" size="sm">
-                          <ExternalLink className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
 
             {/* Achievement Announcements */}
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-gray-900 flex items-center">
+              <motion.h3
+                className="text-2xl font-bold text-gray-900 flex items-center"
+                variants={itemVariants}
+              >
                 <Award className="h-6 w-6 mr-2 text-yellow-600" />
                 Recent Achievements
-              </h3>
-              <div className="space-y-4">
+              </motion.h3>
+              <motion.div className="space-y-4" variants={containerVariants}>
                 {achievements.map((achievement) => (
-                  <Card
+                  <motion.div
                     key={achievement.id}
-                    className="hover:shadow-md transition-shadow"
+                    variants={itemVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                    viewport={{ once: true, amount: 0.5 }}
                   >
-                    <CardContent className="p-4">
-                      <div className="space-y-3">
-                        <div className="flex items-start justify-between">
-                          <h4 className="font-semibold text-gray-900 flex-1">
-                            {achievement.title}
-                          </h4>
-                          <Badge
-                            variant="secondary"
-                            className="bg-yellow-100 text-yellow-800"
-                          >
-                            New
-                          </Badge>
-                        </div>
-                        <p className="text-sm text-gray-600">
-                          {achievement.description}
-                        </p>
-                        <div className="text-sm text-gray-500">
-                          {achievement.date}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                    <motion.div
+                      variants={cardHoverVariants}
+                      whileHover="hover"
+                      whileTap="tap"
+                      className="h-full"
+                    >
+                      <Card className="hover:shadow-md transition-shadow">
+                        <CardContent className="p-4">
+                          <div className="space-y-3">
+                            <div className="flex items-start justify-between">
+                              <h4 className="font-semibold text-gray-900 flex-1">
+                                {achievement.title}
+                              </h4>
+                              <Badge
+                                variant="secondary"
+                                className="bg-yellow-100 text-yellow-800"
+                              >
+                                New
+                              </Badge>
+                            </div>
+                            <p className="text-sm text-gray-600">
+                              {achievement.description}
+                            </p>
+                            <div className="text-sm text-gray-500">
+                              {achievement.date}
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
 
           {/* Newsletter Signup */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center">
+          <motion.div
+            className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white text-center"
+            variants={itemVariants}
+          >
             <div className="max-w-2xl mx-auto space-y-6">
               <h3 className="text-2xl md:text-3xl font-bold">
                 Stay Updated with TBDN News
@@ -257,22 +362,25 @@ export function NewsUpdates() {
                 impact delivered to your inbox.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
+                <motion.input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500"
+                  className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                  whileFocus={{ scale: 1.01 }}
                 />
-                <Button className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3">
-                  Subscribe
-                </Button>
+                <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+                  <Button className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-lg">
+                    Subscribe
+                  </Button>
+                </motion.div>
               </div>
               <div className="text-sm opacity-75">
                 Join 5,000+ subscribers. Unsubscribe anytime.
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
