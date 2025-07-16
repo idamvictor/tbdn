@@ -1,6 +1,5 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Heart,
   Droplets,
@@ -8,7 +7,11 @@ import {
   Building,
   Calendar,
   MapPin,
+  TrendingUp,
+  Award,
 } from "lucide-react";
+import { motion, easeOut, easeInOut } from "framer-motion";
+import { useInView } from "framer-motion";
 
 const impactStats = [
   {
@@ -18,6 +21,8 @@ const impactStats = [
     suffix: "",
     color: "text-red-600",
     bgColor: "bg-red-100",
+    gradient: "from-red-500 to-pink-500",
+    hoverGradient: "from-red-600 to-pink-600",
   },
   {
     icon: Droplets,
@@ -26,6 +31,8 @@ const impactStats = [
     suffix: "",
     color: "text-blue-600",
     bgColor: "bg-blue-100",
+    gradient: "from-blue-500 to-cyan-500",
+    hoverGradient: "from-blue-600 to-cyan-600",
   },
   {
     icon: Users,
@@ -34,6 +41,8 @@ const impactStats = [
     suffix: "+",
     color: "text-green-600",
     bgColor: "bg-green-100",
+    gradient: "from-green-500 to-emerald-500",
+    hoverGradient: "from-green-600 to-emerald-600",
   },
   {
     icon: Building,
@@ -42,6 +51,8 @@ const impactStats = [
     suffix: "",
     color: "text-purple-600",
     bgColor: "bg-purple-100",
+    gradient: "from-purple-500 to-violet-500",
+    hoverGradient: "from-purple-600 to-violet-600",
   },
   {
     icon: Calendar,
@@ -50,6 +61,8 @@ const impactStats = [
     suffix: "",
     color: "text-orange-600",
     bgColor: "bg-orange-100",
+    gradient: "from-orange-500 to-red-500",
+    hoverGradient: "from-orange-600 to-red-600",
   },
   {
     icon: MapPin,
@@ -58,14 +71,75 @@ const impactStats = [
     suffix: "",
     color: "text-teal-600",
     bgColor: "bg-teal-100",
+    gradient: "from-teal-500 to-cyan-500",
+    hoverGradient: "from-teal-600 to-cyan-600",
   },
 ];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+    scale: 0.9,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: easeInOut,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+    scale: 0.8,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      ease: easeInOut,
+    },
+  },
+};
+
+const numberVariants = {
+  hidden: { scale: 0.5, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: easeOut,
+    },
+  },
+};
 
 export function ImpactStatistics() {
   const [animatedValues, setAnimatedValues] = useState(
     impactStats.map(() => 0)
   );
   const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   useEffect(() => {
     const animateCounters = () => {
@@ -90,91 +164,239 @@ export function ImpactStatistics() {
           });
         }, 16);
       });
-
       setHasAnimated(true);
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          animateCounters();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    const element = document.getElementById("impact-stats");
-    if (element) observer.observe(element);
-
-    return () => observer.disconnect();
-  }, [hasAnimated]);
+    if (isInView && !hasAnimated) {
+      setTimeout(animateCounters, 500); // Delay to sync with entrance animation
+    }
+  }, [isInView, hasAnimated]);
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center space-y-12">
-          <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Our Impact in Numbers
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+    <section className="relative py-20 md:py-32 overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(239,68,68,0.1),transparent_50%)]" />
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(4)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-20 h-20 bg-gradient-to-br from-blue-200/20 to-red-200/20 rounded-full blur-xl"
+            animate={{
+              x: [0, 30, 0],
+              y: [0, -30, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 12 + i * 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: easeInOut,
+            }}
+            style={{
+              left: `${15 + i * 25}%`,
+              top: `${10 + i * 20}%`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10" ref={ref}>
+        <motion.div
+          className="text-center space-y-16"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {/* Header Section */}
+          <motion.div className="space-y-6" variants={itemVariants}>
+            <motion.div className="inline-block" whileHover={{ scale: 1.02 }}>
+              <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-red-600 bg-clip-text text-transparent leading-tight">
+                Our Impact in Numbers
+              </h2>
+              <motion.div
+                className="h-1 bg-gradient-to-r from-blue-500 to-red-500 rounded-full mt-4 mx-auto"
+                initial={{ width: 0 }}
+                animate={isInView ? { width: "100%" } : { width: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.p
+              className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+              variants={itemVariants}
+            >
               Every donation makes a difference. Here&apos;s how our community
               has been saving lives together.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div
-            id="impact-stats"
+          {/* Statistics Grid */}
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={containerVariants}
           >
             {impactStats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <div
+                <motion.div
                   key={stat.label}
-                  className="group p-8 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300"
+                  className="group relative"
+                  variants={cardVariants}
+                  whileHover={{
+                    y: -10,
+                    scale: 1.02,
+                    transition: { duration: 0.3 },
+                  }}
                 >
-                  <div className="flex flex-col items-center text-center space-y-4">
+                  <div className="relative p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden h-full">
+                    {/* Card Background Gradient */}
                     <div
-                      className={`p-4 ${stat.bgColor} rounded-full group-hover:scale-110 transition-transform`}
-                    >
-                      <Icon className={`h-8 w-8 ${stat.color}`} />
-                    </div>
-                    <div className="space-y-2">
-                      <div
-                        className={`text-4xl md:text-5xl font-bold ${stat.color}`}
+                      className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                    />
+
+                    {/* Animated Border */}
+                    <motion.div
+                      className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${stat.gradient} opacity-0 group-hover:opacity-20 blur-sm`}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      whileHover={{ scale: 1, opacity: 0.2 }}
+                      transition={{ duration: 0.3 }}
+                    />
+
+                    <div className="relative flex flex-col items-center text-center space-y-6">
+                      {/* Icon Container */}
+                      <motion.div
+                        className={`relative p-5 ${stat.bgColor} rounded-2xl shadow-md group-hover:shadow-lg transition-all duration-300`}
+                        whileHover={{
+                          scale: 1.1,
+                          rotate: 5,
+                          transition: { duration: 0.3 },
+                        }}
                       >
-                        {animatedValues[index].toLocaleString()}
-                        {stat.suffix}
+                        <Icon className={`h-10 w-10 ${stat.color}`} />
+
+                        {/* Icon Glow Effect */}
+                        <motion.div
+                          className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-30 blur-md -z-10`}
+                          whileHover={{ scale: 1.3, opacity: 0.4 }}
+                          transition={{ duration: 0.3 }}
+                        />
+                      </motion.div>
+
+                      {/* Statistics */}
+                      <div className="space-y-3">
+                        <motion.div
+                          className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}
+                          variants={numberVariants}
+                          initial="hidden"
+                          animate={hasAnimated ? "visible" : "hidden"}
+                          transition={{ delay: index * 0.1 }}
+                        >
+                          {animatedValues[index].toLocaleString()}
+                          {stat.suffix}
+                        </motion.div>
+                        <motion.div
+                          className="text-gray-700 font-medium text-lg group-hover:text-gray-800 transition-colors"
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          {stat.label}
+                        </motion.div>
                       </div>
-                      <div className="text-gray-700 font-medium">
-                        {stat.label}
-                      </div>
+
+                      {/* Progress Indicator */}
+                      <motion.div
+                        className={`absolute bottom-0 left-1/2 h-1 bg-gradient-to-r ${stat.gradient} rounded-full`}
+                        initial={{ width: 0, x: "-50%" }}
+                        whileHover={{ width: "90%", x: "-50%" }}
+                        transition={{ duration: 0.3 }}
+                      />
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
 
-          <div className="bg-gradient-to-r from-red-600 to-pink-600 rounded-2xl p-8 text-white text-center">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Join Our Growing Community
-            </h3>
-            <p className="text-lg mb-6 opacity-90">
-              Be part of something bigger. Your donation today becomes
-              someone&apos;s tomorrow.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                Become a Donor
-              </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
-                Learn More
-              </button>
+          {/* Enhanced CTA Section */}
+          <motion.div variants={itemVariants}>
+            <div className="relative bg-gradient-to-r from-red-600 via-pink-600 to-red-700 rounded-3xl p-10 md:p-12 text-white overflow-hidden shadow-2xl">
+              {/* Background Pattern */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1),transparent_50%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.1),transparent_50%)]" />
+
+              {/* Floating Icons */}
+              <div className="absolute inset-0 overflow-hidden">
+                <motion.div
+                  className="absolute top-4 right-4 text-white/20"
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    duration: 20,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "linear",
+                  }}
+                >
+                  <TrendingUp className="h-8 w-8" />
+                </motion.div>
+                <motion.div
+                  className="absolute bottom-4 left-4 text-white/20"
+                  animate={{ rotate: -360 }}
+                  transition={{
+                    duration: 25,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "linear",
+                  }}
+                >
+                  <Award className="h-6 w-6" />
+                </motion.div>
+              </div>
+
+              <div className="relative text-center space-y-8">
+                <motion.h3
+                  className="text-3xl md:text-4xl font-bold"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  Join Our Growing Community
+                </motion.h3>
+                <motion.p
+                  className="text-xl opacity-90 max-w-2xl mx-auto leading-relaxed"
+                  variants={itemVariants}
+                >
+                  Be part of something bigger. Your donation today becomes
+                  someone&apos;s tomorrow.
+                </motion.p>
+
+                <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
+                  <motion.button
+                    className="bg-white text-red-600 px-10 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                    whileHover={{
+                      scale: 1.05,
+                      y: -2,
+                      boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span className="flex items-center space-x-2">
+                      <Heart className="h-5 w-5" />
+                      <span>Become a Donor</span>
+                    </span>
+                  </motion.button>
+                  <motion.button
+                    className="border-2 border-white text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-white hover:text-red-600 transition-all duration-300"
+                    whileHover={{
+                      scale: 1.05,
+                      y: -2,
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Learn More
+                  </motion.button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

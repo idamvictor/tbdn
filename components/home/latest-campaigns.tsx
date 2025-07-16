@@ -1,9 +1,17 @@
 "use client";
-
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
+import {
+  Calendar,
+  MapPin,
+  Users,
+  ArrowRight,
+  TrendingUp,
+  Heart,
+} from "lucide-react";
 import Image from "next/image";
+import { easeInOut, easeOut, motion } from "framer-motion";
+import { useInView } from "framer-motion";
 import { heroImages } from "@/constants/images";
 
 const upcomingDrives = [
@@ -17,6 +25,7 @@ const upcomingDrives = [
     registered: 156,
     image: heroImages.slide1,
     status: "Open",
+    gradient: "from-red-500 to-pink-500",
   },
   {
     id: 2,
@@ -28,6 +37,7 @@ const upcomingDrives = [
     registered: 89,
     image: heroImages.slide2,
     status: "Open",
+    gradient: "from-blue-500 to-cyan-500",
   },
   {
     id: 3,
@@ -39,6 +49,7 @@ const upcomingDrives = [
     registered: 234,
     image: heroImages.slide3,
     status: "Almost Full",
+    gradient: "from-green-500 to-emerald-500",
   },
 ];
 
@@ -51,6 +62,7 @@ const recentHighlights = [
     image: heroImages.slide4,
     date: "Feb 28, 2024",
     impact: "1,350 lives potentially saved",
+    gradient: "from-purple-500 to-violet-500",
   },
   {
     id: 2,
@@ -60,166 +72,397 @@ const recentHighlights = [
     image: heroImages.slide5,
     date: "Feb 25, 2024",
     impact: "200 new lifelong donors",
+    gradient: "from-orange-500 to-red-500",
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+    scale: 0.95,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: easeOut,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+    scale: 0.95,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      ease: easeOut,
+    },
+  },
+};
+
 export function LatestCampaigns() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="space-y-12">
+    <section className="relative py-20 md:py-32 overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(239,68,68,0.05),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.05),transparent_50%)]" />
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(4)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-24 h-24 bg-gradient-to-br from-red-200/10 to-blue-200/10 rounded-full blur-xl"
+            animate={{
+              x: [0, 60, 0],
+              y: [0, -60, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 15 + i * 3,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: easeInOut,
+            }}
+            style={{
+              left: `${10 + i * 25}%`,
+              top: `${10 + i * 20}%`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10" ref={ref}>
+        <motion.div
+          className="space-y-16"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {/* Section Header */}
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Latest Campaigns & Drives
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <motion.div className="text-center space-y-6" variants={itemVariants}>
+            <motion.div className="inline-block" whileHover={{ scale: 1.02 }}>
+              <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-red-600 to-pink-600 bg-clip-text text-transparent leading-tight">
+                Latest Campaigns & Drives
+              </h2>
+              <motion.div
+                className="h-1 bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 rounded-full mt-4 mx-auto"
+                initial={{ width: 0 }}
+                animate={isInView ? { width: "100%" } : { width: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.p
+              className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+              variants={itemVariants}
+            >
               Join our upcoming blood drives or see the impact of recent
               campaigns
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* Upcoming Blood Drives */}
-          <div className="space-y-8">
-            <div className="flex items-center justify-between">
-              <h3 className="text-2xl font-bold text-gray-900">
+          <div className="space-y-10">
+            <motion.div
+              className="flex items-center justify-between"
+              variants={itemVariants}
+            >
+              <h3 className="text-3xl font-bold text-gray-900">
                 Upcoming Blood Drives
               </h3>
-              <Button variant="outline" className="hidden sm:flex">
-                View All Drives
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {upcomingDrives.map((drive) => (
-                <div
-                  key={drive.id}
-                  className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow overflow-hidden"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  variant="outline"
+                  className="hidden sm:flex bg-white/80 backdrop-blur-sm shadow-md hover:shadow-lg border-gray-200"
                 >
-                  <div className="relative">
-                    <Image
-                      src={drive.image || "/placeholder.svg"}
-                      alt={drive.title}
-                      width={400}
-                      height={300}
-                      className="w-full h-48 object-cover"
-                      priority={true}
+                  View All Drives
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              </motion.div>
+            </motion.div>
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              variants={containerVariants}
+            >
+              {upcomingDrives.map((drive, index) => (
+                <motion.div
+                  key={drive.id}
+                  className="group relative"
+                  variants={cardVariants}
+                  whileHover={{
+                    y: -8,
+                    scale: 1.02,
+                    transition: { duration: 0.3 },
+                  }}
+                >
+                  <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 overflow-hidden h-full">
+                    {/* Card Background Gradient */}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${drive.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
                     />
-                    <Badge
-                      className={`absolute top-4 right-4 ${
-                        drive.status === "Almost Full"
-                          ? "bg-orange-500"
-                          : "bg-green-500"
-                      }`}
-                    >
-                      {drive.status}
-                    </Badge>
-                  </div>
 
-                  <div className="p-6 space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-900">
-                      {drive.title}
-                    </h4>
-
-                    <div className="space-y-2 text-sm text-gray-600">
-                      <div className="flex items-center">
-                        <Calendar className="h-4 w-4 mr-2 text-red-500" />
-                        {drive.date} • {drive.time}
-                      </div>
-                      <div className="flex items-center">
-                        <MapPin className="h-4 w-4 mr-2 text-red-500" />
-                        {drive.location}
-                      </div>
-                      <div className="flex items-center">
-                        <Users className="h-4 w-4 mr-2 text-red-500" />
-                        {drive.registered}/{drive.expectedDonors} registered
-                      </div>
-                    </div>
-
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div
-                        className="bg-red-600 h-2 rounded-full transition-all"
-                        style={{
-                          width: `${
-                            (drive.registered / drive.expectedDonors) * 100
-                          }%`,
-                        }}
+                    <div className="relative">
+                      <Image
+                        src={
+                          drive.image || "/placeholder.svg?height=300&width=400"
+                        }
+                        alt={drive.title}
+                        width={400}
+                        height={300}
+                        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+                        priority={true}
                       />
+                      <motion.div
+                        className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold text-white shadow-md ${
+                          drive.status === "Almost Full"
+                            ? "bg-orange-500"
+                            : "bg-green-500"
+                        }`}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        {drive.status}
+                      </motion.div>
                     </div>
-
-                    <Button className="w-full bg-red-600 hover:bg-red-700">
-                      Register Now
-                    </Button>
+                    <div className="p-6 space-y-5">
+                      <h4 className="text-xl font-bold text-gray-900">
+                        {drive.title}
+                      </h4>
+                      <div className="space-y-3 text-sm text-gray-700">
+                        <div className="flex items-center">
+                          <Calendar className="h-4 w-4 mr-2 text-red-500" />
+                          {drive.date} • {drive.time}
+                        </div>
+                        <div className="flex items-center">
+                          <MapPin className="h-4 w-4 mr-2 text-red-500" />
+                          {drive.location}
+                        </div>
+                        <div className="flex items-center">
+                          <Users className="h-4 w-4 mr-2 text-red-500" />
+                          <span className="font-semibold text-gray-800">
+                            {drive.registered}/{drive.expectedDonors}
+                          </span>{" "}
+                          registered
+                        </div>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+                        <motion.div
+                          className={`h-2.5 rounded-full bg-gradient-to-r ${drive.gradient}`}
+                          initial={{ width: 0 }}
+                          animate={
+                            isInView
+                              ? {
+                                  width: `${
+                                    (drive.registered / drive.expectedDonors) *
+                                    100
+                                  }%`,
+                                }
+                              : { width: 0 }
+                          }
+                          transition={{
+                            duration: 1.5,
+                            delay: 0.5 + index * 0.1,
+                          }}
+                        />
+                      </div>
+                      <motion.div
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                      >
+                        <Button
+                          className={`w-full bg-gradient-to-r ${drive.gradient} hover:shadow-lg text-white font-semibold`}
+                        >
+                          Register Now
+                        </Button>
+                      </motion.div>
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-
+            </motion.div>
             <div className="text-center sm:hidden">
-              <Button variant="outline">
-                View All Drives
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </Button>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  variant="outline"
+                  className="bg-white/80 backdrop-blur-sm shadow-md hover:shadow-lg border-gray-200"
+                >
+                  View All Drives
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              </motion.div>
             </div>
           </div>
 
           {/* Recent Campaign Highlights */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-bold text-gray-900">
+          <div className="space-y-10">
+            <motion.h3
+              className="text-3xl font-bold text-gray-900"
+              variants={itemVariants}
+            >
               Recent Campaign Highlights
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {recentHighlights.map((highlight) => (
-                <div
+            </motion.h3>
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 gap-8"
+              variants={containerVariants}
+            >
+              {recentHighlights.map((highlight, index) => (
+                <motion.div
                   key={highlight.id}
-                  className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow overflow-hidden"
+                  className="group relative"
+                  variants={cardVariants}
+                  whileHover={{
+                    y: -8,
+                    scale: 1.02,
+                    transition: { duration: 0.3 },
+                  }}
                 >
-                  <div className="md:flex">
-                    <div className="md:w-1/3">
-                      <Image
-                        src={highlight.image || "/placeholder.svg"}
-                        alt={highlight.title}
-                        width={300}
-                        height={200}
-                        className="w-full h-48 md:h-full object-cover"
-                        priority={true}
-                      />
-                    </div>
-                    <div className="p-6 md:w-2/3 space-y-3">
-                      <div className="text-sm text-gray-500">
-                        {highlight.date}
+                  <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 overflow-hidden h-full">
+                    {/* Card Background Gradient */}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${highlight.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                    />
+                    <div className="md:flex h-full">
+                      <div className="md:w-1/3 relative">
+                        <Image
+                          src={
+                            highlight.image ||
+                            "/placeholder.svg?height=200&width=300"
+                          }
+                          alt={highlight.title}
+                          width={300}
+                          height={200}
+                          className="w-full h-48 md:h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          priority={true}
+                        />
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
                       </div>
-                      <h4 className="text-lg font-semibold text-gray-900">
-                        {highlight.title}
-                      </h4>
-                      <p className="text-gray-600 text-sm">
-                        {highlight.description}
-                      </p>
-                      <div className="flex items-center text-sm">
-                        <Badge
-                          variant="secondary"
-                          className="bg-green-100 text-green-800"
-                        >
-                          Impact: {highlight.impact}
-                        </Badge>
+                      <div className="p-6 md:w-2/3 space-y-4 flex flex-col justify-between">
+                        <div className="space-y-3">
+                          <div className="text-sm text-gray-500">
+                            {highlight.date}
+                          </div>
+                          <h4 className="text-xl font-bold text-gray-900">
+                            {highlight.title}
+                          </h4>
+                          <p className="text-gray-600 text-base leading-relaxed">
+                            {highlight.description}
+                          </p>
+                        </div>
+                        <div className="flex items-center text-sm">
+                          <motion.div
+                            className={`px-4 py-2 rounded-full text-white font-semibold shadow-md bg-gradient-to-r ${highlight.gradient}`}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={
+                              isInView
+                                ? { opacity: 1, x: 0 }
+                                : { opacity: 0, x: -20 }
+                            }
+                            transition={{ delay: 0.5 + index * 0.1 }}
+                          >
+                            Impact: {highlight.impact}
+                          </motion.div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* CTA Section */}
-          <div className="text-center">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700">
-              View All Campaigns
-              <ArrowRight className="h-4 w-4 ml-2" />
-            </Button>
-          </div>
-        </div>
+          <motion.div variants={itemVariants}>
+            <div className="relative bg-gradient-to-r from-red-600 via-pink-600 to-purple-600 rounded-3xl p-10 md:p-12 text-white overflow-hidden shadow-2xl">
+              {/* Background Pattern */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1),transparent_50%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.1),transparent_50%)]" />
+
+              {/* Floating Icons */}
+              <div className="absolute inset-0 overflow-hidden">
+                <motion.div
+                  className="absolute top-4 right-4 text-white/20"
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    duration: 20,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: easeInOut,
+                  }}
+                >
+                  <TrendingUp className="h-8 w-8" />
+                </motion.div>
+                <motion.div
+                  className="absolute bottom-4 left-4 text-white/20"
+                  animate={{ rotate: -360 }}
+                  transition={{
+                    duration: 25,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: easeInOut,
+                  }}
+                >
+                  <Heart className="h-6 w-6" />
+                </motion.div>
+              </div>
+
+              <div className="relative text-center space-y-8">
+                <motion.h3
+                  className="text-3xl md:text-4xl font-bold"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  Ready to Make a Difference?
+                </motion.h3>
+                <motion.p
+                  className="text-xl opacity-90 max-w-2xl mx-auto leading-relaxed"
+                  variants={itemVariants}
+                >
+                  Find an upcoming blood drive near you and register to save
+                  lives.
+                </motion.p>
+
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button className="bg-white text-red-600 hover:bg-gray-100 px-10 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                    <Calendar className="h-5 w-5 mr-2" />
+                    Find a Blood Drive
+                  </Button>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
