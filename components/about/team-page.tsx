@@ -236,30 +236,37 @@ export function TeamPage() {
   return (
     <div className="space-y-16 md:space-y-24">
       {/* Page Header */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/team-hero-bg.svg"
+            alt="Team Background"
+            fill
+            className="object-cover brightness-75"
+            priority
+          />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <h1 className="text-5xl md:text-6xl font-bold text-white">
               Meet Our Team
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-xl text-gray-200 leading-relaxed">
               The dedicated professionals, advisors, and volunteers who make
               TBDN&apos;s life-saving mission possible
             </p>
-            <div className="flex flex-col sm:flex-row gap-8 justify-center pt-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">50+</div>
-                <div className="text-sm text-gray-600">Team Members</div>
+            <div className="flex flex-col sm:flex-row gap-12 justify-center pt-8">
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
+                <div className="text-4xl font-bold text-white mb-2">50+</div>
+                <div className="text-gray-200">Team Members</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600">500+</div>
-                <div className="text-sm text-gray-600">Active Volunteers</div>
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
+                <div className="text-4xl font-bold text-white mb-2">500+</div>
+                <div className="text-gray-200">Active Volunteers</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600">15</div>
-                <div className="text-sm text-gray-600">
-                  Regional Coordinators
-                </div>
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
+                <div className="text-4xl font-bold text-white mb-2">15</div>
+                <div className="text-gray-200">Regional Coordinators</div>
               </div>
             </div>
           </div>
