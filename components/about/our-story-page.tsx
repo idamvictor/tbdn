@@ -8,15 +8,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play, Heart, Users, Award, Target, Globe, Zap } from "lucide-react";
 import Image from "next/image";
+import { heroImages } from "@/constants/images";
 
 /* ------------------------------------------------------------------ */
 /*  DATA                                                               */
 /* ------------------------------------------------------------------ */
-
-const heroImages = {
-  // swap with a real image path if available
-  slide1: "/placeholder.svg?height=1080&width=1920",
-};
 
 const foundationHistory = [
   {
@@ -206,7 +202,7 @@ export default function OurStoryPage() {
       {/* ---------------------------------------------------- */}
       {/*  HERO                                               */}
       {/* ---------------------------------------------------- */}
-      <section className="relative h-[50vh] flex items-center justify-center text-center text-white overflow-hidden">
+      <section className="relative h-[50vh] flex items-center justify-center text-center text-white overflow-hidden mb-0">
         <Image
           src={heroImages.slide1 || "/placeholder.svg"}
           alt="Our Story Hero Background"
@@ -397,22 +393,14 @@ export default function OurStoryPage() {
                     animate={historyInView ? "visible" : "hidden"}
                     variants={idx % 2 === 0 ? fadeInLeft : fadeInRight}
                     transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className={`relative flex items-center ${
-                      idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                    }`}
+                    className={`relative flex items-center ${idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
                   >
                     {/* Dot */}
                     <div
-                      className={`absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full ${
-                        item.milestone ? "bg-red-600" : "bg-red-300"
-                      } border-4 border-white shadow-lg z-10`}
+                      className={`absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full ${item.milestone ? "bg-red-600" : "bg-red-300"} border-4 border-white shadow-lg z-10`}
                     />
                     {/* Card */}
-                    <div
-                      className={`w-full md:w-5/12 ml-16 md:ml-0 ${
-                        idx % 2 === 0 ? "md:mr-auto" : "md:ml-auto"
-                      }`}
-                    >
+                    <div className={`w-full md:w-5/12 ml-16 md:ml-0 ${idx % 2 === 0 ? "md:mr-auto" : "md:ml-auto"}`}>
                       <Card className="hover:shadow-lg transition-shadow">
                         <CardContent className="p-6">
                           <div className="flex items-center justify-between mb-3">
@@ -422,9 +410,7 @@ export default function OurStoryPage() {
                             >
                               {item.year}
                             </Badge>
-                            {item.milestone && (
-                              <Award className="h-5 w-5 text-yellow-500" />
-                            )}
+                            {item.milestone && <Award className="h-5 w-5 text-yellow-500" />}
                           </div>
                           <h3 className="text-xl font-bold text-gray-900 mb-2">
                             {item.title}
@@ -438,6 +424,28 @@ export default function OurStoryPage() {
                         </CardContent>
                       </Card>
                     </div>
+                    {/* Illustration */}
+                    <motion.div
+                      initial="hidden"
+                      animate={historyInView ? "visible" : "hidden"}
+                      variants={idx % 2 === 0 ? fadeInRight : fadeInLeft}
+                      transition={{ duration: 0.6, delay: idx * 0.2 }}
+                      className={`hidden md:block w-5/12 ${idx % 2 === 0 ? "md:ml-auto" : "md:mr-auto"}`}
+                    >
+                      <div className="aspect-video relative rounded-2xl overflow-hidden ">
+                        <div className="absolute inset-0 flex items-center justify-center p-8">
+                          <div className="text-center">
+                            <div className="mb-4">
+                              {idx === 0 && <Users className="h-16 w-16 mx-auto text-red-600" />}
+                              {idx === 1 && <Heart className="h-16 w-16 mx-auto text-red-600" />}
+                              {idx === 2 && <Zap className="h-16 w-16 mx-auto text-red-600" />}
+                              {idx === 3 && <Globe className="h-16 w-16 mx-auto text-red-600" />}
+                              {idx === 4 && <Award className="h-16 w-16 mx-auto text-red-600" />}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
                   </motion.div>
                 ))}
               </div>
@@ -449,7 +457,7 @@ export default function OurStoryPage() {
       {/* ---------------------------------------------------- */}
       {/*  MILESTONES                                         */}
       {/* ---------------------------------------------------- */}
-      <section ref={milestonesRef} className="py-16 md:py-24 bg-gray-50">
+      <section ref={milestonesRef} className="py-16 md:py-24 bg-gradient-to-br from-red-50 via-pink-50 to-red-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -458,7 +466,7 @@ export default function OurStoryPage() {
                 animate={milestonesInView ? "visible" : "hidden"}
                 variants={fadeInUp}
                 transition={{ duration: 0.6 }}
-                className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+                className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
               >
                 Milestones Achieved
               </motion.h2>
@@ -467,7 +475,7 @@ export default function OurStoryPage() {
                 animate={milestonesInView ? "visible" : "hidden"}
                 variants={fadeInUp}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-xl text-gray-600"
+                className="text-xl text-gray-600 max-w-3xl mx-auto"
               >
                 Key achievements that mark our impact on communities
               </motion.p>
@@ -483,23 +491,26 @@ export default function OurStoryPage() {
                     animate={milestonesInView ? "visible" : "hidden"}
                     variants={scaleIn}
                     transition={{ duration: 0.5, delay: idx * 0.15 }}
+                    whileHover={{ scale: 1.05 }}
+                    className="group"
                   >
-                    <Card className="text-center hover:shadow-lg transition-all duration-300">
+                    <Card className="relative overflow-hidden transition-all duration-300 hover:shadow-2xl border-2 border-transparent hover:border-red-200 bg-white/80 backdrop-blur-sm">
                       <CardContent className="p-8">
-                        <div
-                          className={`w-16 h-16 ${ms.bgColor} rounded-full flex items-center justify-center mx-auto mb-4`}
-                        >
-                          <Icon className={`h-8 w-8 ${ms.color}`} />
+                        <div className="absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 bg-gradient-to-br from-red-100 to-pink-100 rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="relative z-10">
+                          <div className={`w-20 h-20 ${ms.bgColor} rounded-2xl rotate-3 group-hover:rotate-0 transition-transform duration-300 flex items-center justify-center mx-auto mb-6 shadow-lg`}>
+                            <Icon className={`h-10 w-10 ${ms.color} transform group-hover:scale-110 transition-transform duration-300`} />
+                          </div>
+                          <div className={`text-4xl font-bold ${ms.color} mb-4 text-center tracking-tight`}>
+                            {ms.number}
+                          </div>
+                          <h3 className="text-xl font-semibold text-gray-900 mb-3 text-center group-hover:text-red-600 transition-colors duration-300">
+                            {ms.title}
+                          </h3>
+                          <p className="text-gray-600 text-center group-hover:text-gray-900 transition-colors duration-300">
+                            {ms.description}
+                          </p>
                         </div>
-                        <div className={`text-3xl font-bold ${ms.color} mb-2`}>
-                          {ms.number}
-                        </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          {ms.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm">
-                          {ms.description}
-                        </p>
                       </CardContent>
                     </Card>
                   </motion.div>
