@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,7 +13,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Menu, Heart, Phone } from "lucide-react";
+import { Menu, Heart, Phone, ChevronRight } from "lucide-react";
 
 const aboutLinks = [
   { title: "Our Story", href: "/about/story" },
@@ -48,6 +49,29 @@ const funZoneLinks = [
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  const menuVariants = {
+    hidden: { opacity: 0, x: 20 },
+    visible: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: 20 }
+  };
+
+  const listVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0 }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -225,141 +249,127 @@ export function Header() {
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-            <nav className="flex flex-col space-y-4">
-              <Link
-                href="/"
-                className="flex items-center space-x-2 pb-4 border-b"
-                onClick={() => setIsOpen(false)}
-              >
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-600">
-                  <Heart className="h-5 w-5 text-white fill-current" />
-                </div>
-                <span className="text-xl font-bold text-red-600">TBDN</span>
-              </Link>
-
-              <div className="space-y-4">
+          <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0 bg-gradient-to-b from-white to-slate-50">
+            <nav className="flex flex-col h-full">
+              <div className="p-6 border-b bg-white/80 backdrop-blur-sm">
                 <Link
                   href="/"
-                  className="block py-2 text-lg font-medium"
+                  className="flex items-center space-x-2"
                   onClick={() => setIsOpen(false)}
                 >
-                  Home
-                </Link>
-
-                <div className="space-y-2">
-                  <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">
-                    About
-                  </h3>
-                  {aboutLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="block py-1 pl-4 text-sm hover:text-red-600"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {link.title}
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="space-y-2">
-                  <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">
-                    Get Involved
-                  </h3>
-                  {getInvolvedLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="block py-1 pl-4 text-sm hover:text-red-600"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {link.title}
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="space-y-2">
-                  <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">
-                    Programs
-                  </h3>
-                  {programsLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="block py-1 pl-4 text-sm hover:text-red-600"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {link.title}
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="space-y-2">
-                  <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">
-                    Resources
-                  </h3>
-                  {resourcesLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="block py-1 pl-4 text-sm hover:text-red-600"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {link.title}
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="space-y-2">
-                  <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">
-                    Fun Zone
-                  </h3>
-                  {funZoneLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="block py-1 pl-4 text-sm hover:text-red-600"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {link.title}
-                    </Link>
-                  ))}
-                </div>
-
-                <Link
-                  href="/support"
-                  className="block py-2 text-lg font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Support Us
-                </Link>
-
-                <Link
-                  href="/contact"
-                  className="block py-2 text-lg font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Contact
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-600 shadow-lg">
+                    <Heart className="h-6 w-6 text-white fill-current" />
+                  </div>
+                  <span className="text-2xl font-bold bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">TBDN</span>
                 </Link>
               </div>
 
-              <div className="pt-4 space-y-2 border-t">
-                <Button
-                  variant="outline"
-                  className="w-full bg-white text-red-600 border-red-600 hover:bg-red-50"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Phone className="h-4 w-4 mr-2" />
-                  Emergency Contact
-                </Button>
-                <Button
-                  className="w-full bg-red-600 hover:bg-red-700"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Donate Blood Now
-                </Button>
-              </div>
+              <motion.div 
+                className="flex-1 overflow-y-auto py-6 px-4 space-y-6"
+                variants={listVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <motion.div variants={itemVariants}>
+                  <Link
+                    href="/"
+                    className="flex items-center justify-between py-2 text-lg font-medium hover:text-red-600 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <span>Home</span>
+                    <ChevronRight className="h-5 w-5 opacity-50" />
+                  </Link>
+                </motion.div>
+
+                {[
+                  { title: "About", links: aboutLinks },
+                  { title: "Get Involved", links: getInvolvedLinks },
+                  { title: "Programs", links: programsLinks },
+                  { title: "Resources", links: resourcesLinks },
+                  { title: "Fun Zone", links: funZoneLinks }
+                ].map((section) => (
+                  <motion.div key={section.title} variants={itemVariants} className="space-y-3">
+                    <button
+                      onClick={() => setActiveSection(activeSection === section.title ? "" : section.title)}
+                      className="flex items-center justify-between w-full group"
+                    >
+                      <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide group-hover:text-red-600 transition-colors">
+                        {section.title}
+                      </h3>
+                      <ChevronRight
+                        className={`h-4 w-4 transition-transform duration-200 ${activeSection === section.title ? "rotate-90" : ""}`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {activeSection === section.title && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="space-y-2 pl-4 pt-2">
+                            {section.links.map((link) => (
+                              <motion.div
+                                key={link.href}
+                                variants={menuVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="exit"
+                              >
+                                <Link
+                                  href={link.href}
+                                  className="block py-2 text-sm hover:text-red-600 transition-colors"
+                                  onClick={() => setIsOpen(false)}
+                                >
+                                  {link.title}
+                                </Link>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                ))}
+
+                <motion.div variants={itemVariants} className="space-y-2">
+                  {["/support", "/contact"].map((path) => (
+                    <Link
+                      key={path}
+                      href={path}
+                      className="flex items-center justify-between py-2 text-lg font-medium hover:text-red-600 transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <span>{path === "/support" ? "Support Us" : "Contact"}</span>
+                      <ChevronRight className="h-5 w-5 opacity-50" />
+                    </Link>
+                  ))}
+                </motion.div>
+              </motion.div>
+
+              <motion.div 
+                className="p-6 border-t bg-gradient-to-b from-slate-50 to-white"
+                variants={itemVariants}
+              >
+                <div className="space-y-3">
+                  <Button
+                    variant="outline"
+                    className="w-full bg-white/80 backdrop-blur-sm text-red-600 border-red-200 hover:bg-red-50 hover:border-red-300 transition-all duration-300 shadow-sm"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Phone className="h-4 w-4 mr-2" />
+                    Emergency Contact
+                  </Button>
+                  <Button
+                    className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-md hover:shadow-lg"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Donate Blood Now
+                  </Button>
+                </div>
+              </motion.div>
             </nav>
           </SheetContent>
         </Sheet>

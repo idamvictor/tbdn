@@ -130,7 +130,8 @@ export function QuickActions() {
     <motion.section
       className="py-16 md:py-24 bg-gradient-to-br from-red-50 via-pink-50 to-orange-50"
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
       variants={containerVariants}
     >
       <div className="container mx-auto px-4">
