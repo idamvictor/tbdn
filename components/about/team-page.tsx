@@ -558,7 +558,7 @@ export function TeamPage() {
                   </Button>
                   <Button
                     variant="outline"
-                    className="border-white text-white hover:bg-white hover:text-red-600 px-8 py-3"
+                    className="border-white text-black hover:bg-white hover:text-red-600 px-8 py-3"
                   >
                     Volunteer With Us
                   </Button>

@@ -212,34 +212,43 @@ export function AwardsRecognitionPage() {
   return (
     <div className="space-y-16 md:space-y-24">
       {/* Page Header */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-yellow-50 to-orange-50">
-        <div className="container mx-auto px-4">
+      <section className="relative py-16 md:py-24 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/awards-hero-bg.svg"
+            alt="Awards Background"
+            fill
+            className="object-cover brightness-90"
+            priority
+          />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center">
+              <div className="w-20 h-20 bg-yellow-100/80 backdrop-blur-sm rounded-full flex items-center justify-center">
                 <Trophy className="h-10 w-10 text-yellow-600" />
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
               Awards & Recognition
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-xl text-gray-700 leading-relaxed">
               Celebrating the recognition and trust we&apos;ve earned from
               partners, government bodies, and the international community for
               our commitment to saving lives
             </p>
             <div className="flex flex-col sm:flex-row gap-8 justify-center pt-8">
-              <div className="text-center">
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
                 <div className="text-3xl font-bold text-yellow-600">15+</div>
-                <div className="text-sm text-gray-600">Awards Received</div>
+                <div className="text-gray-700">Awards Received</div>
               </div>
-              <div className="text-center">
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
                 <div className="text-3xl font-bold text-blue-600">8</div>
-                <div className="text-sm text-gray-600">Certifications</div>
+                <div className="text-gray-700">Certifications</div>
               </div>
-              <div className="text-center">
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
                 <div className="text-3xl font-bold text-green-600">50+</div>
-                <div className="text-sm text-gray-600">Media Features</div>
+                <div className="text-gray-700">Media Features</div>
               </div>
             </div>
           </div>
