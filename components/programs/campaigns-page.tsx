@@ -17,8 +17,16 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import {
   Camera,
   Video,
@@ -80,8 +88,8 @@ const campaigns: Campaign[] = [
       heroImages.slide4,
     ],
     videos: [
-      "/placeholder.svg?height=200&width=300",
-      "/placeholder.svg?height=200&width=300",
+      "https://www.youtube.com/watch?v=jmhiHKsEUXU",
+      "https://www.youtube.com/watch?v=jmhiHKsEUXU",
     ],
     volunteers: 234,
     mediaLinks: ["https://example.com/news1", "https://example.com/news2"],
@@ -121,7 +129,7 @@ const campaigns: Campaign[] = [
       heroImages.slide2,
       heroImages.slide3,
     ],
-    videos: ["/placeholder.svg?height=200&width=300"],
+    videos: ["https://www.youtube.com/watch?v=jmhiHKsEUXU"],
     volunteers: 156,
     mediaLinks: ["https://example.com/youth-news1"],
     testimonials: [
@@ -144,6 +152,11 @@ export function CampaignsPage() {
     type: "image" | "video";
     src: string;
   } | null>(null);
+
+  const getYouTubeThumbnail = (url: string) => {
+    const videoId = url.split("v=")[1];
+    return `https://img.youtube.com/vi/${videoId}/0.jpg`;
+  };
 
   return (
     <div className="space-y-8">
@@ -317,7 +330,7 @@ export function CampaignsPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 gap-4">
-                    {selectedCampaign.images.map((image, index) => (
+                    {selectedCampaign.images.slice(0, 4).map((image, index) => (
                       <div
                         key={index}
                         className="relative aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
@@ -334,12 +347,39 @@ export function CampaignsPage() {
                       </div>
                     ))}
                   </div>
-                  <Button
-                    variant="outline"
-                    className="w-full mt-4 bg-transparent"
-                  >
-                    View All Photos ({selectedCampaign.images.length})
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className="w-full mt-4 bg-transparent"
+                      >
+                        View All Photos ({selectedCampaign.images.length})
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl">
+                      <DialogHeader>
+                        <DialogTitle>Photo Gallery</DialogTitle>
+                      </DialogHeader>
+                      <Carousel>
+                        <CarouselContent>
+                          {selectedCampaign.images.map((image, index) => (
+                            <CarouselItem key={index}>
+                              <div className="relative aspect-video">
+                                <Image
+                                  src={image || "/placeholder.svg"}
+                                  alt={`Campaign photo ${index + 1}`}
+                                  fill
+                                  className="object-contain"
+                                />
+                              </div>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                      </Carousel>
+                    </DialogContent>
+                  </Dialog>
                 </CardContent>
               </Card>
 
@@ -353,34 +393,73 @@ export function CampaignsPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {selectedCampaign.videos.map((video, index) => (
-                      <div
-                        key={index}
-                        className="relative aspect-video rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity bg-gray-100"
-                        onClick={() =>
-                          setSelectedMedia({ type: "video", src: video })
-                        }
-                      >
-                        <Image
-                          src={video || "/placeholder.svg"}
-                          alt={`Campaign video ${index + 1}`}
-                          fill
-                          className="object-cover"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
-                            <Play className="h-6 w-6 text-red-600 ml-1" />
+                    {selectedCampaign.videos
+                      .slice(0, 2)
+                      .map((video, index) => (
+                        <div
+                          key={index}
+                          className="relative aspect-video rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity bg-gray-100"
+                          onClick={() =>
+                            setSelectedMedia({ type: "video", src: video })
+                          }
+                        >
+                          <Image
+                            src={getYouTubeThumbnail(video)}
+                            alt={`Campaign video ${index + 1}`}
+                            fill
+                            className="object-cover"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
+                              <Play className="h-6 w-6 text-red-600 ml-1" />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
-                  <Button
-                    variant="outline"
-                    className="w-full mt-4 bg-transparent"
-                  >
-                    View All Videos ({selectedCampaign.videos.length})
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className="w-full mt-4 bg-transparent"
+                      >
+                        View All Videos ({selectedCampaign.videos.length})
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl">
+                      <DialogHeader>
+                        <DialogTitle>Video Gallery</DialogTitle>
+                      </DialogHeader>
+                      <Carousel>
+                        <CarouselContent>
+                          {selectedCampaign.videos.map((video, index) => (
+                            <CarouselItem
+                              key={index}
+                              onClick={() =>
+                                setSelectedMedia({ type: "video", src: video })
+                              }
+                            >
+                              <div className="relative aspect-video rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity bg-gray-100">
+                                <Image
+                                  src={getYouTubeThumbnail(video)}
+                                  alt={`Campaign video ${index + 1}`}
+                                  fill
+                                  className="object-cover"
+                                />
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                  <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
+                                    <Play className="h-6 w-6 text-red-600 ml-1" />
+                                  </div>
+                                </div>
+                              </div>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                      </Carousel>
+                    </DialogContent>
+                  </Dialog>
                 </CardContent>
               </Card>
             </div>
@@ -723,18 +802,33 @@ export function CampaignsPage() {
                 : "Campaign Video"}
             </DialogTitle>
           </DialogHeader>
-          {selectedMedia && (
-            <div className="relative aspect-video">
-              <Image
-                src={selectedMedia.src || "/placeholder.svg"}
-                alt="Campaign media"
-                fill
-                className="object-contain"
-              />
-            </div>
-          )}
+          {selectedMedia &&
+            (selectedMedia.type === "image" ? (
+              <div className="relative aspect-video">
+                <Image
+                  src={selectedMedia.src || "/placeholder.svg"}
+                  alt="Campaign media"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            ) : (
+              <div className="relative aspect-video">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${
+                    selectedMedia.src.split("v=")[1]
+                  }`}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            ))}
         </DialogContent>
       </Dialog>
     </div>
   );
 }
+
