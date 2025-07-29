@@ -1,0 +1,37 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FEE2E2" />
+      <stop offset="100%" stop-color="#FECACA" />
+    </linearGradient>
+    
+    <!-- Heart Pattern -->
+    <pattern id="heart-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M50 80c20-20 35-30 45-30 20 0 25 20 15 35s-40 35-60 45c-20-10-50-30-60-45s-5-35 15-35c10 0 25 10 45 30z" fill="#F87171" fill-opacity="0.1" transform="scale(0.5)"/>
+    </pattern>
+    
+    <!-- Helping Hands Pattern -->
+    <pattern id="hands-pattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+      <path d="M100 50c-10 0-20 5-25 15-5-10-15-15-25-15-15 0-25 10-25 25 0 25 50 50 50 50s50-25 50-50c0-15-10-25-25-25z" fill="#DC2626" fill-opacity="0.1" transform="scale(0.5)"/>
+    </pattern>
+  </defs>
+  
+  <!-- Base Background -->
+  <rect width="1920" height="1080" fill="url(#bg-gradient)" />
+  
+  <!-- Decorative Patterns -->
+  <path d="M0 0h1920v1080H0z" fill="url(#heart-pattern)" />
+  <path d="M0 0h1920v1080H0z" fill="url(#hands-pattern)" />
+  
+  <!-- Overlay Gradient -->
+  <rect width="1920" height="1080" fill="url(#bg-gradient)" fill-opacity="0.4" />
+  
+  <!-- Abstract Shapes -->
+  <circle cx="200" cy="200" r="400" fill="#DC2626" fill-opacity="0.05" />
+  <circle cx="1720" cy="900" r="300" fill="#F87171" fill-opacity="0.05" />
+  
+  <!-- Decorative Lines -->
+  <path d="M0 300 Q 960 400, 1920 300" stroke="#DC2626" stroke-opacity="0.1" stroke-width="2" fill="none" />
+  <path d="M0 800 Q 960 700, 1920 800" stroke="#F87171" stroke-opacity="0.1" stroke-width="2" fill="none" />
+</svg>

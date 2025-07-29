@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import {
-  Award,
+  // Award,
   Shield,
   Star,
   Trophy,
@@ -529,7 +529,7 @@ export function AwardsRecognitionPage() {
       </section>
 
       {/* Recognition CTA */}
-      <section className="py-16 md:py-24">
+      {/* <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <Card className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white">
@@ -560,7 +560,7 @@ export function AwardsRecognitionPage() {
             </Card>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
