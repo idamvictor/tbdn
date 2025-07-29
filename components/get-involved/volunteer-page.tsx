@@ -31,6 +31,7 @@ import {
   MapPin,
   Award,
 } from "lucide-react";
+import { heroImages } from "@/constants/images";
 
 export function VolunteerPage() {
   const opportunities = [
@@ -127,11 +128,11 @@ export function VolunteerPage() {
           </div>
           <div className="relative">
             <Image
-              src="/placeholder.svg?height=400&width=500"
+              src={heroImages.slide1}
               alt="Volunteers at work"
               width={500}
               height={400}
-              className="rounded-lg object-cover"
+              className="rounded-lg object-cover w-full h-full"
             />
           </div>
         </div>

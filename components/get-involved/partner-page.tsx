@@ -1,15 +1,39 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Handshake, Building, DollarSign, Users, Award, CheckCircle, FileText, Phone, Mail, MapPin } from "lucide-react"
+import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Handshake,
+  Building,
+  DollarSign,
+  Users,
+  Award,
+  CheckCircle,
+  FileText,
+  Phone,
+  Mail,
+  MapPin,
+} from "lucide-react";
+import { heroImages } from "@/constants/images";
 
 export function PartnerPage() {
   const partnershipTypes = [
@@ -46,7 +70,7 @@ export function PartnerPage() {
         "CSR documentation",
       ],
     },
-  ]
+  ];
 
   const partnerBenefits = [
     "Enhanced corporate social responsibility profile",
@@ -55,16 +79,40 @@ export function PartnerPage() {
     "Tax benefits and CSR compliance",
     "Access to health and wellness programs",
     "Networking with other partner organizations",
-  ]
+  ];
 
   const currentPartners = [
-    { name: "Lagos State Hospital", type: "Healthcare", logo: "/placeholder.svg?height=80&width=120" },
-    { name: "University of Lagos", type: "Educational", logo: "/placeholder.svg?height=80&width=120" },
-    { name: "MTN Nigeria", type: "Corporate", logo: "/placeholder.svg?height=80&width=120" },
-    { name: "Red Cross Nigeria", type: "NGO", logo: "/placeholder.svg?height=80&width=120" },
-    { name: "Dangote Foundation", type: "Foundation", logo: "/placeholder.svg?height=80&width=120" },
-    { name: "First Bank Nigeria", type: "Financial", logo: "/placeholder.svg?height=80&width=120" },
-  ]
+    {
+      name: "Lagos State Hospital",
+      type: "Healthcare",
+      logo: "/placeholder.svg?height=80&width=120",
+    },
+    {
+      name: "University of Lagos",
+      type: "Educational",
+      logo: "/placeholder.svg?height=80&width=120",
+    },
+    {
+      name: "MTN Nigeria",
+      type: "Corporate",
+      logo: "/placeholder.svg?height=80&width=120",
+    },
+    {
+      name: "Red Cross Nigeria",
+      type: "NGO",
+      logo: "/placeholder.svg?height=80&width=120",
+    },
+    {
+      name: "Dangote Foundation",
+      type: "Foundation",
+      logo: "/placeholder.svg?height=80&width=120",
+    },
+    {
+      name: "First Bank Nigeria",
+      type: "Financial",
+      logo: "/placeholder.svg?height=80&width=120",
+    },
+  ];
 
   return (
     <div className="space-y-12">
@@ -73,31 +121,43 @@ export function PartnerPage() {
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative grid lg:grid-cols-2 gap-8 p-8 lg:p-12">
           <div className="space-y-6">
-            <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
+            <Badge
+              variant="secondary"
+              className="bg-white/20 text-white border-white/30"
+            >
               Partnership Opportunities
             </Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight">Partner with TBDN</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
+              Partner with TBDN
+            </h2>
             <p className="text-xl text-green-100">
-              Join forces with us to create lasting impact in healthcare and save lives through strategic partnerships
-              and collaboration.
+              Join forces with us to create lasting impact in healthcare and
+              save lives through strategic partnerships and collaboration.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-white text-green-600 hover:bg-green-50">
+              <Button
+                size="lg"
+                className="bg-white text-green-600 hover:bg-green-50"
+              >
                 <Handshake className="h-5 w-5 mr-2" />
                 Become a Partner
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 bg-transparent">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white/10 bg-transparent"
+              >
                 Download Partnership Guide
               </Button>
             </div>
           </div>
           <div className="relative">
             <Image
-              src="/placeholder.svg?height=400&width=500"
+              src={heroImages.slide2}
               alt="Partnership collaboration"
               width={500}
               height={400}
-              className="rounded-lg object-cover"
+              className="rounded-lg object-cover w-full h-full"
             />
           </div>
         </div>
@@ -108,7 +168,8 @@ export function PartnerPage() {
         <div className="text-center space-y-4">
           <h3 className="text-3xl font-bold">Partnership Types</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Choose the partnership model that best aligns with your organization&apos;s goals and capabilities.
+            Choose the partnership model that best aligns with your
+            organization&apos;s goals and capabilities.
           </p>
         </div>
         <div className="grid lg:grid-cols-3 gap-6">
@@ -126,14 +187,19 @@ export function PartnerPage() {
                   <p className="text-sm font-medium">Key Benefits:</p>
                   <ul className="space-y-1">
                     {type.benefits.map((benefit, benefitIndex) => (
-                      <li key={benefitIndex} className="flex items-start gap-2 text-sm">
+                      <li
+                        key={benefitIndex}
+                        className="flex items-start gap-2 text-sm"
+                      >
                         <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
                         <span>{benefit}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <Button className="w-full bg-green-600 hover:bg-green-700">Learn More</Button>
+                <Button className="w-full bg-green-600 hover:bg-green-700">
+                  Learn More
+                </Button>
               </CardContent>
             </Card>
           ))}
@@ -145,12 +211,16 @@ export function PartnerPage() {
         <div className="text-center space-y-4 mb-8">
           <h3 className="text-3xl font-bold">Why Partner with TBDN?</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Partnering with us offers numerous benefits for your organization and community.
+            Partnering with us offers numerous benefits for your organization
+            and community.
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {partnerBenefits.map((benefit, index) => (
-            <div key={index} className="flex items-start gap-3 p-4 bg-white rounded-lg">
+            <div
+              key={index}
+              className="flex items-start gap-3 p-4 bg-white rounded-lg"
+            >
               <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
               <span className="text-sm">{benefit}</span>
             </div>
@@ -163,12 +233,16 @@ export function PartnerPage() {
         <div className="text-center space-y-4">
           <h3 className="text-3xl font-bold">Our Partners</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            We&apos;re proud to work with leading organizations across various sectors.
+            We&apos;re proud to work with leading organizations across various
+            sectors.
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {currentPartners.map((partner, index) => (
-            <Card key={index} className="text-center hover:shadow-md transition-shadow">
+            <Card
+              key={index}
+              className="text-center hover:shadow-md transition-shadow"
+            >
               <CardContent className="p-6">
                 <Image
                   src={partner.logo || "/placeholder.svg"}
@@ -192,14 +266,16 @@ export function PartnerPage() {
         <div className="text-center space-y-4">
           <h3 className="text-3xl font-bold">Partnership Application</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Ready to partner with us? Fill out this form and we&apos;ll get back to you within 48 hours.
+            Ready to partner with us? Fill out this form and we&apos;ll get back
+            to you within 48 hours.
           </p>
         </div>
         <Card className="max-w-3xl mx-auto">
           <CardHeader>
             <CardTitle>Apply for Partnership</CardTitle>
             <CardDescription>
-              Tell us about your organization and how you&apos;d like to collaborate with TBDN.
+              Tell us about your organization and how you&apos;d like to
+              collaborate with TBDN.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -241,7 +317,11 @@ export function PartnerPage() {
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="contact-email">Email Address *</Label>
-                <Input id="contact-email" type="email" placeholder="Email address" />
+                <Input
+                  id="contact-email"
+                  type="email"
+                  placeholder="Email address"
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="contact-phone">Phone Number *</Label>
@@ -251,7 +331,11 @@ export function PartnerPage() {
 
             <div className="space-y-2">
               <Label htmlFor="org-address">Organization Address</Label>
-              <Textarea id="org-address" placeholder="Complete address" rows={2} />
+              <Textarea
+                id="org-address"
+                placeholder="Complete address"
+                rows={2}
+              />
             </div>
 
             <div className="space-y-2">
@@ -279,7 +363,9 @@ export function PartnerPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="org-description">Organization Description *</Label>
+              <Label htmlFor="org-description">
+                Organization Description *
+              </Label>
               <Textarea
                 id="org-description"
                 placeholder="Brief description of your organization, mission, and activities"
@@ -323,10 +409,16 @@ export function PartnerPage() {
 
             <div className="space-y-2">
               <Label htmlFor="additional-info">Additional Information</Label>
-              <Textarea id="additional-info" placeholder="Any additional information you'd like to share" rows={3} />
+              <Textarea
+                id="additional-info"
+                placeholder="Any additional information you'd like to share"
+                rows={3}
+              />
             </div>
 
-            <Button className="w-full bg-green-600 hover:bg-green-700">Submit Partnership Application</Button>
+            <Button className="w-full bg-green-600 hover:bg-green-700">
+              Submit Partnership Application
+            </Button>
           </CardContent>
         </Card>
       </section>
@@ -335,7 +427,9 @@ export function PartnerPage() {
       <section className="bg-gray-50 rounded-2xl p-8">
         <div className="text-center space-y-4 mb-8">
           <h3 className="text-3xl font-bold">Partnership Guidelines</h3>
-          <p className="text-muted-foreground max-w-2xl mx-auto">Important information for potential partners.</p>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Important information for potential partners.
+          </p>
         </div>
         <div className="grid md:grid-cols-2 gap-8">
           <Card>
@@ -346,7 +440,9 @@ export function PartnerPage() {
             <CardContent className="space-y-3">
               <div className="flex items-start gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />
-                <span className="text-sm">Alignment with TBDN&apos;s mission and values</span>
+                <span className="text-sm">
+                  Alignment with TBDN&apos;s mission and values
+                </span>
               </div>
               <div className="flex items-start gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />
@@ -372,7 +468,9 @@ export function PartnerPage() {
                 <span className="bg-green-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center mt-0.5">
                   1
                 </span>
-                <span className="text-sm">Application review (5-7 business days)</span>
+                <span className="text-sm">
+                  Application review (5-7 business days)
+                </span>
               </div>
               <div className="flex items-start gap-2">
                 <span className="bg-green-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center mt-0.5">
@@ -384,7 +482,9 @@ export function PartnerPage() {
                 <span className="bg-green-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center mt-0.5">
                   3
                 </span>
-                <span className="text-sm">Partnership proposal development</span>
+                <span className="text-sm">
+                  Partnership proposal development
+                </span>
               </div>
               <div className="flex items-start gap-2">
                 <span className="bg-green-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center mt-0.5">
@@ -401,7 +501,9 @@ export function PartnerPage() {
       <section className="bg-green-600 text-white rounded-2xl p-8">
         <div className="text-center space-y-4 mb-8">
           <h3 className="text-2xl font-bold">Ready to Partner?</h3>
-          <p className="text-green-100">Get in touch with our partnership team to discuss opportunities.</p>
+          <p className="text-green-100">
+            Get in touch with our partnership team to discuss opportunities.
+          </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6 text-center">
           <div className="space-y-2">
@@ -422,5 +524,5 @@ export function PartnerPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

@@ -20,6 +20,7 @@ import {
 import { EligibilityChecker } from "./eligibility-checker";
 import { DonorRegistrationForm } from "./donor-registration-form";
 import { FAQSection } from "./faq-section";
+import { heroImages } from "@/constants/images";
 
 export function BecomeDonorPage() {
   //   const [currentStep, setCurrentStep] = useState(0);
@@ -136,11 +137,11 @@ export function BecomeDonorPage() {
           </div>
           <div className="relative">
             <Image
-              src="/placeholder.svg?height=400&width=500"
+              src={heroImages.slide3}
               alt="Blood donation hero"
               width={500}
               height={400}
-              className="rounded-lg object-cover"
+              className="rounded-lg object-cover w-full h-full"
             />
           </div>
         </div>
