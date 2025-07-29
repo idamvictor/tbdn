@@ -33,6 +33,7 @@ import {
   MapPin,
   Target,
 } from "lucide-react";
+import { heroImages } from "@/constants/images";
 
 interface Campaign {
   id: string;
@@ -73,9 +74,10 @@ const campaigns: Campaign[] = [
     bloodUnitsCollected: 7234,
     livesImpacted: 21702,
     images: [
-      "/placeholder.svg?height=300&width=400",
-      "/placeholder.svg?height=300&width=400",
-      "/placeholder.svg?height=300&width=400",
+      heroImages.slide1,
+      heroImages.slide2,
+      heroImages.slide3,
+      heroImages.slide4,
     ],
     videos: [
       "/placeholder.svg?height=200&width=300",
@@ -114,8 +116,10 @@ const campaigns: Campaign[] = [
     bloodUnitsCollected: 5890,
     livesImpacted: 17670,
     images: [
-      "/placeholder.svg?height=300&width=400",
-      "/placeholder.svg?height=300&width=400",
+      heroImages.slide5,
+      heroImages.slide1,
+      heroImages.slide2,
+      heroImages.slide3,
     ],
     videos: ["/placeholder.svg?height=200&width=300"],
     volunteers: 156,
