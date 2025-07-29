@@ -1,15 +1,26 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Separator } from "@/components/ui/separator"
+import { useState } from "react";
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 import {
   Search,
   Calendar,
@@ -23,22 +34,27 @@ import {
   Facebook,
   Twitter,
   Linkedin,
-} from "lucide-react"
+} from "lucide-react";
+import { avatarImage, heroImages } from "@/constants/images";
 
 interface BlogPost {
-  id: string
-  title: string
-  excerpt: string
-  content: string
-  category: "Health & Wellness" | "Education & Awareness" | "TBDN Updates" | "Community Features"
-  author: string
-  authorRole: string
-  authorAvatar: string
-  publishDate: string
-  readTime: number
-  image: string
-  tags: string[]
-  featured: boolean
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  category:
+    | "Health & Wellness"
+    | "Education & Awareness"
+    | "TBDN Updates"
+    | "Community Features";
+  author: string;
+  authorRole: string;
+  authorAvatar: string;
+  publishDate: string;
+  readTime: number;
+  image: string;
+  tags: string[];
+  featured: boolean;
 }
 
 const blogPosts: BlogPost[] = [
@@ -71,11 +87,16 @@ Remember to maintain a healthy diet rich in iron, vitamin C, and protein between
     category: "Health & Wellness",
     author: "Dr. Kemi Adeyemi",
     authorRole: "Hematologist",
-    authorAvatar: "/placeholder.svg?height=60&width=60",
+    authorAvatar: avatarImage.image1,
     publishDate: "2024-01-15",
     readTime: 5,
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Health Benefits", "Cardiovascular", "Cancer Prevention", "Wellness"],
+    image: heroImages.slide1,
+    tags: [
+      "Health Benefits",
+      "Cardiovascular",
+      "Cancer Prevention",
+      "Wellness",
+    ],
     featured: true,
   },
   {
@@ -113,10 +134,10 @@ Understanding these facts can help you make an informed decision about blood don
     category: "Education & Awareness",
     author: "Nurse Fatima Hassan",
     authorRole: "Blood Bank Supervisor",
-    authorAvatar: "/placeholder.svg?height=60&width=60",
+    authorAvatar: avatarImage.image2,
     publishDate: "2024-01-12",
     readTime: 4,
-    image: "/placeholder.svg?height=400&width=600",
+    image: heroImages.slide2,
     tags: ["Myths", "Facts", "Education", "Awareness"],
     featured: false,
   },
@@ -164,10 +185,10 @@ This expansion wouldn't be possible without the continued support of our donors,
     category: "TBDN Updates",
     author: "Adebayo Ogundimu",
     authorRole: "Executive Director",
-    authorAvatar: "/placeholder.svg?height=60&width=60",
+    authorAvatar: avatarImage.image3,
     publishDate: "2024-01-10",
     readTime: 3,
-    image: "/placeholder.svg?height=400&width=600",
+    image: heroImages.slide3,
     tags: ["Partnership", "Expansion", "Hospitals", "Growth"],
     featured: false,
   },
@@ -208,61 +229,63 @@ Sarah's dedication exemplifies the spirit of volunteerism that makes TBDN's work
     category: "Community Features",
     author: "Michael Adebayo",
     authorRole: "Volunteer Coordinator",
-    authorAvatar: "/placeholder.svg?height=60&width=60",
+    authorAvatar: avatarImage.image4,
     publishDate: "2024-01-08",
     readTime: 4,
-    image: "/placeholder.svg?height=400&width=600",
+    image: heroImages.slide4,
     tags: ["Volunteer", "Spotlight", "Community", "Recognition"],
     featured: false,
   },
-]
+];
 
 export function BlogPage() {
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null)
-  const [filter, setFilter] = useState<string>("All")
-  const [searchTerm, setSearchTerm] = useState("")
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [filter, setFilter] = useState<string>("All");
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const featuredPost = blogPosts.find((post) => post.featured)
-  const regularPosts = blogPosts.filter((post) => !post.featured)
+  const featuredPost = blogPosts.find((post) => post.featured);
+  const regularPosts = blogPosts.filter((post) => !post.featured);
 
   const filteredPosts = regularPosts.filter((post) => {
-    const matchesFilter = filter === "All" || post.category === filter
+    const matchesFilter = filter === "All" || post.category === filter;
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-    return matchesFilter && matchesSearch
-  })
+      post.tags.some((tag) =>
+        tag.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    return matchesFilter && matchesSearch;
+  });
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case "Health & Wellness":
-        return Heart
+        return Heart;
       case "Education & Awareness":
-        return BookOpen
+        return BookOpen;
       case "TBDN Updates":
-        return Megaphone
+        return Megaphone;
       case "Community Features":
-        return Users
+        return Users;
       default:
-        return BookOpen
+        return BookOpen;
     }
-  }
+  };
 
   const getCategoryColor = (category: string) => {
     switch (category) {
       case "Health & Wellness":
-        return "bg-red-100 text-red-800"
+        return "bg-red-100 text-red-800";
       case "Education & Awareness":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-100 text-blue-800";
       case "TBDN Updates":
-        return "bg-green-100 text-green-800"
+        return "bg-green-100 text-green-800";
       case "Community Features":
-        return "bg-purple-100 text-purple-800"
+        return "bg-purple-100 text-purple-800";
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-gray-100 text-gray-800";
     }
-  }
+  };
 
   return (
     <div className="space-y-8">
@@ -270,8 +293,8 @@ export function BlogPage() {
       <section className="text-center space-y-4">
         <h2 className="text-3xl font-bold">TBDN Blog</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Stay informed with the latest news, health tips, educational content, and community stories from the world of
-          blood donation and healthcare.
+          Stay informed with the latest news, health tips, educational content,
+          and community stories from the world of blood donation and healthcare.
         </p>
       </section>
 
@@ -280,7 +303,9 @@ export function BlogPage() {
         <section className="space-y-6">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-2">Featured Article</h3>
-            <p className="text-muted-foreground">Our latest featured blog post</p>
+            <p className="text-muted-foreground">
+              Our latest featured blog post
+            </p>
           </div>
           <Card className="overflow-hidden hover:shadow-lg transition-shadow">
             <div className="grid lg:grid-cols-2 gap-0">
@@ -295,14 +320,25 @@ export function BlogPage() {
               <div className="p-8 flex flex-col justify-center">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <Badge className={getCategoryColor(featuredPost.category)}>{featuredPost.category}</Badge>
-                    <span className="text-sm text-muted-foreground">{featuredPost.readTime} min read</span>
+                    <Badge className={getCategoryColor(featuredPost.category)}>
+                      {featuredPost.category}
+                    </Badge>
+                    <span className="text-sm text-muted-foreground">
+                      {featuredPost.readTime} min read
+                    </span>
                   </div>
-                  <h4 className="text-2xl font-bold leading-tight">{featuredPost.title}</h4>
-                  <p className="text-muted-foreground">{featuredPost.excerpt}</p>
+                  <h4 className="text-2xl font-bold leading-tight">
+                    {featuredPost.title}
+                  </h4>
+                  <p className="text-muted-foreground">
+                    {featuredPost.excerpt}
+                  </p>
                   <div className="flex items-center gap-3">
                     <Avatar>
-                      <AvatarImage src={featuredPost.authorAvatar || "/placeholder.svg"} alt={featuredPost.author} />
+                      <AvatarImage
+                        src={featuredPost.authorAvatar || "/placeholder.svg"}
+                        alt={featuredPost.author}
+                      />
                       <AvatarFallback>
                         {featuredPost.author
                           .split(" ")
@@ -316,11 +352,18 @@ export function BlogPage() {
                         <span>{featuredPost.authorRole}</span>
                         <span>•</span>
                         <Calendar className="h-3 w-3" />
-                        <span>{new Date(featuredPost.publishDate).toLocaleDateString()}</span>
+                        <span>
+                          {new Date(
+                            featuredPost.publishDate
+                          ).toLocaleDateString()}
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <Button onClick={() => setSelectedPost(featuredPost)} className="bg-red-600 hover:bg-red-700">
+                  <Button
+                    onClick={() => setSelectedPost(featuredPost)}
+                    className="bg-red-600 hover:bg-red-700"
+                  >
                     Read Full Article
                     <ArrowRight className="h-4 w-4 ml-2" />
                   </Button>
@@ -351,10 +394,16 @@ export function BlogPage() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="All">All Categories</SelectItem>
-              <SelectItem value="Health & Wellness">Health & Wellness</SelectItem>
-              <SelectItem value="Education & Awareness">Education & Awareness</SelectItem>
+              <SelectItem value="Health & Wellness">
+                Health & Wellness
+              </SelectItem>
+              <SelectItem value="Education & Awareness">
+                Education & Awareness
+              </SelectItem>
               <SelectItem value="TBDN Updates">TBDN Updates</SelectItem>
-              <SelectItem value="Community Features">Community Features</SelectItem>
+              <SelectItem value="Community Features">
+                Community Features
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -364,17 +413,26 @@ export function BlogPage() {
       <section className="space-y-6">
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-semibold">
-            Latest Posts ({filteredPosts.length} {filteredPosts.length === 1 ? "post" : "posts"})
+            Latest Posts ({filteredPosts.length}{" "}
+            {filteredPosts.length === 1 ? "post" : "posts"})
           </h3>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPosts.map((post) => {
-            const CategoryIcon = getCategoryIcon(post.category)
+            const CategoryIcon = getCategoryIcon(post.category);
             return (
-              <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+              <Card
+                key={post.id}
+                className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+              >
                 <div className="relative aspect-[4/3]">
-                  <Image src={post.image || "/placeholder.svg"} alt={post.title} fill className="object-cover" />
+                  <Image
+                    src={post.image || "/placeholder.svg"}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
                   <div className="absolute top-4 left-4">
                     <Badge className={getCategoryColor(post.category)}>
                       <CategoryIcon className="h-3 w-3 mr-1" />
@@ -384,11 +442,18 @@ export function BlogPage() {
                 </div>
                 <CardContent className="p-6">
                   <div className="space-y-3">
-                    <h4 className="font-semibold leading-tight line-clamp-2">{post.title}</h4>
-                    <p className="text-sm text-muted-foreground line-clamp-3">{post.excerpt}</p>
+                    <h4 className="font-semibold leading-tight line-clamp-2">
+                      {post.title}
+                    </h4>
+                    <p className="text-sm text-muted-foreground line-clamp-3">
+                      {post.excerpt}
+                    </p>
                     <div className="flex items-center gap-2">
                       <Avatar className="h-8 w-8">
-                        <AvatarImage src={post.authorAvatar || "/placeholder.svg"} alt={post.author} />
+                        <AvatarImage
+                          src={post.authorAvatar || "/placeholder.svg"}
+                          alt={post.author}
+                        />
                         <AvatarFallback className="text-xs">
                           {post.author
                             .split(" ")
@@ -397,18 +462,26 @@ export function BlogPage() {
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium truncate">{post.author}</p>
+                        <p className="text-sm font-medium truncate">
+                          {post.author}
+                        </p>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <Clock className="h-3 w-3" />
                           <span>{post.readTime} min read</span>
                           <span>•</span>
-                          <span>{new Date(post.publishDate).toLocaleDateString()}</span>
+                          <span>
+                            {new Date(post.publishDate).toLocaleDateString()}
+                          </span>
                         </div>
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-1">
                       {post.tags.slice(0, 2).map((tag, index) => (
-                        <Badge key={index} variant="outline" className="text-xs">
+                        <Badge
+                          key={index}
+                          variant="outline"
+                          className="text-xs"
+                        >
                           {tag}
                         </Badge>
                       ))}
@@ -418,13 +491,17 @@ export function BlogPage() {
                         </Badge>
                       )}
                     </div>
-                    <Button variant="outline" className="w-full bg-transparent" onClick={() => setSelectedPost(post)}>
+                    <Button
+                      variant="outline"
+                      className="w-full bg-transparent"
+                      onClick={() => setSelectedPost(post)}
+                    >
                       Read Article
                     </Button>
                   </div>
                 </CardContent>
               </Card>
-            )
+            );
           })}
         </div>
 
@@ -434,13 +511,14 @@ export function BlogPage() {
               <Search className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">No Posts Found</h3>
               <p className="text-muted-foreground mb-4">
-                Try adjusting your search terms or filters to find more blog posts.
+                Try adjusting your search terms or filters to find more blog
+                posts.
               </p>
               <Button
                 variant="outline"
                 onClick={() => {
-                  setSearchTerm("")
-                  setFilter("All")
+                  setSearchTerm("");
+                  setFilter("All");
                 }}
               >
                 Clear Filters
@@ -458,13 +536,22 @@ export function BlogPage() {
               <DialogHeader>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <Badge className={getCategoryColor(selectedPost.category)}>{selectedPost.category}</Badge>
-                    <span className="text-sm text-muted-foreground">{selectedPost.readTime} min read</span>
+                    <Badge className={getCategoryColor(selectedPost.category)}>
+                      {selectedPost.category}
+                    </Badge>
+                    <span className="text-sm text-muted-foreground">
+                      {selectedPost.readTime} min read
+                    </span>
                   </div>
-                  <DialogTitle className="text-2xl leading-tight">{selectedPost.title}</DialogTitle>
+                  <DialogTitle className="text-2xl leading-tight">
+                    {selectedPost.title}
+                  </DialogTitle>
                   <div className="flex items-center gap-3">
                     <Avatar>
-                      <AvatarImage src={selectedPost.authorAvatar || "/placeholder.svg"} alt={selectedPost.author} />
+                      <AvatarImage
+                        src={selectedPost.authorAvatar || "/placeholder.svg"}
+                        alt={selectedPost.author}
+                      />
                       <AvatarFallback>
                         {selectedPost.author
                           .split(" ")
@@ -478,7 +565,11 @@ export function BlogPage() {
                         <span>{selectedPost.authorRole}</span>
                         <span>•</span>
                         <Calendar className="h-3 w-3" />
-                        <span>{new Date(selectedPost.publishDate).toLocaleDateString()}</span>
+                        <span>
+                          {new Date(
+                            selectedPost.publishDate
+                          ).toLocaleDateString()}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -498,16 +589,19 @@ export function BlogPage() {
                 {selectedPost.content.split("\n\n").map((paragraph, index) => {
                   if (paragraph.startsWith("**") && paragraph.endsWith("**")) {
                     return (
-                      <h3 key={index} className="text-lg font-semibold mt-6 mb-3">
+                      <h3
+                        key={index}
+                        className="text-lg font-semibold mt-6 mb-3"
+                      >
                         {paragraph.slice(2, -2)}
                       </h3>
-                    )
+                    );
                   }
                   return (
                     <p key={index} className="mb-4 text-sm leading-relaxed">
                       {paragraph}
                     </p>
-                  )
+                  );
                 })}
               </div>
 
@@ -528,19 +622,35 @@ export function BlogPage() {
                 <div>
                   <h4 className="font-semibold mb-3">Share this article</h4>
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="bg-transparent">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="bg-transparent"
+                    >
                       <Facebook className="h-4 w-4 mr-2" />
                       Facebook
                     </Button>
-                    <Button variant="outline" size="sm" className="bg-transparent">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="bg-transparent"
+                    >
                       <Twitter className="h-4 w-4 mr-2" />
                       Twitter
                     </Button>
-                    <Button variant="outline" size="sm" className="bg-transparent">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="bg-transparent"
+                    >
                       <Linkedin className="h-4 w-4 mr-2" />
                       LinkedIn
                     </Button>
-                    <Button variant="outline" size="sm" className="bg-transparent">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="bg-transparent"
+                    >
                       <Share2 className="h-4 w-4 mr-2" />
                       Share
                     </Button>
@@ -552,5 +662,5 @@ export function BlogPage() {
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }

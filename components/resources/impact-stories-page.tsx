@@ -35,6 +35,7 @@ import {
   MapPin,
   ArrowRight,
 } from "lucide-react";
+import { avatarImage, heroImages } from "@/constants/images";
 
 interface Story {
   id: string;
@@ -73,8 +74,8 @@ To anyone hesitant about donating: your fear is valid, but don't let it stop you
     author: "Sarah Adebayo",
     location: "Lagos, Nigeria",
     date: "2024-01-10",
-    image: "/placeholder.svg?height=400&width=600",
-    avatar: "/placeholder.svg?height=60&width=60",
+    image: heroImages.slide2,
+    avatar: avatarImage.image1,
     featured: true,
     tags: ["First Time Donor", "Fear", "Inspiration", "Regular Donor"],
     readTime: 4,
@@ -99,8 +100,8 @@ To every blood donor out there: you are heroes. You may never meet the people wh
     author: "Mrs. Funmi Okafor",
     location: "Abuja, Nigeria",
     date: "2024-01-08",
-    image: "/placeholder.svg?height=400&width=600",
-    avatar: "/placeholder.svg?height=60&width=60",
+    image: heroImages.slide3,
+    avatar: avatarImage.image2,
     featured: false,
     tags: ["Leukemia", "Child Patient", "Family", "Gratitude"],
     readTime: 5,
@@ -127,8 +128,8 @@ To potential donors reading this: your donation directly impacts our ability to 
     author: "Dr. Ahmed Musa",
     location: "Lagos, Nigeria",
     date: "2024-01-05",
-    image: "/placeholder.svg?height=400&width=600",
-    avatar: "/placeholder.svg?height=60&width=60",
+    image: heroImages.slide1,
+    avatar: avatarImage.image3,
     featured: false,
     tags: ["Emergency Medicine", "Blood Shortage", "Healthcare", "Doctor"],
     readTime: 6,
@@ -157,8 +158,8 @@ The bonds formed during Papa's crisis have made our community stronger. We now h
     author: "Amina Adeyemi",
     location: "Kano, Nigeria",
     date: "2024-01-03",
-    image: "/placeholder.svg?height=400&width=600",
-    avatar: "/placeholder.svg?height=60&width=60",
+    image: heroImages.slide4,
+    avatar: avatarImage.image4,
     featured: false,
     tags: ["Community", "Emergency", "Family", "Heart Surgery"],
     readTime: 5,
