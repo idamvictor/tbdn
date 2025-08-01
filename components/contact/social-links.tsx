@@ -1,41 +1,82 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Facebook, Twitter, Instagram, Youtube, Linkedin } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Facebook, Twitter, Instagram, Youtube, Linkedin } from "lucide-react";
 
 export function SocialLinks() {
   const socialPlatforms = [
-    { name: "Facebook", icon: Facebook, url: "#", color: "hover:bg-blue-600" },
-    { name: "Twitter", icon: Twitter, url: "#", color: "hover:bg-sky-500" },
-    { name: "Instagram", icon: Instagram, url: "#", color: "hover:bg-pink-600" },
-    { name: "YouTube", icon: Youtube, url: "#", color: "hover:bg-red-600" },
-    { name: "LinkedIn", icon: Linkedin, url: "#", color: "hover:bg-blue-700" },
-  ]
+    {
+      name: "Facebook",
+      icon: Facebook,
+      url: "#",
+      color: "hover:bg-blue-600",
+      bgColor: "bg-blue-500",
+    },
+    {
+      name: "Twitter",
+      icon: Twitter,
+      url: "#",
+      color: "hover:bg-sky-500",
+      bgColor: "bg-sky-400",
+    },
+    {
+      name: "Instagram",
+      icon: Instagram,
+      url: "#",
+      color: "hover:bg-pink-600",
+      bgColor: "bg-pink-500",
+    },
+    {
+      name: "YouTube",
+      icon: Youtube,
+      url: "#",
+      color: "hover:bg-red-600",
+      bgColor: "bg-red-500",
+    },
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      url: "#",
+      color: "hover:bg-blue-700",
+      bgColor: "bg-blue-600",
+    },
+  ];
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-2xl text-red-800">Follow Us</CardTitle>
+    <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
+      <CardHeader className="pb-6">
+        <CardTitle className="text-3xl font-bold text-slate-800">
+          Follow Us
+        </CardTitle>
+        <p className="text-slate-600 mt-2">
+          Stay connected with us on social media for the latest updates,
+          campaigns, and inspiring donor stories.
+        </p>
       </CardHeader>
       <CardContent>
-        <p className="text-gray-600 mb-6">
-          Stay connected with us on social media for the latest updates, campaigns, and donor stories.
-        </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
           {socialPlatforms.map((platform) => (
             <Button
               key={platform.name}
               variant="outline"
-              className={`flex items-center space-x-2 ${platform.color} hover:text-white transition-colors`}
+              size="lg"
+              className={`group flex items-center justify-start space-x-4 p-6 h-auto border-2 border-slate-200 hover:border-transparent ${platform.color} hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg rounded-xl`}
               asChild
             >
               <a href={platform.url} target="_blank" rel="noopener noreferrer">
-                <platform.icon className="h-4 w-4" />
-                <span className="text-sm">{platform.name}</span>
+                <div
+                  className={`p-2 ${platform.bgColor} rounded-lg group-hover:bg-white/20 transition-colors duration-300`}
+                >
+                  <platform.icon className="h-5 w-5 text-white" />
+                </div>
+                <div className="text-left">
+                  <span className="font-semibold block">{platform.name}</span>
+                  <span className="text-sm opacity-70">Follow us</span>
+                </div>
               </a>
             </Button>
           ))}
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
