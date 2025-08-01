@@ -54,7 +54,7 @@ export function Header() {
   const menuVariants = {
     hidden: { opacity: 0, x: 20 },
     visible: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: 20 }
+    exit: { opacity: 0, x: 20 },
   };
 
   const listVariants = {
@@ -63,14 +63,14 @@ export function Header() {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0 }
+    visible: { opacity: 1, x: 0 },
   };
 
   return (
@@ -184,7 +184,7 @@ export function Header() {
               </NavigationMenuContent>
             </NavigationMenuItem>
 
-            <NavigationMenuItem>
+            {/* <NavigationMenuItem>
               <NavigationMenuTrigger>Fun Zone</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
@@ -204,16 +204,25 @@ export function Header() {
                   ))}
                 </ul>
               </NavigationMenuContent>
-            </NavigationMenuItem>
+            </NavigationMenuItem> */}
 
             <NavigationMenuItem>
               <NavigationMenuLink
                 asChild
                 className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
               >
-                <Link href="/support">Support Us</Link>
+                <Link href="/ai-partners">AI Partners</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
+
+            {/* <NavigationMenuItem>
+              <NavigationMenuLink
+                asChild
+                className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+              >
+                <Link href="/support">Support Us</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem> */}
 
             <NavigationMenuItem>
               <NavigationMenuLink
@@ -249,7 +258,10 @@ export function Header() {
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0 bg-gradient-to-b from-white to-slate-50">
+          <SheetContent
+            side="right"
+            className="w-[300px] sm:w-[400px] p-0 bg-gradient-to-b from-white to-slate-50"
+          >
             <nav className="flex flex-col h-full">
               <div className="p-6 border-b bg-white/80 backdrop-blur-sm">
                 <Link
@@ -260,11 +272,13 @@ export function Header() {
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-600 shadow-lg">
                     <Heart className="h-6 w-6 text-white fill-current" />
                   </div>
-                  <span className="text-2xl font-bold bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">TBDN</span>
+                  <span className="text-2xl font-bold bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+                    TBDN
+                  </span>
                 </Link>
               </div>
 
-              <motion.div 
+              <motion.div
                 className="flex-1 overflow-y-auto py-6 px-4 space-y-6"
                 variants={listVariants}
                 initial="hidden"
@@ -286,18 +300,28 @@ export function Header() {
                   { title: "Get Involved", links: getInvolvedLinks },
                   { title: "Programs", links: programsLinks },
                   { title: "Resources", links: resourcesLinks },
-                  { title: "Fun Zone", links: funZoneLinks }
+                  { title: "Fun Zone", links: funZoneLinks },
                 ].map((section) => (
-                  <motion.div key={section.title} variants={itemVariants} className="space-y-3">
+                  <motion.div
+                    key={section.title}
+                    variants={itemVariants}
+                    className="space-y-3"
+                  >
                     <button
-                      onClick={() => setActiveSection(activeSection === section.title ? "" : section.title)}
+                      onClick={() =>
+                        setActiveSection(
+                          activeSection === section.title ? "" : section.title
+                        )
+                      }
                       className="flex items-center justify-between w-full group"
                     >
                       <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide group-hover:text-red-600 transition-colors">
                         {section.title}
                       </h3>
                       <ChevronRight
-                        className={`h-4 w-4 transition-transform duration-200 ${activeSection === section.title ? "rotate-90" : ""}`}
+                        className={`h-4 w-4 transition-transform duration-200 ${
+                          activeSection === section.title ? "rotate-90" : ""
+                        }`}
                       />
                     </button>
                     <AnimatePresence>
@@ -342,14 +366,16 @@ export function Header() {
                       className="flex items-center justify-between py-2 text-lg font-medium hover:text-red-600 transition-colors"
                       onClick={() => setIsOpen(false)}
                     >
-                      <span>{path === "/support" ? "Support Us" : "Contact"}</span>
+                      <span>
+                        {path === "/support" ? "Support Us" : "Contact"}
+                      </span>
                       <ChevronRight className="h-5 w-5 opacity-50" />
                     </Link>
                   ))}
                 </motion.div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="p-6 border-t bg-gradient-to-b from-slate-50 to-white"
                 variants={itemVariants}
               >
