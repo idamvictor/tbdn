@@ -16,6 +16,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { TabsContent } from "@/components/ui/tabs";
+import { heroImages } from "@/constants/images";
+// import { he } from "date-fns/locale";
 
 interface MediaItem {
   id: string;
@@ -42,7 +44,7 @@ const mediaItems: MediaItem[] = [
     category: "Events",
     date: "2024-01-15",
     url: "/placeholder.svg?height=600&width=800",
-    thumbnail: "/placeholder.svg?height=300&width=400",
+    thumbnail: heroImages.slide1,
     tags: ["Blood Drive", "Lagos", "Community", "2024"],
     views: 1250,
   },
@@ -55,7 +57,7 @@ const mediaItems: MediaItem[] = [
     category: "Team",
     date: "2024-01-12",
     url: "/placeholder.svg?height=600&width=800",
-    thumbnail: "/placeholder.svg?height=300&width=400",
+    thumbnail: heroImages.slide2,
     tags: ["Team", "Conference", "Healthcare", "Innovation"],
     views: 890,
   },
@@ -67,7 +69,7 @@ const mediaItems: MediaItem[] = [
     category: "Equipment",
     date: "2024-01-10",
     url: "/placeholder.svg?height=600&width=800",
-    thumbnail: "/placeholder.svg?height=300&width=400",
+    thumbnail: heroImages.slide3,
     tags: ["Mobile Unit", "Rural", "Equipment", "Innovation"],
     views: 2100,
   },
@@ -80,7 +82,7 @@ const mediaItems: MediaItem[] = [
     category: "Educational",
     date: "2024-01-08",
     url: "https://youtube.com/watch?v=example1",
-    thumbnail: "/placeholder.svg?height=300&width=400",
+    thumbnail: heroImages.slide4,
     tags: ["Education", "Process", "Tutorial", "Donors"],
     views: 15000,
   },
@@ -92,7 +94,7 @@ const mediaItems: MediaItem[] = [
     category: "Testimonials",
     date: "2024-01-05",
     url: "https://youtube.com/watch?v=example2",
-    thumbnail: "/placeholder.svg?height=300&width=400",
+    thumbnail: heroImages.slide5,
     tags: ["Testimonials", "Stories", "Impact", "Community"],
     views: 8500,
   },
@@ -106,7 +108,7 @@ const mediaItems: MediaItem[] = [
     category: "Awards",
     date: "2024-01-03",
     url: "https://example-news.com/tbdn-award",
-    thumbnail: "/placeholder.svg?height=300&width=400",
+    thumbnail: heroImages.slide1,
     tags: ["Award", "Recognition", "Excellence", "Healthcare"],
     views: 3200,
   },
@@ -118,7 +120,7 @@ const mediaItems: MediaItem[] = [
     category: "Partnerships",
     date: "2024-01-01",
     url: "https://example-news.com/lagos-partnership",
-    thumbnail: "/placeholder.svg?height=300&width=400",
+    thumbnail: heroImages.slide2,
     tags: ["Partnership", "Government", "Lagos", "Expansion"],
     views: 2800,
   },
@@ -132,7 +134,7 @@ const mediaItems: MediaItem[] = [
     category: "Technology",
     date: "2023-12-28",
     url: "/press-releases/mobile-app-launch.pdf",
-    thumbnail: "/placeholder.svg?height=300&width=400",
+    thumbnail: heroImages.slide3,
     tags: ["Mobile App", "Technology", "Innovation", "Donors"],
     downloads: 450,
   },
@@ -144,7 +146,7 @@ const youtubePlaylist = [
     title: "Blood Donation Awareness Campaign 2024",
     description: "Complete playlist of our awareness campaign videos",
     videoCount: 12,
-    thumbnail: "/placeholder.svg?height=200&width=300",
+    thumbnail: heroImages.slide4,
     playlistId: "PLexample1",
   },
   {
@@ -153,7 +155,7 @@ const youtubePlaylist = [
     description:
       "Educational videos explaining different blood types and compatibility",
     videoCount: 8,
-    thumbnail: "/placeholder.svg?height=200&width=300",
+    thumbnail: heroImages.slide5,
     playlistId: "PLexample2",
   },
   {
@@ -161,7 +163,7 @@ const youtubePlaylist = [
     title: "Donor Stories and Testimonials",
     description: "Real stories from donors and recipients",
     videoCount: 15,
-    thumbnail: "/placeholder.svg?height=200&width=300",
+    thumbnail: heroImages.slide1,
     playlistId: "PLexample3",
   },
 ];
