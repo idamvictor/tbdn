@@ -236,7 +236,7 @@ export function TeamPage() {
   return (
     <div className="space-y-16 md:space-y-24">
       {/* Page Header */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/team-hero-bg.svg"
@@ -247,26 +247,38 @@ export function TeamPage() {
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h1 className="text-5xl md:text-6xl font-bold text-white">
+          <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight">
               Meet Our Team
             </h1>
-            <p className="text-xl text-gray-200 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
               The dedicated professionals, advisors, and volunteers who make
               TBDN&apos;s life-saving mission possible
             </p>
-            <div className="flex flex-col sm:flex-row gap-12 justify-center pt-8">
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
-                <div className="text-4xl font-bold text-white mb-2">50+</div>
-                <div className="text-gray-200">Team Members</div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 pt-6 md:pt-8 max-w-3xl mx-auto">
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 md:p-6 hover:bg-white/20 transition-all">
+                <div className="text-3xl md:text-4xl font-bold text-white mb-1">
+                  50+
+                </div>
+                <div className="text-sm md:text-base text-gray-200">
+                  Team Members
+                </div>
               </div>
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
-                <div className="text-4xl font-bold text-white mb-2">500+</div>
-                <div className="text-gray-200">Active Volunteers</div>
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 md:p-6 hover:bg-white/20 transition-all">
+                <div className="text-3xl md:text-4xl font-bold text-white mb-1">
+                  500+
+                </div>
+                <div className="text-sm md:text-base text-gray-200">
+                  Active Volunteers
+                </div>
               </div>
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
-                <div className="text-4xl font-bold text-white mb-2">15</div>
-                <div className="text-gray-200">Regional Coordinators</div>
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 md:p-6 hover:bg-white/20 transition-all">
+                <div className="text-3xl md:text-4xl font-bold text-white mb-1">
+                  15
+                </div>
+                <div className="text-sm md:text-base text-gray-200">
+                  Regional Coordinators
+                </div>
               </div>
             </div>
           </div>

@@ -212,42 +212,53 @@ export function AwardsRecognitionPage() {
   return (
     <div className="space-y-16 md:space-y-24">
       {/* Page Header */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
+      <section className="relative py-12 md:py-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/awards-hero-bg.svg"
             alt="Awards Background"
             fill
-            className="object-cover brightness-90"
+            className="object-cover object-center brightness-90"
+            sizes="100vw"
             priority
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 bg-yellow-100/80 backdrop-blur-sm rounded-full flex items-center justify-center">
-                <Trophy className="h-10 w-10 text-yellow-600" />
+          <div className="max-w-4xl mx-auto text-center space-y-4 md:space-y-6">
+            <div className="flex justify-center mb-4 md:mb-6">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-yellow-100/80 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <Trophy className="h-8 w-8 md:h-10 md:w-10 text-yellow-600" />
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
               Awards & Recognition
             </h1>
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
               Celebrating the recognition and trust we&apos;ve earned from
               partners, government bodies, and the international community for
               our commitment to saving lives
             </p>
-            <div className="flex flex-col sm:flex-row gap-8 justify-center pt-8">
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
-                <div className="text-3xl font-bold text-yellow-600">15+</div>
-                <div className="text-gray-700">Awards Received</div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8 pt-6 md:pt-8 max-w-3xl mx-auto">
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 md:p-6 hover:bg-white/20 transition-all">
+                <div className="text-2xl md:text-3xl font-bold text-yellow-600">
+                  15+
+                </div>
+                <div className="text-sm md:text-base text-gray-700">
+                  Awards Received
+                </div>
               </div>
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
-                <div className="text-3xl font-bold text-blue-600">8</div>
-                <div className="text-gray-700">Certifications</div>
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 md:p-6 hover:bg-white/20 transition-all">
+                <div className="text-2xl md:text-3xl font-bold text-blue-600">
+                  8
+                </div>
+                <div className="text-sm md:text-base text-gray-700">
+                  Certifications
+                </div>
               </div>
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
-                <div className="text-3xl font-bold text-green-600">50+</div>
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 md:p-6 hover:bg-white/20 transition-all">
+                <div className="text-2xl md:text-3xl font-bold text-green-600">
+                  50+
+                </div>
                 <div className="text-gray-700">Media Features</div>
               </div>
             </div>
@@ -275,15 +286,15 @@ export function AwardsRecognitionPage() {
                   key={cert.title}
                   className="hover:shadow-lg transition-shadow"
                 >
-                  <CardContent className="p-8">
-                    <div className="flex items-start space-x-6">
-                      <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Shield className="h-10 w-10 text-gray-600" />
+                  <CardContent className="p-4 sm:p-6 md:p-8">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Shield className="h-8 w-8 sm:h-10 sm:w-10 text-gray-600" />
                       </div>
-                      <div className="flex-1 space-y-4">
+                      <div className="flex-1 space-y-3 sm:space-y-4 text-center sm:text-left">
                         <div>
-                          <div className="flex items-center justify-between mb-2">
-                            <h3 className="text-xl font-bold text-gray-900">
+                          <div className="flex flex-col sm:flex-row items-center sm:items-start sm:justify-between gap-2 mb-2">
+                            <h3 className="text-lg sm:text-xl font-bold text-gray-900">
                               {cert.title}
                             </h3>
                             <Badge className={cert.color}>{cert.level}</Badge>
@@ -292,13 +303,19 @@ export function AwardsRecognitionPage() {
                             {cert.issuer}
                           </p>
                         </div>
-                        <p className="text-gray-700">{cert.description}</p>
-                        <div className="flex items-center justify-between">
+                        <p className="text-sm sm:text-base text-gray-700">
+                          {cert.description}
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center gap-3 sm:justify-between">
                           <div className="flex items-center text-sm text-gray-600">
                             <Calendar className="h-4 w-4 mr-2" />
                             Certified {cert.date}
                           </div>
-                          <Button variant="outline" size="sm">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="w-full sm:w-auto"
+                          >
                             <ExternalLink className="h-4 w-4 mr-2" />
                             Verify
                           </Button>
@@ -334,7 +351,7 @@ export function AwardsRecognitionPage() {
                   className="hover:shadow-lg transition-shadow"
                 >
                   <CardContent className="p-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8 items-start">
                       <div className="lg:col-span-1">
                         <Image
                           src={recognition.image || "/placeholder.svg"}
@@ -344,8 +361,8 @@ export function AwardsRecognitionPage() {
                           className="w-full h-48 object-cover rounded-lg"
                         />
                       </div>
-                      <div className="lg:col-span-2 space-y-4">
-                        <div className="flex items-center justify-between">
+                      <div className="lg:col-span-2 space-y-3 sm:space-y-4 mt-4 lg:mt-0">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:justify-between">
                           <Badge
                             variant={
                               recognition.significance === "National"
@@ -361,16 +378,20 @@ export function AwardsRecognitionPage() {
                             {recognition.date}
                           </div>
                         </div>
-                        <h3 className="text-2xl font-bold text-gray-900">
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
                           {recognition.title}
                         </h3>
-                        <p className="text-red-600 font-medium">
+                        <p className="text-red-600 font-medium text-sm sm:text-base">
                           {recognition.authority}
                         </p>
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                           {recognition.description}
                         </p>
-                        <Button variant="outline" size="sm">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full sm:w-auto"
+                        >
                           <ExternalLink className="h-4 w-4 mr-2" />
                           View Certificate
                         </Button>
@@ -398,18 +419,18 @@ export function AwardsRecognitionPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
               {partnerTestimonials.map((testimonial) => (
                 <Card
                   key={testimonial.name}
                   className="hover:shadow-lg transition-shadow"
                 >
-                  <CardContent className="p-8 space-y-6">
-                    <div className="flex items-center space-x-1">
+                  <CardContent className="p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6">
+                    <div className="flex items-center space-x-1 justify-center sm:justify-start">
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          className={`h-5 w-5 ${
+                          className={`h-4 w-4 sm:h-5 sm:w-5 ${
                             i < testimonial.rating
                               ? "text-yellow-400 fill-current"
                               : "text-gray-300"
@@ -418,12 +439,12 @@ export function AwardsRecognitionPage() {
                       ))}
                     </div>
                     <div className="relative">
-                      <Quote className="h-8 w-8 text-red-200 absolute -top-2 -left-2" />
-                      <blockquote className="text-gray-700 leading-relaxed pl-6 italic">
+                      <Quote className="h-6 w-6 sm:h-8 sm:w-8 text-red-200 absolute -top-2 -left-2" />
+                      <blockquote className="text-sm sm:text-base text-gray-700 leading-relaxed pl-4 sm:pl-6 italic">
                         &quot;{testimonial.testimonial}&quot;
                       </blockquote>
                     </div>
-                    <div className="flex items-center space-x-4 pt-4 border-t border-gray-100">
+                    <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-4 border-t border-gray-100 text-center sm:text-left">
                       <Image
                         src={testimonial.image || "/placeholder.svg"}
                         alt={testimonial.name}
@@ -442,7 +463,10 @@ export function AwardsRecognitionPage() {
                           {testimonial.organization}
                         </p>
                       </div>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge
+                        variant="outline"
+                        className="text-xs whitespace-nowrap"
+                      >
                         {testimonial.partnership} partnership
                       </Badge>
                     </div>
@@ -468,7 +492,7 @@ export function AwardsRecognitionPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {mediaCoverage.map((media) => (
                 <Card
                   key={media.title}
@@ -481,34 +505,34 @@ export function AwardsRecognitionPage() {
                         alt={media.title}
                         width={400}
                         height={192}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         {media.type.includes("TV") ||
                         media.type.includes("Documentary") ? (
-                          <Play className="h-12 w-12 text-white" />
+                          <Play className="h-8 w-8 sm:h-12 sm:w-12 text-white" />
                         ) : (
-                          <ExternalLink className="h-8 w-8 text-white" />
+                          <ExternalLink className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                         )}
                       </div>
-                      <Badge className="absolute top-4 left-4 bg-black/70 text-white">
+                      <Badge className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-black/70 text-white text-xs sm:text-sm">
                         {media.type}
                       </Badge>
                     </div>
-                    <div className="p-6 space-y-3">
-                      <div className="flex items-center justify-between text-sm text-gray-600">
+                    <div className="p-4 sm:p-6 space-y-2 sm:space-y-3">
+                      <div className="flex flex-col sm:flex-row gap-1 sm:items-center sm:justify-between text-xs sm:text-sm text-gray-600">
                         <span className="font-medium text-red-600">
                           {media.outlet}
                         </span>
                         <span>{media.date}</span>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
                         {media.title}
                       </h3>
-                      <p className="text-gray-600 text-sm line-clamp-2">
+                      <p className="text-gray-600 text-xs sm:text-sm line-clamp-2">
                         {media.description}
                       </p>
-                      <div className="flex items-center justify-between pt-2 text-sm text-gray-500">
+                      <div className="flex items-center justify-between pt-2 text-xs sm:text-sm text-gray-500">
                         <span>{media.duration}</span>
                         <span>{media.views} views</span>
                       </div>

@@ -214,7 +214,7 @@ export function VisionMissionPage() {
   return (
     <div className="space-y-16 md:space-y-24">
       {/* Vision Statement - Sliding Hero */}
-      <section className="relative min-h-[60vh] md:min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-600 to-pink-600 text-white">
+      <section className="relative min-h-[90vh] sm:min-h-[70vh] md:min-h-[75vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-600 to-pink-600 text-white">
         {/* Background Image with fade animation */}
         <div className="absolute inset-0 z-0">
           {visionSlides.map((s, idx) => (
@@ -229,49 +229,56 @@ export function VisionMissionPage() {
                 src={s.image}
                 alt="Vision Slide"
                 fill
-                className="object-cover"
+                className="object-cover object-center"
                 priority={idx === currentVision}
-                sizes="100vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
               />
-              <div className="absolute inset-0 bg-black/40" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
             </div>
           ))}
         </div>
         {/* Content with fade animation */}
-        <div className="relative z-10 container mx-auto px-4">
+        <div className="relative z-10 container mx-auto px-4 py-8">
           {visionSlides.map((s, idx) => (
             <div
               key={idx}
-              className={`max-w-4xl mx-auto text-center space-y-8 transition-opacity duration-1000 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full ${
+              className={`max-w-4xl mx-auto text-center space-y-6 sm:space-y-8 transition-opacity duration-1000 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full ${
                 idx === currentVision ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
               style={{ pointerEvents: idx === currentVision ? "auto" : "none" }}
             >
-              <Badge className="bg-white/20 text-white border-white/30">
+              <Badge className="bg-white/20 text-white border-white/30 text-sm sm:text-base">
                 Our Vision
               </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 {s.headline}
               </h1>
-              <p className="text-xl md:text-2xl opacity-90 leading-relaxed">
+              <p className="text-lg sm:text-xl md:text-2xl opacity-90 leading-relaxed max-w-3xl mx-auto">
                 {s.description}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 pt-6 sm:pt-8 max-w-2xl mx-auto">
                 {s.stats.map((stat) => (
-                  <div className="text-center" key={stat.label}>
-                    <div className="text-3xl font-bold">{stat.value}</div>
-                    <div className="text-sm opacity-75">{stat.label}</div>
+                  <div
+                    className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4"
+                    key={stat.label}
+                  >
+                    <div className="text-2xl sm:text-3xl font-bold">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm sm:text-base opacity-75">
+                      {stat.label}
+                    </div>
                   </div>
                 ))}
               </div>
               {/* Slide Indicators */}
-              <div className="flex justify-center gap-2 pt-4">
+              <div className="flex justify-center gap-2 pt-6 sm:pt-8">
                 {visionSlides.map((_, idx2) => (
                   <button
                     key={idx2}
                     onClick={() => setCurrentVision(idx2)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      idx2 === currentVision ? "bg-white w-8" : "bg-white/40"
+                    className={`w-2 sm:w-3 h-2 sm:h-3 rounded-full transition-all duration-300 ${
+                      idx2 === currentVision ? "bg-white sm:w-8" : "bg-white/40"
                     }`}
                     aria-label={`Go to slide ${idx2 + 1}`}
                   />
@@ -283,14 +290,14 @@ export function VisionMissionPage() {
       </section>
 
       {/* Mission Statement Breakdown */}
-      <section className="py-16 md:py-24">
+      <section className="py-12 sm:py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Our Mission
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 To save lives by connecting voluntary blood donors with those in
                 need, while educating communities about the importance of
                 regular blood donation and building sustainable healthcare
@@ -298,7 +305,7 @@ export function VisionMissionPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
               {missionBreakdown.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -306,16 +313,18 @@ export function VisionMissionPage() {
                     key={item.title}
                     className="group hover:shadow-lg transition-all duration-300"
                   >
-                    <CardContent className="p-8">
+                    <CardContent className="p-6 sm:p-8">
                       <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-                          <Icon className="h-6 w-6 text-red-600" />
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
+                          <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-red-600" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-gray-900 mb-2">
+                          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
                             {item.title}
                           </h3>
-                          <p className="text-gray-700">{item.description}</p>
+                          <p className="text-sm sm:text-base text-gray-700">
+                            {item.description}
+                          </p>
                         </div>
                       </div>
                     </CardContent>
