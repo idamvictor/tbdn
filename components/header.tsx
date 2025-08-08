@@ -75,13 +75,15 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between">
+      <div className="container mx-auto flex h-14 sm:h-16 items-center justify-between px-4 sm:px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-600">
-            <Heart className="h-5 w-5 text-white fill-current" />
+        <Link href="/" className="flex items-center space-x-2 shrink-0">
+          <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-red-600">
+            <Heart className="h-4 w-4 sm:h-5 sm:w-5 text-white fill-current" />
           </div>
-          <span className="text-xl font-bold text-red-600">TBDN</span>
+          <span className="text-lg sm:text-xl font-bold text-red-600">
+            TBDN
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -99,7 +101,7 @@ export function Header() {
             <NavigationMenuItem>
               <NavigationMenuTrigger>About</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                <ul className="grid w-[280px] gap-3 p-4 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                   {aboutLinks.map((link) => (
                     <li key={link.href}>
                       <NavigationMenuLink asChild>
@@ -240,165 +242,180 @@ export function Header() {
           <Button
             variant="outline"
             size="sm"
-            className="bg-white text-red-600 border-red-600 hover:bg-red-50"
+            className="bg-white text-red-600 border-red-600 hover:bg-red-50 whitespace-nowrap"
           >
             <Phone className="h-4 w-4 mr-2" />
             Emergency
           </Button>
-          <Button size="sm" className="bg-red-600 hover:bg-red-700">
+          <Button
+            size="sm"
+            className="bg-red-600 hover:bg-red-700 whitespace-nowrap"
+          >
             Donate Blood
           </Button>
         </div>
 
         {/* Mobile Menu */}
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild className="lg:hidden">
-            <Button variant="ghost" size="sm">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent
-            side="right"
-            className="w-[300px] sm:w-[400px] p-0 bg-gradient-to-b from-white to-slate-50"
+        <div className="flex items-center space-x-1 lg:hidden">
+          <Button
+            variant="outline"
+            size="sm"
+            className="bg-white text-red-600 border-red-600 hover:bg-red-50"
           >
-            <nav className="flex flex-col h-full">
-              <div className="p-6 border-b bg-white/80 backdrop-blur-sm">
-                <Link
-                  href="/"
-                  className="flex items-center space-x-2"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-600 shadow-lg">
-                    <Heart className="h-6 w-6 text-white fill-current" />
-                  </div>
-                  <span className="text-2xl font-bold bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
-                    TBDN
-                  </span>
-                </Link>
-              </div>
-
-              <motion.div
-                className="flex-1 overflow-y-auto py-6 px-4 space-y-6"
-                variants={listVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                <motion.div variants={itemVariants}>
+            <Phone className="h-4 w-4" />
+            <span className="sr-only">Emergency</span>
+          </Button>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="sm" className="px-2">
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="w-[280px] sm:w-[360px] p-0 bg-gradient-to-b from-white to-slate-50"
+            >
+              <nav className="flex flex-col h-full">
+                <div className="p-4 sm:p-6 border-b bg-white/80 backdrop-blur-sm">
                   <Link
                     href="/"
-                    className="flex items-center justify-between py-2 text-lg font-medium hover:text-red-600 transition-colors"
+                    className="flex items-center space-x-2"
                     onClick={() => setIsOpen(false)}
                   >
-                    <span>Home</span>
-                    <ChevronRight className="h-5 w-5 opacity-50" />
+                    <div className="flex h-8 sm:h-10 w-8 sm:w-10 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-600 shadow-lg">
+                      <Heart className="h-5 sm:h-6 w-5 sm:w-6 text-white fill-current" />
+                    </div>
+                    <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+                      TBDN
+                    </span>
                   </Link>
-                </motion.div>
+                </div>
 
-                {[
-                  { title: "About", links: aboutLinks },
-                  { title: "Get Involved", links: getInvolvedLinks },
-                  { title: "Programs", links: programsLinks },
-                  { title: "Resources", links: resourcesLinks },
-                  { title: "Fun Zone", links: funZoneLinks },
-                ].map((section) => (
-                  <motion.div
-                    key={section.title}
-                    variants={itemVariants}
-                    className="space-y-3"
-                  >
-                    <button
-                      onClick={() =>
-                        setActiveSection(
-                          activeSection === section.title ? "" : section.title
-                        )
-                      }
-                      className="flex items-center justify-between w-full group"
-                    >
-                      <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide group-hover:text-red-600 transition-colors">
-                        {section.title}
-                      </h3>
-                      <ChevronRight
-                        className={`h-4 w-4 transition-transform duration-200 ${
-                          activeSection === section.title ? "rotate-90" : ""
-                        }`}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {activeSection === section.title && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="space-y-2 pl-4 pt-2">
-                            {section.links.map((link) => (
-                              <motion.div
-                                key={link.href}
-                                variants={menuVariants}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
-                              >
-                                <Link
-                                  href={link.href}
-                                  className="block py-2 text-sm hover:text-red-600 transition-colors"
-                                  onClick={() => setIsOpen(false)}
-                                >
-                                  {link.title}
-                                </Link>
-                              </motion.div>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                ))}
-
-                <motion.div variants={itemVariants} className="space-y-2">
-                  {["/support", "/contact"].map((path) => (
+                <motion.div
+                  className="flex-1 overflow-y-auto py-4 sm:py-6 px-4 space-y-4 sm:space-y-6"
+                  variants={listVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <motion.div variants={itemVariants}>
                     <Link
-                      key={path}
-                      href={path}
-                      className="flex items-center justify-between py-2 text-lg font-medium hover:text-red-600 transition-colors"
+                      href="/"
+                      className="flex items-center justify-between py-2 text-base sm:text-lg font-medium hover:text-red-600 transition-colors"
                       onClick={() => setIsOpen(false)}
                     >
-                      <span>
-                        {path === "/support" ? "Support Us" : "Contact"}
-                      </span>
-                      <ChevronRight className="h-5 w-5 opacity-50" />
+                      <span>Home</span>
+                      <ChevronRight className="h-4 sm:h-5 w-4 sm:w-5 opacity-50" />
                     </Link>
-                  ))}
-                </motion.div>
-              </motion.div>
+                  </motion.div>
 
-              <motion.div
-                className="p-6 border-t bg-gradient-to-b from-slate-50 to-white"
-                variants={itemVariants}
-              >
-                <div className="space-y-3">
-                  <Button
-                    variant="outline"
-                    className="w-full bg-white/80 backdrop-blur-sm text-red-600 border-red-200 hover:bg-red-50 hover:border-red-300 transition-all duration-300 shadow-sm"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Phone className="h-4 w-4 mr-2" />
-                    Emergency Contact
-                  </Button>
-                  <Button
-                    className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-md hover:shadow-lg"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Donate Blood Now
-                  </Button>
-                </div>
-              </motion.div>
-            </nav>
-          </SheetContent>
-        </Sheet>
+                  {[
+                    { title: "About", links: aboutLinks },
+                    { title: "Get Involved", links: getInvolvedLinks },
+                    { title: "Programs", links: programsLinks },
+                    { title: "Resources", links: resourcesLinks },
+                    { title: "Fun Zone", links: funZoneLinks },
+                  ].map((section) => (
+                    <motion.div
+                      key={section.title}
+                      variants={itemVariants}
+                      className="space-y-3"
+                    >
+                      <button
+                        onClick={() =>
+                          setActiveSection(
+                            activeSection === section.title ? "" : section.title
+                          )
+                        }
+                        className="flex items-center justify-between w-full group"
+                      >
+                        <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide group-hover:text-red-600 transition-colors">
+                          {section.title}
+                        </h3>
+                        <ChevronRight
+                          className={`h-4 w-4 transition-transform duration-200 ${
+                            activeSection === section.title ? "rotate-90" : ""
+                          }`}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {activeSection === section.title && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="space-y-2 pl-4 pt-2">
+                              {section.links.map((link) => (
+                                <motion.div
+                                  key={link.href}
+                                  variants={menuVariants}
+                                  initial="hidden"
+                                  animate="visible"
+                                  exit="exit"
+                                >
+                                  <Link
+                                    href={link.href}
+                                    className="block py-2 text-sm hover:text-red-600 transition-colors"
+                                    onClick={() => setIsOpen(false)}
+                                  >
+                                    {link.title}
+                                  </Link>
+                                </motion.div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  ))}
+
+                  <motion.div variants={itemVariants} className="space-y-2">
+                    {["/support", "/contact"].map((path) => (
+                      <Link
+                        key={path}
+                        href={path}
+                        className="flex items-center justify-between py-2 text-lg font-medium hover:text-red-600 transition-colors"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <span>
+                          {path === "/support" ? "Support Us" : "Contact"}
+                        </span>
+                        <ChevronRight className="h-5 w-5 opacity-50" />
+                      </Link>
+                    ))}
+                  </motion.div>
+                </motion.div>
+
+                <motion.div
+                  className="p-4 sm:p-6 border-t bg-gradient-to-b from-slate-50 to-white"
+                  variants={itemVariants}
+                >
+                  <div className="space-y-2 sm:space-y-3">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full bg-white/80 backdrop-blur-sm text-red-600 border-red-200 hover:bg-red-50 hover:border-red-300 transition-all duration-300 shadow-sm text-sm"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Phone className="h-4 w-4 mr-2" />
+                      Emergency Contact
+                    </Button>
+                    <Button
+                      size="sm"
+                      className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-md hover:shadow-lg text-sm"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Donate Blood Now
+                    </Button>
+                  </div>
+                </motion.div>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   );
