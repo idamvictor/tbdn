@@ -128,7 +128,7 @@ const additionalCardHoverVariants = {
 export function QuickActions() {
   return (
     <motion.section
-      className="py-16 md:py-24 bg-gradient-to-br from-red-50 via-pink-50 to-orange-50"
+      className="py-8 sm:py-16 md:py-24 bg-gradient-to-br from-red-50 via-pink-50 to-orange-50"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
@@ -148,7 +148,7 @@ export function QuickActions() {
 
           {/* Main Quick Actions */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
             variants={containerVariants}
           >
             {quickActions.map((action) => {

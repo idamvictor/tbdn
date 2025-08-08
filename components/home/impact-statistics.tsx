@@ -214,7 +214,7 @@ export function ImpactStatistics() {
           {/* Header Section */}
           <motion.div className="space-y-6" variants={itemVariants}>
             <motion.div className="inline-block" whileHover={{ scale: 1.02 }}>
-              <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-red-600 bg-clip-text text-transparent leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-red-600 bg-clip-text text-transparent leading-tight">
                 Our Impact in Numbers
               </h2>
               <motion.div
@@ -225,7 +225,7 @@ export function ImpactStatistics() {
               />
             </motion.div>
             <motion.p
-              className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
               variants={itemVariants}
             >
               Every donation makes a difference. Here&apos;s how our community
@@ -235,7 +235,7 @@ export function ImpactStatistics() {
 
           {/* Statistics Grid */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
             variants={containerVariants}
           >
             {impactStats.map((stat, index) => {
@@ -251,7 +251,7 @@ export function ImpactStatistics() {
                     transition: { duration: 0.3 },
                   }}
                 >
-                  <div className="relative p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden h-full">
+                  <div className="relative p-6 sm:p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden h-full">
                     {/* Card Background Gradient */}
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
@@ -265,17 +265,17 @@ export function ImpactStatistics() {
                       transition={{ duration: 0.3 }}
                     />
 
-                    <div className="relative flex flex-col items-center text-center space-y-6">
+                    <div className="relative flex flex-col items-center text-center space-y-4 sm:space-y-6">
                       {/* Icon Container */}
                       <motion.div
-                        className={`relative p-5 ${stat.bgColor} rounded-2xl shadow-md group-hover:shadow-lg transition-all duration-300`}
+                        className={`relative p-4 sm:p-5 ${stat.bgColor} rounded-2xl shadow-md group-hover:shadow-lg transition-all duration-300`}
                         whileHover={{
                           scale: 1.1,
                           rotate: 5,
                           transition: { duration: 0.3 },
                         }}
                       >
-                        <Icon className={`h-10 w-10 ${stat.color}`} />
+                        <Icon className={`h-8 w-8 sm:h-10 sm:w-10 ${stat.color}`} />
 
                         {/* Icon Glow Effect */}
                         <motion.div
@@ -286,9 +286,9 @@ export function ImpactStatistics() {
                       </motion.div>
 
                       {/* Statistics */}
-                      <div className="space-y-3">
+                      <div className="space-y-2 sm:space-y-3">
                         <motion.div
-                          className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}
+                          className={`text-3xl sm:text-4xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}
                           variants={numberVariants}
                           initial="hidden"
                           animate={hasAnimated ? "visible" : "hidden"}
@@ -298,7 +298,7 @@ export function ImpactStatistics() {
                           {stat.suffix}
                         </motion.div>
                         <motion.div
-                          className="text-gray-700 font-medium text-lg group-hover:text-gray-800 transition-colors"
+                          className="text-gray-700 font-medium text-base sm:text-lg group-hover:text-gray-800 transition-colors"
                           whileHover={{ scale: 1.05 }}
                         >
                           {stat.label}
@@ -321,7 +321,7 @@ export function ImpactStatistics() {
 
           {/* Enhanced CTA Section */}
           <motion.div variants={itemVariants}>
-            <div className="relative bg-gradient-to-r from-red-600 via-pink-600 to-red-700 rounded-3xl p-10 md:p-12 text-white overflow-hidden shadow-2xl">
+            <div className="relative bg-gradient-to-r from-red-600 via-pink-600 to-red-700 rounded-3xl p-8 sm:p-10 md:p-12 text-white overflow-hidden shadow-2xl">
               {/* Background Pattern */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1),transparent_50%)]" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.1),transparent_50%)]" />
@@ -337,7 +337,7 @@ export function ImpactStatistics() {
                     ease: "linear",
                   }}
                 >
-                  <TrendingUp className="h-8 w-8" />
+                  <TrendingUp className="h-6 w-6 sm:h-8 sm:w-8" />
                 </motion.div>
                 <motion.div
                   className="absolute bottom-4 left-4 text-white/20"
@@ -348,28 +348,28 @@ export function ImpactStatistics() {
                     ease: "linear",
                   }}
                 >
-                  <Award className="h-6 w-6" />
+                  <Award className="h-5 w-5 sm:h-6 sm:w-6" />
                 </motion.div>
               </div>
 
-              <div className="relative text-center space-y-8">
+              <div className="relative text-center space-y-6 sm:space-y-8">
                 <motion.h3
-                  className="text-3xl md:text-4xl font-bold"
+                  className="text-2xl sm:text-3xl font-bold"
                   whileHover={{ scale: 1.02 }}
                 >
                   Join Our Growing Community
                 </motion.h3>
                 <motion.p
-                  className="text-xl opacity-90 max-w-2xl mx-auto leading-relaxed"
+                  className="text-lg sm:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed"
                   variants={itemVariants}
                 >
                   Be part of something bigger. Your donation today becomes
                   someone&apos;s tomorrow.
                 </motion.p>
 
-                <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center pt-4">
                   <motion.button
-                    className="bg-white text-red-600 px-10 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="bg-white text-red-600 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                     whileHover={{
                       scale: 1.05,
                       y: -2,
@@ -383,7 +383,7 @@ export function ImpactStatistics() {
                     </span>
                   </motion.button>
                   <motion.button
-                    className="border-2 border-white text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-white hover:text-red-600 transition-all duration-300"
+                    className="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg hover:bg-white hover:text-red-600 transition-all duration-300"
                     whileHover={{
                       scale: 1.05,
                       y: -2,
@@ -393,6 +393,7 @@ export function ImpactStatistics() {
                     Learn More
                   </motion.button>
                 </div>
+.
               </div>
             </div>
           </motion.div>

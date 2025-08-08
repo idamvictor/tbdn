@@ -147,7 +147,7 @@ export function DonorTestimonials() {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden">
+    <section className="relative py-12 sm:py-16 md:py-20 lg:py-32 overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-red-50">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(239,68,68,0.1),transparent_50%)]" />
@@ -178,9 +178,12 @@ export function DonorTestimonials() {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 relative z-10" ref={ref}>
+      <div
+        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl"
+        ref={ref}
+      >
         <motion.div
-          className="space-y-16"
+          className="space-y-8 sm:space-y-12 lg:space-y-16"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -229,11 +232,11 @@ export function DonorTestimonials() {
                 >
                   <Card className="overflow-hidden border-0 shadow-none">
                     <CardContent className="p-0">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+                      <div className="grid grid-cols-1 lg:grid-cols-2">
                         {/* Media Section */}
                         <div className="relative bg-gradient-to-br from-gray-100 to-gray-200">
                           {currentTestimonial.type === "video" ? (
-                            <div className="relative h-full group">
+                            <div className="relative aspect-[16/9] lg:aspect-auto lg:h-full group">
                               <Image
                                 src={
                                   currentTestimonial.videoThumbnail ||
@@ -255,7 +258,7 @@ export function DonorTestimonials() {
                                 >
                                   <Button
                                     size="lg"
-                                    className={`bg-gradient-to-r ${currentTestimonial.gradient} hover:shadow-2xl rounded-full w-20 h-20 shadow-lg`}
+                                    className={`bg-gradient-to-r ${currentTestimonial.gradient} hover:shadow-2xl rounded-full w-16 h-16 sm:w-20 sm:h-20 shadow-lg`}
                                     onClick={() =>
                                       setPlayingVideo(currentTestimonial.id)
                                     }
@@ -280,7 +283,7 @@ export function DonorTestimonials() {
                               </div>
                             </div>
                           ) : (
-                            <div className="h-full flex items-center justify-center p-12 relative">
+                            <div className="aspect-square lg:aspect-auto lg:h-full flex items-center justify-center p-8 sm:p-12 relative">
                               <div className="relative">
                                 <motion.div
                                   className={`absolute inset-0 bg-gradient-to-r ${currentTestimonial.gradient} rounded-full blur-2xl opacity-20`}
@@ -313,7 +316,7 @@ export function DonorTestimonials() {
                         </div>
 
                         {/* Content Section */}
-                        <div className="p-8 lg:p-12 flex flex-col justify-center space-y-8 bg-white relative overflow-hidden">
+                        <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center space-y-6 sm:space-y-8 bg-white relative overflow-hidden">
                           {/* Background Pattern */}
                           <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-100/50 to-pink-100/50 rounded-full blur-3xl" />
                           <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-full blur-3xl" />
@@ -356,7 +359,7 @@ export function DonorTestimonials() {
                                 />
                               </motion.div>
                               <motion.blockquote
-                                className="text-xl md:text-2xl text-gray-700 leading-relaxed pl-8 font-medium"
+                                className="text-lg sm:text-xl md:text-2xl text-gray-700 leading-relaxed pl-6 sm:pl-8 font-medium"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 }}
@@ -404,31 +407,31 @@ export function DonorTestimonials() {
 
             {/* Navigation Buttons */}
             <motion.div
-              className="absolute left-4 top-1/2 transform -translate-y-1/2"
+              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-10"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
               <Button
                 variant="outline"
                 size="icon"
-                className="bg-white/90 backdrop-blur-sm shadow-xl border-white/50 hover:bg-white w-12 h-12 rounded-full"
+                className="bg-white/90 backdrop-blur-sm shadow-xl border-white/50 hover:bg-white w-10 h-10 sm:w-12 sm:h-12 rounded-full"
                 onClick={prevTestimonial}
               >
-                <ChevronLeft className="h-6 w-6" />
+                <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
               </Button>
             </motion.div>
             <motion.div
-              className="absolute right-4 top-1/2 transform -translate-y-1/2"
+              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-10"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
               <Button
                 variant="outline"
                 size="icon"
-                className="bg-white/90 backdrop-blur-sm shadow-xl border-white/50 hover:bg-white w-12 h-12 rounded-full"
+                className="bg-white/90 backdrop-blur-sm shadow-xl border-white/50 hover:bg-white w-10 h-10 sm:w-12 sm:h-12 rounded-full"
                 onClick={nextTestimonial}
               >
-                <ChevronRight className="h-6 w-6" />
+                <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
               </Button>
             </motion.div>
           </motion.div>

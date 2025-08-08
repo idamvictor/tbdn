@@ -133,7 +133,7 @@ const linkHoverVariants = {
 export function NewsUpdates() {
   return (
     <motion.section
-      className="py-16 md:py-24 bg-gray-50"
+      className="py-8 sm:py-12 md:py-16 lg:py-24 bg-gray-50"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
