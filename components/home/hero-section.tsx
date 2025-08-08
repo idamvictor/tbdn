@@ -94,7 +94,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative h-[95dvh] flex items-center justify-center overflow-hidden">
+    <section className="relative h-[90dvh] sm:h-[90dvh] md:h-[95dvh] flex items-center justify-center overflow-hidden">
       {/* Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-purple-900/10 to-blue-900/20 animate-pulse" />
 
@@ -142,7 +142,7 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
-        <div className="max-w-5xl mx-auto space-y-8">
+        <div className="max-w-5xl mx-auto space-y-6 md:space-y-8">
           {/* Badge with entrance animation */}
           <div
             className={`transform transition-all duration-1000 delay-300 ${
@@ -168,7 +168,7 @@ export function HeroSection() {
                 : "translate-y-12 opacity-0"
             }`}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight bg-gradient-to-r from-white via-gray-100 to-red-100 bg-clip-text text-transparent drop-shadow-2xl">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight bg-gradient-to-r from-white via-gray-100 to-red-100 bg-clip-text text-transparent drop-shadow-2xl px-2">
               {heroSlides[currentSlide].title}
             </h1>
           </div>
@@ -181,7 +181,7 @@ export function HeroSection() {
                 : "translate-y-8 opacity-0"
             }`}
           >
-            <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed drop-shadow-lg px-2">
               {heroSlides[currentSlide].subtitle}
             </p>
           </div>
@@ -194,20 +194,20 @@ export function HeroSection() {
                 : "translate-y-8 opacity-0"
             }`}
           >
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-lg px-10 py-6 shadow-2xl hover:shadow-red-500/25 transform hover:scale-105 transition-all duration-300 border border-red-500/20"
+                className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-base sm:text-lg px-6 sm:px-10 py-5 sm:py-6 shadow-2xl hover:shadow-red-500/25 transform hover:scale-105 transition-all duration-300 border border-red-500/20"
               >
-                <Heart className="h-5 w-5 mr-3 fill-current animate-pulse" />
+                <Heart className="h-4 sm:h-5 w-4 sm:w-5 mr-2 sm:mr-3 fill-current animate-pulse" />
                 {heroSlides[currentSlide].cta}
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-white/10 border-white/30 text-white hover:bg-white/20 text-lg px-10 py-6 backdrop-blur-sm shadow-xl hover:shadow-white/10 transform hover:scale-105 transition-all duration-300"
+                className="w-full sm:w-auto bg-white/10 border-white/30 text-white hover:bg-white/20 text-base sm:text-lg px-6 sm:px-10 py-5 sm:py-6 backdrop-blur-sm shadow-xl hover:shadow-white/10 transform hover:scale-105 transition-all duration-300"
               >
-                <Play className="h-5 w-5 mr-3" />
+                <Play className="h-4 sm:h-5 w-4 sm:w-5 mr-2 sm:mr-3" />
                 Learn More
               </Button>
             </div>
@@ -222,9 +222,9 @@ export function HeroSection() {
                 : "translate-y-8 opacity-0"
             }`}
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-12 border-t border-white/20 relative">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-white/20 relative">
               {/* Animated border line */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-gradient-to-r from-transparent via-red-400 to-transparent animate-pulse" />
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 sm:w-24 h-0.5 bg-gradient-to-r from-transparent via-red-400 to-transparent animate-pulse" />
 
               {liveStats.map((stat, index) => {
                 const Icon = stat.icon;
@@ -236,15 +236,15 @@ export function HeroSection() {
                   >
                     <div className="flex justify-center mb-4">
                       <div className="relative">
-                        <Icon className="h-10 w-10 text-red-400 group-hover:text-red-300 transition-colors duration-300 drop-shadow-lg animate-pulse" />
+                        <Icon className="h-8 w-8 sm:h-10 sm:w-10 text-red-400 group-hover:text-red-300 transition-colors duration-300 drop-shadow-lg animate-pulse" />
                         <div className="absolute inset-0 bg-red-400/20 rounded-full blur-xl group-hover:bg-red-400/30 transition-all duration-300" />
                       </div>
                     </div>
-                    <div className="text-3xl md:text-4xl font-bold bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent drop-shadow-sm">
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent drop-shadow-sm">
                       {animatedStats[index].toLocaleString()}
                       {stat.suffix}
                     </div>
-                    <div className="text-sm text-gray-300 mt-2 group-hover:text-white transition-colors duration-300">
+                    <div className="text-xs sm:text-sm text-gray-300 mt-1 sm:mt-2 group-hover:text-white transition-colors duration-300">
                       {stat.label}
                     </div>
                   </div>
@@ -256,15 +256,15 @@ export function HeroSection() {
       </div>
 
       {/* Enhanced Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+      <div className="absolute bottom-16 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 sm:space-x-3 z-10">
         {heroSlides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`relative transition-all duration-500 rounded-full ${
               index === currentSlide
-                ? "bg-red-500 w-12 h-3 shadow-lg shadow-red-500/50"
-                : "bg-white/40 w-3 h-3 hover:bg-white/60"
+                ? "bg-red-500 w-8 sm:w-12 h-2 sm:h-3 shadow-lg shadow-red-500/50"
+                : "bg-white/40 w-2 sm:w-3 h-2 sm:h-3 hover:bg-white/60"
             }`}
           >
             {index === currentSlide && (
@@ -275,9 +275,9 @@ export function HeroSection() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse" />
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 animate-bounce hidden sm:block">
+        <div className="w-5 sm:w-6 h-8 sm:h-10 border-2 border-white/30 rounded-full flex justify-center">
+          <div className="w-1 h-2 sm:h-3 bg-white/60 rounded-full mt-2 animate-pulse" />
         </div>
       </div>
     </section>
