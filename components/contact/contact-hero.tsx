@@ -2,7 +2,7 @@ import { Phone, Mail, MapPin, Clock, Heart } from "lucide-react";
 
 export function ContactHero() {
   return (
-    <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-20 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-12 sm:py-16 md:py-20 overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -20,25 +20,25 @@ export function ContactHero() {
         <div className="absolute bottom-40 left-1/4 w-2 h-2 bg-slate-400 rounded-full opacity-50 animate-float animation-delay-2000"></div>
       </div>
 
-      <div className="container mx-auto px-4 text-center relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6 animate-fade-in">
-            <Heart className="w-5 h-5 text-rose-400" />
+          <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-1.5 sm:py-2 mb-4 sm:mb-6 animate-fade-in text-sm sm:text-base">
+            <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-rose-400" />
             <span className="text-slate-200 font-medium">
               Saving Lives Together
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 animate-fade-in-up bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
             Get in Touch
           </h1>
 
-          <p className="text-xl md:text-2xl mb-12 text-slate-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-12 text-slate-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
             We&apos;re here to help you save lives through blood donation. Every
             contact matters, every donation counts.
           </p>
 
-          <div className="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
             {[
               {
                 icon: Phone,

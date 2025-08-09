@@ -41,15 +41,15 @@ export function ContactForm() {
   if (isSubmitted) {
     return (
       <Card className="shadow-2xl border-0 bg-gradient-to-br from-emerald-50 to-teal-50">
-        <CardContent className="p-12 text-center">
-          <div className="relative mb-6">
+        <CardContent className="p-6 sm:p-8 md:p-12 text-center">
+          <div className="relative mb-4 sm:mb-6">
             <div className="absolute inset-0 bg-emerald-100 rounded-full animate-ping opacity-75"></div>
-            <CheckCircle className="relative h-20 w-20 text-emerald-600 mx-auto" />
+            <CheckCircle className="relative h-16 w-16 sm:h-20 sm:w-20 text-emerald-600 mx-auto" />
           </div>
-          <h3 className="text-3xl font-bold text-emerald-800 mb-4">
+          <h3 className="text-2xl sm:text-3xl font-bold text-emerald-800 mb-3 sm:mb-4">
             Thank You!
           </h3>
-          <p className="text-slate-600 mb-6 text-lg leading-relaxed">
+          <p className="text-slate-600 mb-6 text-base sm:text-lg leading-relaxed">
             Your message has been sent successfully. We&apos;ll get back to you
             within 24 hours with the information you need.
           </p>
@@ -57,9 +57,9 @@ export function ContactForm() {
             onClick={() => setIsSubmitted(false)}
             variant="outline"
             size="lg"
-            className="border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all duration-300"
+            className="border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all duration-300 h-10 sm:h-12 text-sm sm:text-base"
           >
-            <Sparkles className="h-4 w-4 mr-2" />
+            <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2" />
             Send Another Message
           </Button>
         </CardContent>
@@ -69,17 +69,17 @@ export function ContactForm() {
 
   return (
     <Card className="shadow-2xl border-0 bg-white/95 backdrop-blur-sm">
-      <CardHeader className="pb-6">
-        <CardTitle className="text-3xl font-bold text-slate-800">
+      <CardHeader className="p-6 sm:p-8 pb-4 sm:pb-6">
+        <CardTitle className="text-2xl sm:text-3xl font-bold text-slate-800">
           Send us a Message
         </CardTitle>
-        <p className="text-slate-600 mt-2">
+        <p className="text-sm sm:text-base text-slate-600 mt-2">
           We&apos;d love to hear from you. Send us a message and we&apos;ll
           respond as soon as possible.
         </p>
       </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-8">
+      <CardContent className="p-6 sm:p-8 pt-4 sm:pt-6">
+        <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-3">
               <Label
@@ -91,20 +91,20 @@ export function ContactForm() {
               <Input
                 id="firstName"
                 required
-                className="h-12 border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
+                className="h-10 sm:h-12 text-sm sm:text-base border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
               />
             </div>
             <div className="space-y-3">
               <Label
                 htmlFor="lastName"
-                className="text-sm font-semibold text-slate-700"
+                className="text-xs sm:text-sm font-semibold text-slate-700"
               >
                 Last Name *
               </Label>
               <Input
                 id="lastName"
                 required
-                className="h-12 border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
+                className="h-10 sm:h-12 text-sm sm:text-base border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
               />
             </div>
           </div>
@@ -112,7 +112,7 @@ export function ContactForm() {
           <div className="space-y-3">
             <Label
               htmlFor="email"
-              className="text-sm font-semibold text-slate-700"
+              className="text-xs sm:text-sm font-semibold text-slate-700"
             >
               Email Address *
             </Label>
@@ -120,33 +120,33 @@ export function ContactForm() {
               id="email"
               type="email"
               required
-              className="h-12 border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
+              className="h-10 sm:h-12 text-sm sm:text-base border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
             />
           </div>
 
           <div className="space-y-3">
             <Label
               htmlFor="phone"
-              className="text-sm font-semibold text-slate-700"
+              className="text-xs sm:text-sm font-semibold text-slate-700"
             >
               Phone Number
             </Label>
             <Input
               id="phone"
               type="tel"
-              className="h-12 border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
+              className="h-10 sm:h-12 text-sm sm:text-base border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
             />
           </div>
 
           <div className="space-y-3">
             <Label
               htmlFor="subject"
-              className="text-sm font-semibold text-slate-700"
+              className="text-xs sm:text-sm font-semibold text-slate-700"
             >
               Subject *
             </Label>
             <Select required>
-              <SelectTrigger className="h-12 border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl">
+              <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl">
                 <SelectValue placeholder="Select a subject" />
               </SelectTrigger>
               <SelectContent>
@@ -163,7 +163,7 @@ export function ContactForm() {
           <div className="space-y-3">
             <Label
               htmlFor="message"
-              className="text-sm font-semibold text-slate-700"
+              className="text-xs sm:text-sm font-semibold text-slate-700"
             >
               Message *
             </Label>
@@ -172,24 +172,24 @@ export function ContactForm() {
               rows={6}
               placeholder="Tell us how we can help you..."
               required
-              className="border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl resize-none"
+              className="text-sm sm:text-base border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl resize-none"
             />
           </div>
 
           <Button
             type="submit"
             size="lg"
-            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold h-12 sm:h-14 text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
             disabled={isSubmitting}
           >
             {isSubmitting ? (
               <>
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-white mr-2 sm:mr-3"></div>
                 Sending Message...
               </>
             ) : (
               <>
-                <Send className="h-5 w-5 mr-3" />
+                <Send className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3" />
                 Send Message
               </>
             )}

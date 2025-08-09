@@ -18,15 +18,15 @@ export default function ContactPage() {
 
       <ContactHero />
 
-      <div className="container mx-auto px-4 py-16 space-y-20 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 space-y-12 sm:space-y-16 md:space-y-20 relative z-10">
         {/* Emergency Contact - Priority Section */}
         <div className="animate-fade-in-up">
           <EmergencyContact />
         </div>
 
         {/* Main Contact Section */}
-        <div className="grid lg:grid-cols-2 gap-16 animate-fade-in-up animation-delay-200">
-          <div className="space-y-10">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 animate-fade-in-up animation-delay-200">
+          <div className="space-y-8 sm:space-y-10">
             <ContactInfo />
             <SocialLinks />
           </div>
