@@ -161,9 +161,11 @@ export function CampaignsPage() {
   return (
     <div className="space-y-8">
       {/* Header Section */}
-      <section className="text-center space-y-4">
-        <h2 className="text-3xl font-bold">Blood Donation Campaigns</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+      <section className="text-center space-y-4 px-4 sm:px-6">
+        <h2 className="text-2xl sm:text-3xl font-bold">
+          Blood Donation Campaigns
+        </h2>
+        <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
           Explore our impactful campaigns that have mobilized communities, saved
           lives, and created lasting change across Nigeria.
         </p>
@@ -171,7 +173,7 @@ export function CampaignsPage() {
 
       {/* Campaign Selection */}
       <section>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {campaigns.map((campaign) => (
             <Card
               key={campaign.id}
@@ -181,21 +183,23 @@ export function CampaignsPage() {
               onClick={() => setSelectedCampaign(campaign)}
             >
               <CardHeader>
-                <div className="flex items-start justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                   <div>
-                    <CardTitle className="text-lg">{campaign.title}</CardTitle>
-                    <CardDescription className="mt-2">
+                    <CardTitle className="text-base sm:text-lg">
+                      {campaign.title}
+                    </CardTitle>
+                    <CardDescription className="mt-2 text-sm">
                       {campaign.description}
                     </CardDescription>
                   </div>
                   <Badge
-                    className={
+                    className={`self-start ${
                       campaign.status === "Active"
                         ? "bg-green-100 text-green-800"
                         : campaign.status === "Completed"
                         ? "bg-blue-100 text-blue-800"
                         : "bg-orange-100 text-orange-800"
-                    }
+                    }`}
                   >
                     {campaign.status}
                   </Badge>
@@ -230,12 +234,37 @@ export function CampaignsPage() {
       {/* Campaign Details */}
       <section>
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="gallery">Gallery</TabsTrigger>
-            <TabsTrigger value="impact">Impact</TabsTrigger>
-            <TabsTrigger value="volunteers">Volunteers</TabsTrigger>
-            <TabsTrigger value="media">Media</TabsTrigger>
+          <TabsList className="flex w-full overflow-x-auto no-scrollbar gap-2 pb-1 pl-5">
+            <TabsTrigger
+              className="text-xs whitespace-nowrap px-3 py-1.5"
+              value="overview"
+            >
+              Overview
+            </TabsTrigger>
+            <TabsTrigger
+              className="text-xs whitespace-nowrap px-3 py-1.5"
+              value="gallery"
+            >
+              Gallery
+            </TabsTrigger>
+            <TabsTrigger
+              className="text-xs whitespace-nowrap px-3 py-1.5"
+              value="impact"
+            >
+              Impact
+            </TabsTrigger>
+            <TabsTrigger
+              className="text-xs whitespace-nowrap px-3 py-1.5"
+              value="volunteers"
+            >
+              Volunteers
+            </TabsTrigger>
+            <TabsTrigger
+              className="text-xs whitespace-nowrap px-3 py-1.5"
+              value="media"
+            >
+              Media
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
@@ -250,13 +279,13 @@ export function CampaignsPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <h4 className="font-semibold">Campaign Details</h4>
                     <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
                         <span className="text-muted-foreground">Duration:</span>
-                        <span>
+                        <span className="text-right">
                           {new Date(
                             selectedCampaign.startDate
                           ).toLocaleDateString()}{" "}
@@ -266,20 +295,22 @@ export function CampaignsPage() {
                           ).toLocaleDateString()}
                         </span>
                       </div>
-                      <div className="flex justify-between">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
                         <span className="text-muted-foreground">Location:</span>
-                        <span>{selectedCampaign.location}</span>
+                        <span className="text-right">
+                          {selectedCampaign.location}
+                        </span>
                       </div>
-                      <div className="flex justify-between">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
                         <span className="text-muted-foreground">Status:</span>
                         <Badge
-                          className={
+                          className={`self-start sm:self-auto ${
                             selectedCampaign.status === "Active"
                               ? "bg-green-100 text-green-800"
                               : selectedCampaign.status === "Completed"
                               ? "bg-blue-100 text-blue-800"
                               : "bg-orange-100 text-orange-800"
-                          }
+                          }`}
                         >
                           {selectedCampaign.status}
                         </Badge>
@@ -393,29 +424,27 @@ export function CampaignsPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {selectedCampaign.videos
-                      .slice(0, 2)
-                      .map((video, index) => (
-                        <div
-                          key={index}
-                          className="relative aspect-video rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity bg-gray-100"
-                          onClick={() =>
-                            setSelectedMedia({ type: "video", src: video })
-                          }
-                        >
-                          <Image
-                            src={getYouTubeThumbnail(video)}
-                            alt={`Campaign video ${index + 1}`}
-                            fill
-                            className="object-cover"
-                          />
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
-                              <Play className="h-6 w-6 text-red-600 ml-1" />
-                            </div>
+                    {selectedCampaign.videos.slice(0, 2).map((video, index) => (
+                      <div
+                        key={index}
+                        className="relative aspect-video rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity bg-gray-100"
+                        onClick={() =>
+                          setSelectedMedia({ type: "video", src: video })
+                        }
+                      >
+                        <Image
+                          src={getYouTubeThumbnail(video)}
+                          alt={`Campaign video ${index + 1}`}
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
+                            <Play className="h-6 w-6 text-red-600 ml-1" />
                           </div>
                         </div>
-                      ))}
+                      </div>
+                    ))}
                   </div>
                   <Dialog>
                     <DialogTrigger asChild>
@@ -831,4 +860,3 @@ export function CampaignsPage() {
     </div>
   );
 }
-

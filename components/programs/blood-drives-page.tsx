@@ -160,11 +160,11 @@ export function BloodDrivesPage() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8 px-4 sm:px-0">
       {/* Header Section */}
-      <section className="text-center space-y-4">
-        <h2 className="text-3xl font-bold">Blood Drives</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+      <section className="text-center space-y-3 sm:space-y-4">
+        <h2 className="text-2xl sm:text-3xl font-bold">Blood Drives</h2>
+        <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
           Find and register for blood drives in your area. Join us in saving
           lives through regular blood donation events across Nigeria.
         </p>
@@ -172,13 +172,13 @@ export function BloodDrivesPage() {
 
       {/* Drives List */}
       <section className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
+          <h3 className="text-lg sm:text-xl font-semibold">
             Blood Drives ({bloodDrives.length}{" "}
             {bloodDrives.length === 1 ? "drive" : "drives"})
           </h3>
           <Select defaultValue="date">
-            <SelectTrigger className="w-[140px]">
+            <SelectTrigger className="w-full sm:w-[140px]">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
@@ -202,32 +202,31 @@ export function BloodDrivesPage() {
               >
                 <CollapsibleTrigger asChild>
                   <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
-                    <div className="flex items-start justify-between">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 sm:gap-2">
+                      <div className="space-y-2 w-full">
+                        <div className="flex items-start sm:items-center gap-3">
+                          <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <TypeIcon className="h-5 w-5 text-red-600" />
                           </div>
-                          <div>
-                            <CardTitle className="text-lg">
+                          <div className="space-y-1 sm:space-y-0">
+                            <CardTitle className="text-base sm:text-lg leading-tight">
                               {drive.title}
                             </CardTitle>
-                            <CardDescription className="flex items-center gap-4 mt-1">
-                              <span className="flex items-center gap-1">
-                                <CalendarIcon className="h-4 w-4" />
-                                {new Date(
-                                  drive.date
-                                ).toLocaleDateString()} • {drive.time}
+                            <CardDescription className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 mt-1">
+                              <span className="flex items-center gap-1 text-sm">
+                                <CalendarIcon className="h-4 w-4 flex-shrink-0" />
+                                {new Date(drive.date).toLocaleDateString()} •{" "}
+                                {drive.time}
                               </span>
-                              <span className="flex items-center gap-1">
-                                <MapPin className="h-4 w-4" />
+                              <span className="flex items-center gap-1 text-sm">
+                                <MapPin className="h-4 w-4 flex-shrink-0" />
                                 {drive.location}
                               </span>
                             </CardDescription>
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
                         <Badge className={getStatusColor(drive.status)}>
                           {drive.status}
                         </Badge>
@@ -238,56 +237,67 @@ export function BloodDrivesPage() {
                         />
                       </div>
                     </div>
-                    <div className="flex items-center gap-6 mt-4">
+                    <div className="flex flex-wrap items-center gap-3 sm:gap-6 mt-4">
                       <div className="flex items-center gap-2">
-                        <Users className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-sm">
+                        <Users className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                        <span className="text-sm whitespace-nowrap">
                           {drive.registeredDonors}/{drive.expectedDonors}{" "}
                           registered
                         </span>
                       </div>
-                      <Badge variant="outline">{drive.type} Drive</Badge>
-                      <Badge variant="outline">{drive.targetAudience}</Badge>
+                      <Badge variant="outline" className="whitespace-nowrap">
+                        {drive.type} Drive
+                      </Badge>
+                      <Badge variant="outline" className="whitespace-nowrap">
+                        {drive.targetAudience}
+                      </Badge>
                     </div>
                   </CardHeader>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <CardContent className="pt-0">
+                  <CardContent className="pt-0 px-4 sm:px-6">
                     <Separator className="mb-6" />
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-4">
+                    <div className="grid sm:grid-cols-2 gap-6">
+                      <div className="space-y-6 sm:space-y-4">
                         <div>
-                          <h4 className="font-semibold mb-2">Drive Details</h4>
-                          <div className="space-y-2 text-sm">
+                          <h4 className="font-semibold mb-3 sm:mb-2">
+                            Drive Details
+                          </h4>
+                          <div className="space-y-3 sm:space-y-2 text-sm">
                             <div className="flex items-start gap-2">
-                              <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
+                              <MapPin className="h-4 w-4 text-muted-foreground mt-1" />
                               <div>
-                                <p className="font-medium">{drive.location}</p>
-                                <p className="text-muted-foreground">
+                                <p className="font-medium leading-tight">
+                                  {drive.location}
+                                </p>
+                                <p className="text-muted-foreground mt-1">
                                   {drive.address}
                                 </p>
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Clock className="h-4 w-4 text-muted-foreground" />
+                              <Clock className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                               <span>{drive.time}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Users className="h-4 w-4 text-muted-foreground" />
+                              <Users className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                               <span>Target: {drive.expectedDonors} donors</span>
                             </div>
                           </div>
                         </div>
                         <div>
-                          <h4 className="font-semibold mb-2">
+                          <h4 className="font-semibold mb-3 sm:mb-2">
                             Contact Information
                           </h4>
-                          <div className="space-y-1 text-sm">
+                          <div className="space-y-2 text-sm">
                             <p className="font-medium">{drive.contactPerson}</p>
-                            <div className="flex items-center gap-2">
-                              <Phone className="h-4 w-4 text-muted-foreground" />
+                            <a
+                              href={`tel:${drive.contactPhone}`}
+                              className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
+                            >
+                              <Phone className="h-4 w-4 flex-shrink-0" />
                               <span>{drive.contactPhone}</span>
-                            </div>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -390,35 +400,41 @@ export function BloodDrivesPage() {
       </section>
 
       {/* Quick Stats */}
-      <section className="grid md:grid-cols-4 gap-4">
+      <section className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         <Card>
-          <CardContent className="p-6 text-center">
-            <div className="text-2xl font-bold text-red-600">24</div>
-            <div className="text-sm text-muted-foreground">
+          <CardContent className="p-4 sm:p-6 text-center">
+            <div className="text-xl sm:text-2xl font-bold text-red-600">24</div>
+            <div className="text-xs sm:text-sm text-muted-foreground mt-1">
               Drives This Month
             </div>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-6 text-center">
-            <div className="text-2xl font-bold text-blue-600">1,247</div>
-            <div className="text-sm text-muted-foreground">
+          <CardContent className="p-4 sm:p-6 text-center">
+            <div className="text-xl sm:text-2xl font-bold text-blue-600">
+              1,247
+            </div>
+            <div className="text-xs sm:text-sm text-muted-foreground mt-1">
               Total Registrations
             </div>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-6 text-center">
-            <div className="text-2xl font-bold text-green-600">89%</div>
-            <div className="text-sm text-muted-foreground">
+          <CardContent className="p-4 sm:p-6 text-center">
+            <div className="text-xl sm:text-2xl font-bold text-green-600">
+              89%
+            </div>
+            <div className="text-xs sm:text-sm text-muted-foreground mt-1">
               Average Attendance
             </div>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-6 text-center">
-            <div className="text-2xl font-bold text-purple-600">15</div>
-            <div className="text-sm text-muted-foreground">
+          <CardContent className="p-4 sm:p-6 text-center">
+            <div className="text-xl sm:text-2xl font-bold text-purple-600">
+              15
+            </div>
+            <div className="text-xs sm:text-sm text-muted-foreground mt-1">
               Partner Locations
             </div>
           </CardContent>
