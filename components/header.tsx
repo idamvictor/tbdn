@@ -41,11 +41,11 @@ const resourcesLinks = [
   { title: "Downloads", href: "/resources/downloads" },
 ];
 
-const funZoneLinks = [
-  { title: "Games", href: "/fun-zone/games" },
-  { title: "Art Corner", href: "/fun-zone/art" },
-  { title: "AI Corner", href: "/fun-zone/ai" },
-];
+// const funZoneLinks = [
+//   { title: "Games", href: "/fun-zone/games" },
+//   { title: "Art Corner", href: "/fun-zone/art" },
+//   { title: "AI Corner", href: "/fun-zone/ai" },
+// ];
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -314,7 +314,7 @@ export function Header() {
                     { title: "Get Involved", links: getInvolvedLinks },
                     { title: "Programs", links: programsLinks },
                     { title: "Resources", links: resourcesLinks },
-                    { title: "Fun Zone", links: funZoneLinks },
+                    // { title: "Fun Zone", links: funZoneLinks },
                   ].map((section) => (
                     <motion.div
                       key={section.title}
@@ -373,7 +373,7 @@ export function Header() {
                   ))}
 
                   <motion.div variants={itemVariants} className="space-y-2">
-                    {["/support", "/contact"].map((path) => (
+                    {["/contact"].map((path) => (
                       <Link
                         key={path}
                         href={path}
