@@ -85,32 +85,32 @@ export function PartnerPage() {
     {
       name: "Lagos State Hospital",
       type: "Healthcare",
-      logo: "/placeholder.svg?height=80&width=120",
+      logo: heroImages.slide3,
     },
     {
       name: "University of Lagos",
       type: "Educational",
-      logo: "/placeholder.svg?height=80&width=120",
+      logo: heroImages.slide4,
     },
     {
       name: "MTN Nigeria",
       type: "Corporate",
-      logo: "/placeholder.svg?height=80&width=120",
+      logo: heroImages.slide5,
     },
     {
       name: "Red Cross Nigeria",
       type: "NGO",
-      logo: "/placeholder.svg?height=80&width=120",
+      logo: heroImages.slide1,
     },
     {
       name: "Dangote Foundation",
       type: "Foundation",
-      logo: "/placeholder.svg?height=80&width=120",
+      logo: heroImages.slide2,
     },
     {
       name: "First Bank Nigeria",
       type: "Financial",
-      logo: "/placeholder.svg?height=80&width=120",
+      logo: heroImages.slide3,
     },
   ];
 
