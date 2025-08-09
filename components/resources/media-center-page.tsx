@@ -223,38 +223,52 @@ export function MediaCenterPage() {
   return (
     <div className="space-y-8">
       {/* Header Section */}
-      <section className="text-center space-y-4">
-        <h2 className="text-3xl font-bold">Media Center</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+      <section className="text-center space-y-3 sm:space-y-4 px-4 sm:px-6">
+        <h2 className="text-2xl sm:text-3xl font-bold">Media Center</h2>
+        <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
           Access our comprehensive media library including photos, videos, news
           coverage, and press releases documenting our impact and activities.
         </p>
       </section>
 
       {/* Media Tabs */}
-      <section>
+      <section className="px-4 sm:px-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="photos" className="flex items-center gap-2">
-              <Camera className="h-4 w-4" />
-              Photos
-            </TabsTrigger>
-            <TabsTrigger value="videos" className="flex items-center gap-2">
-              <Video className="h-4 w-4" />
-              Videos
-            </TabsTrigger>
-            <TabsTrigger value="youtube" className="flex items-center gap-2">
-              <Youtube className="h-4 w-4" />
-              YouTube
-            </TabsTrigger>
-            <TabsTrigger value="news" className="flex items-center gap-2">
-              <Newspaper className="h-4 w-4" />
-              Media Coverage
-            </TabsTrigger>
-          </TabsList>
+          <div className="relative w-full">
+            <TabsList className="flex w-full overflow-x-auto scrollbar-none -mb-px space-x-2 sm:space-x-4">
+              <TabsTrigger
+                value="photos"
+                className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
+              >
+                <Camera className="h-3 w-3 sm:h-4 sm:w-4" />
+                Photos
+              </TabsTrigger>
+              <TabsTrigger
+                value="videos"
+                className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
+              >
+                <Video className="h-3 w-3 sm:h-4 sm:w-4" />
+                Videos
+              </TabsTrigger>
+              <TabsTrigger
+                value="youtube"
+                className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
+              >
+                <Youtube className="h-3 w-3 sm:h-4 sm:w-4" />
+                YouTube
+              </TabsTrigger>
+              <TabsTrigger
+                value="news"
+                className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm whitespace-nowrap"
+              >
+                <Newspaper className="h-3 w-3 sm:h-4 sm:w-4" />
+                Media Coverage
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           {/* Search and Filter */}
-          <div className="flex flex-col lg:flex-row gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row gap-4 mt-4 sm:mt-6">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -262,15 +276,15 @@ export function MediaCenterPage() {
                   placeholder="Search media..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 h-10 text-sm"
                 />
               </div>
             </div>
           </div>
 
           {/* Photos Tab Content */}
-          <TabsContent value="photos" className="mt-6">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <TabsContent value="photos" className="mt-4 sm:mt-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {filteredItems.map((item) => {
                 const TypeIcon = getTypeIcon(item.type);
                 return (
@@ -278,26 +292,26 @@ export function MediaCenterPage() {
                     key={item.id}
                     className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
                   >
-                    <div className="relative aspect-[4/3]">
+                    <div className="relative aspect-video sm:aspect-[4/3]">
                       <Image
                         src={item.thumbnail || "/placeholder.svg"}
                         alt={item.title}
                         fill
                         className="object-cover"
                       />
-                      <div className="absolute top-4 left-4">
-                        <Badge className={getTypeColor(item.type)}>
+                      <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
+                        <Badge className={`text-xs ${getTypeColor(item.type)}`}>
                           <TypeIcon className="h-3 w-3 mr-1" />
                           {item.type}
                         </Badge>
                       </div>
                     </div>
-                    <CardContent className="p-4">
+                    <CardContent className="p-3 sm:p-4">
                       <div className="space-y-2">
-                        <h4 className="font-semibold leading-tight line-clamp-2">
+                        <h4 className="text-sm sm:text-base font-semibold leading-tight line-clamp-2">
                           {item.title}
                         </h4>
-                        <p className="text-sm text-muted-foreground line-clamp-2">
+                        <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
                           {item.description}
                         </p>
                         <div className="flex items-center justify-between text-xs text-muted-foreground">
@@ -308,7 +322,7 @@ export function MediaCenterPage() {
                         </div>
                         <Button
                           variant="outline"
-                          className="w-full bg-transparent"
+                          className="w-full bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                           size="sm"
                         >
                           View Photo
@@ -331,8 +345,8 @@ export function MediaCenterPage() {
           </TabsContent>
 
           {/* Videos Tab Content */}
-          <TabsContent value="videos" className="mt-6">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <TabsContent value="videos" className="mt-4 sm:mt-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {filteredItems.map((item) => {
                 const TypeIcon = getTypeIcon(item.type);
                 return (
@@ -348,23 +362,23 @@ export function MediaCenterPage() {
                         className="object-cover"
                       />
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
-                          <Video className="h-6 w-6 text-red-600 ml-1" />
+                        <div className="w-8 h-8 sm:w-12 sm:h-12 bg-white/90 rounded-full flex items-center justify-center">
+                          <Video className="h-4 w-4 sm:h-6 sm:w-6 text-red-600 ml-0.5 sm:ml-1" />
                         </div>
                       </div>
-                      <div className="absolute top-4 left-4">
-                        <Badge className={getTypeColor(item.type)}>
+                      <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
+                        <Badge className={`text-xs ${getTypeColor(item.type)}`}>
                           <TypeIcon className="h-3 w-3 mr-1" />
                           Video
                         </Badge>
                       </div>
                     </div>
-                    <CardContent className="p-4">
+                    <CardContent className="p-3 sm:p-4">
                       <div className="space-y-2">
-                        <h4 className="font-semibold leading-tight line-clamp-2">
+                        <h4 className="text-sm sm:text-base font-semibold leading-tight line-clamp-2">
                           {item.title}
                         </h4>
-                        <p className="text-sm text-muted-foreground line-clamp-2">
+                        <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
                           {item.description}
                         </p>
                         <div className="flex items-center justify-between text-xs text-muted-foreground">
@@ -375,7 +389,7 @@ export function MediaCenterPage() {
                         </div>
                         <Button
                           variant="outline"
-                          className="w-full bg-transparent"
+                          className="w-full bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                           size="sm"
                         >
                           Watch Video
@@ -398,8 +412,8 @@ export function MediaCenterPage() {
           </TabsContent>
 
           {/* YouTube Tab Content */}
-          <TabsContent value="youtube" className="mt-6">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <TabsContent value="youtube" className="mt-4 sm:mt-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {youtubePlaylist.map((playlist) => (
                 <Card
                   key={playlist.id}
@@ -413,23 +427,23 @@ export function MediaCenterPage() {
                       className="object-cover"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
-                        <Youtube className="h-6 w-6 text-red-600" />
+                      <div className="w-8 h-8 sm:w-12 sm:h-12 bg-white/90 rounded-full flex items-center justify-center">
+                        <Youtube className="h-4 w-4 sm:h-6 sm:w-6 text-red-600" />
                       </div>
                     </div>
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-red-100 text-red-800">
+                    <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
+                      <Badge className="text-xs bg-red-100 text-red-800">
                         <Youtube className="h-3 w-3 mr-1" />
                         Playlist
                       </Badge>
                     </div>
                   </div>
-                  <CardContent className="p-4">
+                  <CardContent className="p-3 sm:p-4">
                     <div className="space-y-2">
-                      <h4 className="font-semibold leading-tight line-clamp-2">
+                      <h4 className="text-sm sm:text-base font-semibold leading-tight line-clamp-2">
                         {playlist.title}
                       </h4>
-                      <p className="text-sm text-muted-foreground line-clamp-2">
+                      <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
                         {playlist.description}
                       </p>
                       <div className="text-xs text-muted-foreground">
@@ -437,7 +451,7 @@ export function MediaCenterPage() {
                       </div>
                       <Button
                         variant="outline"
-                        className="w-full bg-transparent"
+                        className="w-full bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                         size="sm"
                       >
                         View Playlist
@@ -450,8 +464,8 @@ export function MediaCenterPage() {
           </TabsContent>
 
           {/* News/Media Coverage Tab Content */}
-          <TabsContent value="news" className="mt-6">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <TabsContent value="news" className="mt-4 sm:mt-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {filteredItems.map((item) => {
                 const TypeIcon = getTypeIcon(item.type);
                 return (
@@ -459,15 +473,15 @@ export function MediaCenterPage() {
                     key={item.id}
                     className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
                   >
-                    <div className="relative aspect-[4/3]">
+                    <div className="relative aspect-video sm:aspect-[4/3]">
                       <Image
                         src={item.thumbnail || "/placeholder.svg"}
                         alt={item.title}
                         fill
                         className="object-cover"
                       />
-                      <div className="absolute top-4 left-4">
-                        <Badge className={getTypeColor(item.type)}>
+                      <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
+                        <Badge className={`text-xs ${getTypeColor(item.type)}`}>
                           <TypeIcon className="h-3 w-3 mr-1" />
                           {item.type === "press-release"
                             ? "Press Release"
@@ -475,12 +489,12 @@ export function MediaCenterPage() {
                         </Badge>
                       </div>
                     </div>
-                    <CardContent className="p-4">
+                    <CardContent className="p-3 sm:p-4">
                       <div className="space-y-2">
-                        <h4 className="font-semibold leading-tight line-clamp-2">
+                        <h4 className="text-sm sm:text-base font-semibold leading-tight line-clamp-2">
                           {item.title}
                         </h4>
-                        <p className="text-sm text-muted-foreground line-clamp-2">
+                        <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
                           {item.description}
                         </p>
                         <div className="flex items-center justify-between text-xs text-muted-foreground">
@@ -495,7 +509,7 @@ export function MediaCenterPage() {
                         </div>
                         <Button
                           variant="outline"
-                          className="w-full bg-transparent"
+                          className="w-full bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                           size="sm"
                         >
                           {item.type === "press-release"

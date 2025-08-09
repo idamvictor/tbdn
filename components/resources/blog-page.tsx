@@ -290,9 +290,9 @@ export function BlogPage() {
   return (
     <div className="space-y-8">
       {/* Header Section */}
-      <section className="text-center space-y-4">
-        <h2 className="text-3xl font-bold">TBDN Blog</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+      <section className="text-center space-y-3 sm:space-y-4 px-4 sm:px-6">
+        <h2 className="text-2xl sm:text-3xl font-bold">TBDN Blog</h2>
+        <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
           Stay informed with the latest news, health tips, educational content,
           and community stories from the world of blood donation and healthcare.
         </p>
@@ -300,41 +300,44 @@ export function BlogPage() {
 
       {/* Featured Post */}
       {featuredPost && (
-        <section className="space-y-6">
+        <section className="space-y-4 sm:space-y-6 px-4 sm:px-6">
           <div className="text-center">
-            <h3 className="text-2xl font-bold mb-2">Featured Article</h3>
-            <p className="text-muted-foreground">
+            <h3 className="text-xl sm:text-2xl font-bold mb-2">
+              Featured Article
+            </h3>
+            <p className="text-sm text-muted-foreground">
               Our latest featured blog post
             </p>
           </div>
           <Card className="overflow-hidden hover:shadow-lg transition-shadow">
             <div className="grid lg:grid-cols-2 gap-0">
-              <div className="relative aspect-[4/3] lg:aspect-auto">
+              <div className="relative aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto">
                 <Image
                   src={featuredPost.image || "/placeholder.svg"}
                   alt={featuredPost.title}
                   fill
                   className="object-cover"
+                  priority
                 />
               </div>
-              <div className="p-8 flex flex-col justify-center">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
+              <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                     <Badge className={getCategoryColor(featuredPost.category)}>
                       {featuredPost.category}
                     </Badge>
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-xs sm:text-sm text-muted-foreground">
                       {featuredPost.readTime} min read
                     </span>
                   </div>
-                  <h4 className="text-2xl font-bold leading-tight">
+                  <h4 className="text-xl sm:text-2xl font-bold leading-tight">
                     {featuredPost.title}
                   </h4>
-                  <p className="text-muted-foreground">
+                  <p className="text-sm sm:text-base text-muted-foreground">
                     {featuredPost.excerpt}
                   </p>
-                  <div className="flex items-center gap-3">
-                    <Avatar>
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <Avatar className="h-8 w-8 sm:h-10 sm:w-10">
                       <AvatarImage
                         src={featuredPost.authorAvatar || "/placeholder.svg"}
                         alt={featuredPost.author}
@@ -347,7 +350,9 @@ export function BlogPage() {
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <p className="font-medium">{featuredPost.author}</p>
+                      <p className="text-sm sm:text-base font-medium">
+                        {featuredPost.author}
+                      </p>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <span>{featuredPost.authorRole}</span>
                         <span>•</span>
@@ -375,8 +380,8 @@ export function BlogPage() {
       )}
 
       {/* Filters and Search */}
-      <section className="space-y-4">
-        <div className="flex flex-col lg:flex-row gap-4">
+      <section className="space-y-4 px-4 sm:px-6">
+        <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -384,12 +389,12 @@ export function BlogPage() {
                 placeholder="Search blog posts..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+                className="pl-10 h-10 text-sm"
               />
             </div>
           </div>
           <Select value={filter} onValueChange={setFilter}>
-            <SelectTrigger className="w-[200px]">
+            <SelectTrigger className="w-full sm:w-[200px] h-10">
               <SelectValue placeholder="Filter by category" />
             </SelectTrigger>
             <SelectContent>
@@ -406,6 +411,101 @@ export function BlogPage() {
               </SelectItem>
             </SelectContent>
           </Select>
+        </div>
+      </section>
+
+      {/* Blog Posts Grid */}
+      <section className="space-y-4 sm:space-y-6 px-4 sm:px-6">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg sm:text-xl font-semibold">
+            All Articles ({filteredPosts.length}{" "}
+            {filteredPosts.length === 1 ? "post" : "posts"})
+          </h3>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {filteredPosts.map((post) => {
+            const CategoryIcon = getCategoryIcon(post.category);
+            return (
+              <Card
+                key={post.id}
+                className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+              >
+                <div className="relative aspect-video sm:aspect-[4/3]">
+                  <Image
+                    src={post.image || "/placeholder.svg"}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
+                    <Badge
+                      className={`text-xs ${getCategoryColor(post.category)}`}
+                    >
+                      <CategoryIcon className="h-3 w-3 mr-1" />
+                      {post.category}
+                    </Badge>
+                  </div>
+                </div>
+                <CardContent className="p-4 sm:p-6">
+                  <div className="space-y-3">
+                    <h4 className="text-sm sm:text-base font-semibold leading-tight line-clamp-2">
+                      {post.title}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 sm:line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <Avatar className="h-6 w-6 sm:h-8 sm:w-8">
+                        <AvatarImage
+                          src={post.authorAvatar || "/placeholder.svg"}
+                          alt={post.author}
+                        />
+                        <AvatarFallback className="text-xs">
+                          {post.author
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs sm:text-sm font-medium truncate">
+                          {post.author}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {post.readTime} min read
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {post.tags.slice(0, 2).map((tag, index) => (
+                        <Badge
+                          key={index}
+                          variant="outline"
+                          className="text-xs"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                      {post.tags.length > 2 && (
+                        <Badge variant="outline" className="text-xs">
+                          +{post.tags.length - 2}
+                        </Badge>
+                      )}
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full bg-transparent text-sm"
+                      onClick={() => setSelectedPost(post)}
+                    >
+                      Read Post
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </section>
 
@@ -530,24 +630,24 @@ export function BlogPage() {
 
       {/* Blog Post Detail Modal */}
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className=" h-[90vh] sm:h-[95vh] overflow-y-auto p-4 sm:p-6  my-4 sm:my-6 rounded-lg">
           {selectedPost && (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6 max-w-full overflow-x-hidden">
               <DialogHeader>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                     <Badge className={getCategoryColor(selectedPost.category)}>
                       {selectedPost.category}
                     </Badge>
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-xs sm:text-sm text-muted-foreground">
                       {selectedPost.readTime} min read
                     </span>
                   </div>
-                  <DialogTitle className="text-2xl leading-tight">
+                  <DialogTitle className="text-xl sm:text-2xl leading-tight break-words">
                     {selectedPost.title}
                   </DialogTitle>
-                  <div className="flex items-center gap-3">
-                    <Avatar>
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <Avatar className="h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0">
                       <AvatarImage
                         src={selectedPost.authorAvatar || "/placeholder.svg"}
                         alt={selectedPost.author}
@@ -559,17 +659,23 @@ export function BlogPage() {
                           .join("")}
                       </AvatarFallback>
                     </Avatar>
-                    <div>
-                      <p className="font-medium">{selectedPost.author}</p>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span>{selectedPost.authorRole}</span>
-                        <span>•</span>
-                        <Calendar className="h-3 w-3" />
-                        <span>
-                          {new Date(
-                            selectedPost.publishDate
-                          ).toLocaleDateString()}
+                    <div className="min-w-0">
+                      <p className="text-sm sm:text-base font-medium truncate">
+                        {selectedPost.author}
+                      </p>
+                      <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground flex-wrap">
+                        <span className="truncate">
+                          {selectedPost.authorRole}
                         </span>
+                        <span className="hidden sm:inline">•</span>
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3 flex-shrink-0" />
+                          <span>
+                            {new Date(
+                              selectedPost.publishDate
+                            ).toLocaleDateString()}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -585,20 +691,23 @@ export function BlogPage() {
                 />
               </div>
 
-              <div className="prose prose-gray max-w-none">
+              <div className="prose prose-gray max-w-full overflow-hidden">
                 {selectedPost.content.split("\n\n").map((paragraph, index) => {
                   if (paragraph.startsWith("**") && paragraph.endsWith("**")) {
                     return (
                       <h3
                         key={index}
-                        className="text-lg font-semibold mt-6 mb-3"
+                        className="text-base sm:text-lg font-semibold mt-4 sm:mt-6 mb-2 sm:mb-3 break-words"
                       >
                         {paragraph.slice(2, -2)}
                       </h3>
                     );
                   }
                   return (
-                    <p key={index} className="mb-4 text-sm leading-relaxed">
+                    <p
+                      key={index}
+                      className="mb-3 sm:mb-4 text-sm sm:text-base leading-relaxed break-words"
+                    >
                       {paragraph}
                     </p>
                   );
@@ -609,10 +718,16 @@ export function BlogPage() {
 
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-2">Tags</h4>
-                  <div className="flex flex-wrap gap-2">
+                  <h4 className="text-sm sm:text-base font-semibold mb-2">
+                    Tags
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {selectedPost.tags.map((tag, index) => (
-                      <Badge key={index} variant="outline">
+                      <Badge
+                        key={index}
+                        variant="outline"
+                        className="text-xs sm:text-sm"
+                      >
                         {tag}
                       </Badge>
                     ))}
@@ -620,39 +735,41 @@ export function BlogPage() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold mb-3">Share this article</h4>
-                  <div className="flex gap-2">
+                  <h4 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3">
+                    Share this article
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
                     <Button
                       variant="outline"
                       size="sm"
-                      className="bg-transparent"
+                      className="bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                     >
-                      <Facebook className="h-4 w-4 mr-2" />
-                      Facebook
+                      <Facebook className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 flex-shrink-0" />
+                      <span className="truncate">Facebook</span>
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
-                      className="bg-transparent"
+                      className="bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                     >
-                      <Twitter className="h-4 w-4 mr-2" />
-                      Twitter
+                      <Twitter className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 flex-shrink-0" />
+                      <span className="truncate">Twitter</span>
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
-                      className="bg-transparent"
+                      className="bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                     >
-                      <Linkedin className="h-4 w-4 mr-2" />
-                      LinkedIn
+                      <Linkedin className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 flex-shrink-0" />
+                      <span className="truncate">LinkedIn</span>
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
-                      className="bg-transparent"
+                      className="bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                     >
-                      <Share2 className="h-4 w-4 mr-2" />
-                      Share
+                      <Share2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 flex-shrink-0" />
+                      <span className="truncate">Share</span>
                     </Button>
                   </div>
                 </div>

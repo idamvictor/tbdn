@@ -250,9 +250,9 @@ export function ImpactStoriesPage() {
   return (
     <div className="space-y-8">
       {/* Header Section */}
-      <section className="text-center space-y-4">
-        <h2 className="text-3xl font-bold">Impact Stories</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+      <section className="text-center space-y-4 px-4 sm:px-6">
+        <h2 className="text-2xl sm:text-3xl font-bold">Impact Stories</h2>
+        <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
           Real stories from real people whose lives have been touched by blood
           donation. These powerful narratives showcase the human impact of
           giving and receiving the gift of life.
@@ -261,41 +261,44 @@ export function ImpactStoriesPage() {
 
       {/* Featured Story */}
       {featuredStory && (
-        <section className="space-y-6">
+        <section className="space-y-4 sm:space-y-6 px-4 sm:px-6">
           <div className="text-center">
-            <h3 className="text-2xl font-bold mb-2">Featured Story</h3>
-            <p className="text-muted-foreground">
+            <h3 className="text-xl sm:text-2xl font-bold mb-2">
+              Featured Story
+            </h3>
+            <p className="text-sm text-muted-foreground">
               This week&apos;s highlighted impact story
             </p>
           </div>
           <Card className="overflow-hidden hover:shadow-lg transition-shadow">
             <div className="grid lg:grid-cols-2 gap-0">
-              <div className="relative aspect-[4/3] lg:aspect-auto">
+              <div className="relative aspect-[16/9] sm:aspect-[4/3] lg:aspect-auto">
                 <Image
                   src={featuredStory.image || "/placeholder.svg"}
                   alt={featuredStory.title}
                   fill
                   className="object-cover"
+                  priority
                 />
               </div>
-              <div className="p-8 flex flex-col justify-center">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
+              <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                     <Badge className={getCategoryColor(featuredStory.category)}>
                       {featuredStory.category}
                     </Badge>
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-xs sm:text-sm text-muted-foreground">
                       {featuredStory.readTime} min read
                     </span>
                   </div>
-                  <h4 className="text-2xl font-bold leading-tight">
+                  <h4 className="text-xl sm:text-2xl font-bold leading-tight">
                     {featuredStory.title}
                   </h4>
-                  <p className="text-muted-foreground">
+                  <p className="text-sm sm:text-base text-muted-foreground">
                     {featuredStory.excerpt}
                   </p>
                   <div className="flex items-center gap-3">
-                    <Avatar>
+                    <Avatar className="h-8 w-8 sm:h-10 sm:w-10">
                       <AvatarImage
                         src={featuredStory.avatar || "/placeholder.svg"}
                         alt={featuredStory.author}
@@ -308,11 +311,13 @@ export function ImpactStoriesPage() {
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <p className="font-medium">{featuredStory.author}</p>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <p className="text-sm sm:text-base font-medium">
+                        {featuredStory.author}
+                      </p>
+                      <div className="flex flex-wrap items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
                         <MapPin className="h-3 w-3" />
                         <span>{featuredStory.location}</span>
-                        <span>•</span>
+                        <span className="hidden sm:inline">•</span>
                         <Calendar className="h-3 w-3" />
                         <span>
                           {new Date(featuredStory.date).toLocaleDateString()}
@@ -322,7 +327,7 @@ export function ImpactStoriesPage() {
                   </div>
                   <Button
                     onClick={() => setSelectedStory(featuredStory)}
-                    className="bg-red-600 hover:bg-red-700"
+                    className="w-full sm:w-auto bg-red-600 hover:bg-red-700"
                   >
                     Read Full Story
                     <ArrowRight className="h-4 w-4 ml-2" />
@@ -335,8 +340,8 @@ export function ImpactStoriesPage() {
       )}
 
       {/* Filters and Search */}
-      <section className="space-y-4">
-        <div className="flex flex-col lg:flex-row gap-4">
+      <section className="space-y-4 px-4 sm:px-6">
+        <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -344,12 +349,12 @@ export function ImpactStoriesPage() {
                 placeholder="Search stories..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+                className="pl-10 h-10 text-sm"
               />
             </div>
           </div>
           <Select value={filter} onValueChange={setFilter}>
-            <SelectTrigger className="w-[200px]">
+            <SelectTrigger className="w-full sm:w-[200px] h-10">
               <SelectValue placeholder="Filter by category" />
             </SelectTrigger>
             <SelectContent>
@@ -366,15 +371,15 @@ export function ImpactStoriesPage() {
       </section>
 
       {/* Stories Grid */}
-      <section className="space-y-6">
+      <section className="space-y-4 sm:space-y-6 px-4 sm:px-6">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">
+          <h3 className="text-lg sm:text-xl font-semibold">
             All Stories ({filteredStories.length}{" "}
             {filteredStories.length === 1 ? "story" : "stories"})
           </h3>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filteredStories.map((story) => {
             const CategoryIcon = getCategoryIcon(story.category);
             return (
@@ -382,30 +387,32 @@ export function ImpactStoriesPage() {
                 key={story.id}
                 className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
               >
-                <div className="relative aspect-[4/3]">
+                <div className="relative aspect-video sm:aspect-[4/3]">
                   <Image
                     src={story.image || "/placeholder.svg"}
                     alt={story.title}
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute top-4 left-4">
-                    <Badge className={getCategoryColor(story.category)}>
+                  <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
+                    <Badge
+                      className={`text-xs ${getCategoryColor(story.category)}`}
+                    >
                       <CategoryIcon className="h-3 w-3 mr-1" />
                       {story.category}
                     </Badge>
                   </div>
                 </div>
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="space-y-3">
-                    <h4 className="font-semibold leading-tight line-clamp-2">
+                    <h4 className="text-sm sm:text-base font-semibold leading-tight line-clamp-2">
                       {story.title}
                     </h4>
-                    <p className="text-sm text-muted-foreground line-clamp-3">
+                    <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 sm:line-clamp-3">
                       {story.excerpt}
                     </p>
                     <div className="flex items-center gap-2">
-                      <Avatar className="h-8 w-8">
+                      <Avatar className="h-6 w-6 sm:h-8 sm:w-8">
                         <AvatarImage
                           src={story.avatar || "/placeholder.svg"}
                           alt={story.author}
@@ -418,7 +425,7 @@ export function ImpactStoriesPage() {
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium truncate">
+                        <p className="text-xs sm:text-sm font-medium truncate">
                           {story.author}
                         </p>
                         <p className="text-xs text-muted-foreground">
@@ -444,7 +451,8 @@ export function ImpactStoriesPage() {
                     </div>
                     <Button
                       variant="outline"
-                      className="w-full bg-transparent"
+                      size="sm"
+                      className="w-full bg-transparent text-sm"
                       onClick={() => setSelectedStory(story)}
                     >
                       Read Story
@@ -483,24 +491,24 @@ export function ImpactStoriesPage() {
         open={!!selectedStory}
         onOpenChange={() => setSelectedStory(null)}
       >
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className=" h-[95vh] overflow-y-auto p-4 sm:p-6">
           {selectedStory && (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               <DialogHeader>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                     <Badge className={getCategoryColor(selectedStory.category)}>
                       {selectedStory.category}
                     </Badge>
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-xs sm:text-sm text-muted-foreground">
                       {selectedStory.readTime} min read
                     </span>
                   </div>
-                  <DialogTitle className="text-2xl leading-tight">
+                  <DialogTitle className="text-xl sm:text-2xl leading-tight">
                     {selectedStory.title}
                   </DialogTitle>
                   <div className="flex items-center gap-3">
-                    <Avatar>
+                    <Avatar className="h-8 w-8 sm:h-10 sm:w-10">
                       <AvatarImage
                         src={selectedStory.avatar || "/placeholder.svg"}
                         alt={selectedStory.author}
@@ -513,11 +521,13 @@ export function ImpactStoriesPage() {
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <p className="font-medium">{selectedStory.author}</p>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <p className="text-sm sm:text-base font-medium">
+                        {selectedStory.author}
+                      </p>
+                      <div className="flex flex-wrap items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
                         <MapPin className="h-3 w-3" />
                         <span>{selectedStory.location}</span>
-                        <span>•</span>
+                        <span className="hidden sm:inline">•</span>
                         <Calendar className="h-3 w-3" />
                         <span>
                           {new Date(selectedStory.date).toLocaleDateString()}
@@ -528,18 +538,22 @@ export function ImpactStoriesPage() {
                 </div>
               </DialogHeader>
 
-              <div className="relative aspect-[2/1] rounded-lg overflow-hidden">
+              <div className="relative aspect-[16/9] sm:aspect-[2/1] rounded-lg overflow-hidden">
                 <Image
                   src={selectedStory.image || "/placeholder.svg"}
                   alt={selectedStory.title}
                   fill
                   className="object-cover"
+                  priority
                 />
               </div>
 
-              <div className="prose prose-gray max-w-none">
+              <div className="prose prose-gray max-w-none prose-sm sm:prose-base">
                 {selectedStory.content.split("\n\n").map((paragraph, index) => (
-                  <p key={index} className="mb-4 text-sm leading-relaxed">
+                  <p
+                    key={index}
+                    className="mb-3 sm:mb-4 text-sm sm:text-base leading-relaxed"
+                  >
                     {paragraph}
                   </p>
                 ))}
@@ -549,10 +563,16 @@ export function ImpactStoriesPage() {
 
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-2">Tags</h4>
-                  <div className="flex flex-wrap gap-2">
+                  <h4 className="text-sm sm:text-base font-semibold mb-2">
+                    Tags
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {selectedStory.tags.map((tag, index) => (
-                      <Badge key={index} variant="outline">
+                      <Badge
+                        key={index}
+                        variant="outline"
+                        className="text-xs sm:text-sm"
+                      >
                         {tag}
                       </Badge>
                     ))}
@@ -560,42 +580,44 @@ export function ImpactStoriesPage() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold mb-3">Share this story</h4>
-                  <div className="flex gap-2">
+                  <h4 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3">
+                    Share this story
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => handleShare("facebook", selectedStory)}
-                      className="bg-transparent"
+                      className="bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                     >
-                      <Facebook className="h-4 w-4 mr-2" />
+                      <Facebook className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
                       Facebook
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => handleShare("twitter", selectedStory)}
-                      className="bg-transparent"
+                      className="bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                     >
-                      <Twitter className="h-4 w-4 mr-2" />
+                      <Twitter className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
                       Twitter
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => handleShare("linkedin", selectedStory)}
-                      className="bg-transparent"
+                      className="bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                     >
-                      <Linkedin className="h-4 w-4 mr-2" />
+                      <Linkedin className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
                       LinkedIn
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => handleShare("copy", selectedStory)}
-                      className="bg-transparent"
+                      className="bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                     >
-                      <Copy className="h-4 w-4 mr-2" />
+                      <Copy className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
                       Copy Link
                     </Button>
                   </div>
