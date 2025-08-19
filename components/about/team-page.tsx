@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { avatarImage } from "@/constants/images";
+import Link from "next/link";
 
 const leadershipTeam = [
   {
@@ -537,10 +538,6 @@ export function TeamPage() {
                         <div className="text-gray-600">Drives/Year</div>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" className="w-full">
-                      <Mail className="h-4 w-4 mr-2" />
-                      Contact
-                    </Button>
                   </CardContent>
                 </Card>
               ))}
@@ -565,15 +562,17 @@ export function TeamPage() {
                   opportunities, we&apos;d love to hear from you.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                  <Button className="bg-white text-red-600 hover:bg-gray-100 px-8 py-3">
+                  {/* <Button className="bg-white text-red-600 hover:bg-gray-100 px-8 py-3">
                     View Open Positions
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="border-white text-black hover:bg-white hover:text-red-600 px-8 py-3"
-                  >
-                    Volunteer With Us
-                  </Button>
+                  </Button> */}
+                  <Link href="/get-involved/volunteer">
+                    <Button
+                      variant="outline"
+                      className="border-white text-black hover:bg-white hover:text-red-600 px-8 py-3"
+                    >
+                      Volunteer With Us
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>

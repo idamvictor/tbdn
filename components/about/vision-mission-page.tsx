@@ -466,7 +466,7 @@ export function VisionMissionPage() {
               ))}
             </div>
 
-            <div className="mt-12 text-center">
+            {/* <div className="mt-12 text-center">
               <Card className="bg-gradient-to-r from-red-600 to-pink-600 text-white">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold mb-4">
@@ -486,7 +486,7 @@ export function VisionMissionPage() {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

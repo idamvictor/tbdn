@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import {
   // Award,
@@ -10,9 +10,7 @@ import {
   Star,
   Trophy,
   Calendar,
-  ExternalLink,
   Quote,
-  Play,
 } from "lucide-react";
 import { avatarImage, heroImages } from "@/constants/images";
 
@@ -139,74 +137,74 @@ const partnerTestimonials = [
   },
 ];
 
-const mediaCoverage = [
-  {
-    title: "TBDN: Revolutionizing Blood Donation in Nigeria",
-    outlet: "CNN Africa",
-    type: "TV Interview",
-    date: "February 2024",
-    description:
-      "Feature story on TBDN's innovative approach to blood donation and its impact on Nigerian healthcare.",
-    thumbnail: heroImages.slide1,
-    duration: "12 min",
-    views: "2.3M",
-  },
-  {
-    title: "The Future of Blood Banking in Africa",
-    outlet: "BBC World Service",
-    type: "Radio Interview",
-    date: "January 2024",
-    description:
-      "Discussion on how TBDN is setting new standards for blood donation across Africa.",
-    thumbnail: heroImages.slide2,
-    duration: "25 min",
-    views: "1.8M",
-  },
-  {
-    title: "Young Entrepreneurs Saving Lives",
-    outlet: "Forbes Africa",
-    type: "Magazine Feature",
-    date: "December 2023",
-    description:
-      "Profile of TBDN's founder and the organization's journey from startup to national impact.",
-    thumbnail: heroImages.slide3,
-    duration: "8 min read",
-    views: "500K",
-  },
-  {
-    title: "Technology for Good: TBDN's Digital Innovation",
-    outlet: "TechCrunch",
-    type: "Online Article",
-    date: "November 2023",
-    description:
-      "Deep dive into TBDN's technology platform and AI-powered donor matching system.",
-    thumbnail: heroImages.slide4,
-    duration: "6 min read",
-    views: "750K",
-  },
-  {
-    title: "Blood Donation Heroes of Nigeria",
-    outlet: "Channels Television",
-    type: "Documentary",
-    date: "October 2023",
-    description:
-      "30-minute documentary featuring TBDN's work and stories from donors and recipients.",
-    thumbnail: heroImages.slide5,
-    duration: "30 min",
-    views: "3.1M",
-  },
-  {
-    title: "Healthcare Innovation in West Africa",
-    outlet: "The Guardian Nigeria",
-    type: "Newspaper Feature",
-    date: "September 2023",
-    description:
-      "Front-page feature on TBDN's expansion and impact on regional healthcare systems.",
-    thumbnail: heroImages.slide1,
-    duration: "5 min read",
-    views: "1.2M",
-  },
-];
+// const mediaCoverage = [
+//   {
+//     title: "TBDN: Revolutionizing Blood Donation in Nigeria",
+//     outlet: "CNN Africa",
+//     type: "TV Interview",
+//     date: "February 2024",
+//     description:
+//       "Feature story on TBDN's innovative approach to blood donation and its impact on Nigerian healthcare.",
+//     thumbnail: heroImages.slide1,
+//     duration: "12 min",
+//     views: "2.3M",
+//   },
+//   {
+//     title: "The Future of Blood Banking in Africa",
+//     outlet: "BBC World Service",
+//     type: "Radio Interview",
+//     date: "January 2024",
+//     description:
+//       "Discussion on how TBDN is setting new standards for blood donation across Africa.",
+//     thumbnail: heroImages.slide2,
+//     duration: "25 min",
+//     views: "1.8M",
+//   },
+//   {
+//     title: "Young Entrepreneurs Saving Lives",
+//     outlet: "Forbes Africa",
+//     type: "Magazine Feature",
+//     date: "December 2023",
+//     description:
+//       "Profile of TBDN's founder and the organization's journey from startup to national impact.",
+//     thumbnail: heroImages.slide3,
+//     duration: "8 min read",
+//     views: "500K",
+//   },
+//   {
+//     title: "Technology for Good: TBDN's Digital Innovation",
+//     outlet: "TechCrunch",
+//     type: "Online Article",
+//     date: "November 2023",
+//     description:
+//       "Deep dive into TBDN's technology platform and AI-powered donor matching system.",
+//     thumbnail: heroImages.slide4,
+//     duration: "6 min read",
+//     views: "750K",
+//   },
+//   {
+//     title: "Blood Donation Heroes of Nigeria",
+//     outlet: "Channels Television",
+//     type: "Documentary",
+//     date: "October 2023",
+//     description:
+//       "30-minute documentary featuring TBDN's work and stories from donors and recipients.",
+//     thumbnail: heroImages.slide5,
+//     duration: "30 min",
+//     views: "3.1M",
+//   },
+//   {
+//     title: "Healthcare Innovation in West Africa",
+//     outlet: "The Guardian Nigeria",
+//     type: "Newspaper Feature",
+//     date: "September 2023",
+//     description:
+//       "Front-page feature on TBDN's expansion and impact on regional healthcare systems.",
+//     thumbnail: heroImages.slide1,
+//     duration: "5 min read",
+//     views: "1.2M",
+//   },
+// ];
 
 export function AwardsRecognitionPage() {
   return (
@@ -311,14 +309,14 @@ export function AwardsRecognitionPage() {
                             <Calendar className="h-4 w-4 mr-2" />
                             Certified {cert.date}
                           </div>
-                          <Button
+                          {/* <Button
                             variant="outline"
                             size="sm"
                             className="w-full sm:w-auto"
                           >
                             <ExternalLink className="h-4 w-4 mr-2" />
                             Verify
-                          </Button>
+                          </Button> */}
                         </div>
                       </div>
                     </div>
@@ -387,14 +385,14 @@ export function AwardsRecognitionPage() {
                         <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                           {recognition.description}
                         </p>
-                        <Button
+                        {/* <Button
                           variant="outline"
                           size="sm"
                           className="w-full sm:w-auto"
                         >
                           <ExternalLink className="h-4 w-4 mr-2" />
                           View Certificate
-                        </Button>
+                        </Button> */}
                       </div>
                     </div>
                   </CardContent>
@@ -479,7 +477,7 @@ export function AwardsRecognitionPage() {
       </section>
 
       {/* Media Coverage */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      {/* <section className="py-16 md:py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -550,7 +548,7 @@ export function AwardsRecognitionPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Recognition CTA */}
       {/* <section className="py-16 md:py-24">
