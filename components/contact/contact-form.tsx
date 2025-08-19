@@ -15,12 +15,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Send, CheckCircle, Sparkles } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
+// import { useToast } from "@/hooks/use-toast";
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,10 +33,7 @@ export function ContactForm() {
     setIsSubmitting(false);
     setIsSubmitted(true);
 
-    toast({
-      title: "Message sent successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
+    toast("Message sent successfully!");
   };
 
   if (isSubmitted) {
