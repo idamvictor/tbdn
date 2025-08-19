@@ -3,6 +3,7 @@ import { Heart, Shield, Users, Globe, Zap, Award } from "lucide-react";
 import { motion, easeInOut } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 
 const coreValues = [
   {
@@ -292,7 +293,9 @@ export function MissionStatement() {
               whileTap={{ scale: 0.95 }}
             >
               <Heart className="h-4 w-4 sm:h-5 sm:w-5 animate-pulse" />
-              <span>Join Our Mission Today</span>
+              <span>
+                <Link href="/contact">Join Our Mission Today</Link>
+              </span>
             </motion.button>
           </motion.div>
         </motion.div>

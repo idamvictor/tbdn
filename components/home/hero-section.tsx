@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Play, Heart, Users, Droplets, Award } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { heroImages } from "@/constants/images";
 
 const heroSlides = [
@@ -196,19 +197,25 @@ export function HeroSection() {
           >
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
               <Button
+                asChild
                 size="lg"
                 className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-base sm:text-lg px-6 sm:px-10 py-5 sm:py-6 shadow-2xl hover:shadow-red-500/25 transform hover:scale-105 transition-all duration-300 border border-red-500/20"
               >
-                <Heart className="h-4 sm:h-5 w-4 sm:w-5 mr-2 sm:mr-3 fill-current animate-pulse" />
-                {heroSlides[currentSlide].cta}
+                <Link href="/contact">
+                  <Heart className="h-4 sm:h-5 w-4 sm:w-5 mr-2 sm:mr-3 fill-current animate-pulse" />
+                  {heroSlides[currentSlide].cta}
+                </Link>
               </Button>
               <Button
+                asChild
                 size="lg"
                 variant="outline"
                 className="w-full sm:w-auto bg-white/10 border-white/30 text-white hover:bg-white/20 text-base sm:text-lg px-6 sm:px-10 py-5 sm:py-6 backdrop-blur-sm shadow-xl hover:shadow-white/10 transform hover:scale-105 transition-all duration-300"
               >
-                <Play className="h-4 sm:h-5 w-4 sm:w-5 mr-2 sm:mr-3" />
-                Learn More
+                <Link href="/about/story">
+                  <Play className="h-4 sm:h-5 w-4 sm:w-5 mr-2 sm:mr-3" />
+                  Learn More
+                </Link>
               </Button>
             </div>
           </div>

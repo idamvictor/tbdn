@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { motion, easeOut, easeInOut } from "framer-motion";
 import { useInView } from "framer-motion";
+import Link from "next/link";
 
 const impactStats = [
   {
@@ -275,7 +276,9 @@ export function ImpactStatistics() {
                           transition: { duration: 0.3 },
                         }}
                       >
-                        <Icon className={`h-8 w-8 sm:h-10 sm:w-10 ${stat.color}`} />
+                        <Icon
+                          className={`h-8 w-8 sm:h-10 sm:w-10 ${stat.color}`}
+                        />
 
                         {/* Icon Glow Effect */}
                         <motion.div
@@ -366,7 +369,6 @@ export function ImpactStatistics() {
                   Be part of something bigger. Your donation today becomes
                   someone&apos;s tomorrow.
                 </motion.p>
-
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center pt-4">
                   <motion.button
                     className="bg-white text-red-600 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300"
@@ -379,7 +381,9 @@ export function ImpactStatistics() {
                   >
                     <span className="flex items-center space-x-2">
                       <Heart className="h-5 w-5" />
-                      <span>Become a Donor</span>
+                      <span>
+                        <Link href="/contact"> Become a Donor</Link>
+                      </span>
                     </span>
                   </motion.button>
                   <motion.button
@@ -390,10 +394,10 @@ export function ImpactStatistics() {
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    Learn More
+                    <Link href="/contact">Learn More</Link>
                   </motion.button>
                 </div>
-.
+                .
               </div>
             </div>
           </motion.div>

@@ -15,6 +15,7 @@ import Image from "next/image";
 import { motion, AnimatePresence, easeOut } from "framer-motion";
 import { useInView } from "framer-motion";
 import { avatarImage, heroImages } from "@/constants/images";
+import Link from "next/link";
 
 const testimonials = [
   {
@@ -523,9 +524,14 @@ export function DonorTestimonials() {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button className="bg-white text-red-600 hover:bg-gray-100 px-10 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                    <MessageCircle className="h-5 w-5 mr-2" />
-                    Share Your Story
+                  <Button
+                    asChild
+                    className="bg-white text-red-600 hover:bg-gray-100 px-10 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    <Link href="/contact">
+                      <MessageCircle className="h-5 w-5 mr-2" />
+                      Share Your Story
+                    </Link>
                   </Button>
                 </motion.div>
               </div>

@@ -1,18 +1,12 @@
 "use client";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Calendar,
-  MapPin,
-  Users,
-  ArrowRight,
-  TrendingUp,
-  Heart,
-} from "lucide-react";
+import { Calendar, MapPin, ArrowRight, TrendingUp, Heart } from "lucide-react";
 import Image from "next/image";
 import { easeInOut, easeOut, motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { heroImages } from "@/constants/images";
+import Link from "next/link";
 
 const upcomingDrives = [
   {
@@ -203,7 +197,7 @@ export function LatestCampaigns() {
                   variant="outline"
                   className="hidden sm:flex bg-white/80 backdrop-blur-sm shadow-md hover:shadow-lg border-gray-200"
                 >
-                  View All Drives
+                  <Link href="/programs/drives">View All Drives</Link>
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </motion.div>
@@ -212,7 +206,7 @@ export function LatestCampaigns() {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
               variants={containerVariants}
             >
-              {upcomingDrives.map((drive, index) => (
+              {upcomingDrives.map((drive) => (
                 <motion.div
                   key={drive.id}
                   className="group relative"
@@ -223,89 +217,54 @@ export function LatestCampaigns() {
                     transition: { duration: 0.3 },
                   }}
                 >
-                  <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 overflow-hidden h-full">
-                    {/* Card Background Gradient */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${drive.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
-                    />
-
-                    <div className="relative">
-                      <Image
-                        src={
-                          drive.image || "/placeholder.svg?height=300&width=400"
-                        }
-                        alt={drive.title}
-                        width={400}
-                        height={300}
-                        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-                        priority={true}
+                  <Link href="/contact">
+                    <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 overflow-hidden h-full">
+                      {/* Card Background Gradient */}
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${drive.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
                       />
-                      <motion.div
-                        className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm font-semibold text-white shadow-md ${
-                          drive.status === "Almost Full"
-                            ? "bg-orange-500"
-                            : "bg-green-500"
-                        }`}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        {drive.status}
-                      </motion.div>
-                    </div>
-                    <div className="p-6 space-y-5">
-                      <h4 className="text-xl font-bold text-gray-900">
-                        {drive.title}
-                      </h4>
-                      <div className="space-y-3 text-sm text-gray-700">
-                        <div className="flex items-center">
-                          <Calendar className="h-4 w-4 mr-2 text-red-500" />
-                          {drive.date} • {drive.time}
-                        </div>
-                        <div className="flex items-center">
-                          <MapPin className="h-4 w-4 mr-2 text-red-500" />
-                          {drive.location}
-                        </div>
-                        <div className="flex items-center">
-                          <Users className="h-4 w-4 mr-2 text-red-500" />
-                          <span className="font-semibold text-gray-800">
-                            {drive.registered}/{drive.expectedDonors}
-                          </span>{" "}
-                          registered
-                        </div>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
-                        <motion.div
-                          className={`h-2.5 rounded-full bg-gradient-to-r ${drive.gradient}`}
-                          initial={{ width: 0 }}
-                          animate={
-                            isInView
-                              ? {
-                                  width: `${
-                                    (drive.registered / drive.expectedDonors) *
-                                    100
-                                  }%`,
-                                }
-                              : { width: 0 }
+
+                      <div className="relative">
+                        <Image
+                          src={
+                            drive.image ||
+                            "/placeholder.svg?height=300&width=400"
                           }
-                          transition={{
-                            duration: 1.5,
-                            delay: 0.5 + index * 0.1,
-                          }}
+                          alt={drive.title}
+                          width={400}
+                          height={300}
+                          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+                          priority={true}
                         />
                       </div>
-                      <motion.div
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}
-                      >
-                        <Button
-                          className={`w-full bg-gradient-to-r ${drive.gradient} hover:shadow-lg text-white font-semibold`}
+                      <div className="p-6 space-y-5">
+                        <h4 className="text-xl font-bold text-gray-900">
+                          {drive.title}
+                        </h4>
+                        <div className="space-y-3 text-sm text-gray-700">
+                          <div className="flex items-center">
+                            <Calendar className="h-4 w-4 mr-2 text-red-500" />
+                            {drive.date} • {drive.time}
+                          </div>
+                          <div className="flex items-center">
+                            <MapPin className="h-4 w-4 mr-2 text-red-500" />
+                            {drive.location}
+                          </div>
+                        </div>
+                        <motion.div
+                          whileHover={{ scale: 1.03 }}
+                          whileTap={{ scale: 0.97 }}
                         >
-                          Register Now
-                        </Button>
-                      </motion.div>
+                          <Button
+                            asChild
+                            className={`w-full bg-gradient-to-r ${drive.gradient} hover:shadow-lg text-white font-semibold`}
+                          >
+                            <Link href="/contact">Register Now</Link>
+                          </Button>
+                        </motion.div>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </motion.div>
@@ -454,10 +413,12 @@ export function LatestCampaigns() {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button className="bg-white text-red-600 hover:bg-gray-100 px-10 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                    <Calendar className="h-5 w-5 mr-2" />
-                    Find a Blood Drive
-                  </Button>
+                  <Link href="/programs/drives">
+                    <Button className="bg-white text-red-600 hover:bg-gray-100 px-10 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                      <Calendar className="h-5 w-5 mr-2" />
+                      Find a Blood Drive
+                    </Button>
+                  </Link>
                 </motion.div>
               </div>
             </div>
