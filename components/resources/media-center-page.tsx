@@ -3,14 +3,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Camera,
-  Video,
-  Search,
-  Newspaper,
-  FileText,
-  Youtube,
-} from "lucide-react";
+import { Camera, Video, Search } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -23,14 +16,13 @@ interface MediaItem {
   id: string;
   title: string;
   description: string;
-  type: "photo" | "video" | "news" | "press-release";
+  type: "photo" | "video";
   category: string;
   date: string;
   url: string;
   thumbnail: string;
   tags: string[];
   views?: number;
-  downloads?: number;
 }
 
 const mediaItems: MediaItem[] = [
@@ -98,74 +90,6 @@ const mediaItems: MediaItem[] = [
     tags: ["Testimonials", "Stories", "Impact", "Community"],
     views: 8500,
   },
-  // News Articles
-  {
-    id: "6",
-    title: "TBDN Receives National Healthcare Excellence Award",
-    description:
-      "Recognition for outstanding contribution to healthcare in Nigeria",
-    type: "news",
-    category: "Awards",
-    date: "2024-01-03",
-    url: "https://example-news.com/tbdn-award",
-    thumbnail: heroImages.slide1,
-    tags: ["Award", "Recognition", "Excellence", "Healthcare"],
-    views: 3200,
-  },
-  {
-    id: "7",
-    title: "New Partnership with Lagos State Government",
-    description: "TBDN signs MOU with Lagos State for expanded blood services",
-    type: "news",
-    category: "Partnerships",
-    date: "2024-01-01",
-    url: "https://example-news.com/lagos-partnership",
-    thumbnail: heroImages.slide2,
-    tags: ["Partnership", "Government", "Lagos", "Expansion"],
-    views: 2800,
-  },
-  // Press Releases
-  {
-    id: "8",
-    title: "TBDN Launches Mobile App for Donors",
-    description:
-      "New mobile application makes blood donation scheduling easier",
-    type: "press-release",
-    category: "Technology",
-    date: "2023-12-28",
-    url: "/press-releases/mobile-app-launch.pdf",
-    thumbnail: heroImages.slide3,
-    tags: ["Mobile App", "Technology", "Innovation", "Donors"],
-    downloads: 450,
-  },
-];
-
-const youtubePlaylist = [
-  {
-    id: "yt1",
-    title: "Blood Donation Awareness Campaign 2024",
-    description: "Complete playlist of our awareness campaign videos",
-    videoCount: 12,
-    thumbnail: heroImages.slide4,
-    playlistId: "PLexample1",
-  },
-  {
-    id: "yt2",
-    title: "Educational Series: Understanding Blood Types",
-    description:
-      "Educational videos explaining different blood types and compatibility",
-    videoCount: 8,
-    thumbnail: heroImages.slide5,
-    playlistId: "PLexample2",
-  },
-  {
-    id: "yt3",
-    title: "Donor Stories and Testimonials",
-    description: "Real stories from donors and recipients",
-    videoCount: 15,
-    thumbnail: heroImages.slide1,
-    playlistId: "PLexample3",
-  },
 ];
 
 export function MediaCenterPage() {
@@ -177,9 +101,7 @@ export function MediaCenterPage() {
   const filteredItems = mediaItems.filter((item) => {
     const matchesTab =
       (activeTab === "photos" && item.type === "photo") ||
-      (activeTab === "videos" && item.type === "video") ||
-      (activeTab === "news" &&
-        (item.type === "news" || item.type === "press-release"));
+      (activeTab === "videos" && item.type === "video");
     const matchesFilter = filter === "All" || item.category === filter;
     const matchesSearch =
       item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -196,10 +118,6 @@ export function MediaCenterPage() {
         return Camera;
       case "video":
         return Video;
-      case "news":
-        return Newspaper;
-      case "press-release":
-        return FileText;
       default:
         return Camera;
     }
@@ -211,10 +129,6 @@ export function MediaCenterPage() {
         return "bg-blue-100 text-blue-800";
       case "video":
         return "bg-red-100 text-red-800";
-      case "news":
-        return "bg-green-100 text-green-800";
-      case "press-release":
-        return "bg-purple-100 text-purple-800";
       default:
         return "bg-gray-100 text-gray-800";
     }
@@ -249,20 +163,6 @@ export function MediaCenterPage() {
               >
                 <Video className="h-3 w-3 sm:h-4 sm:w-4" />
                 Videos
-              </TabsTrigger>
-              <TabsTrigger
-                value="youtube"
-                className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
-              >
-                <Youtube className="h-3 w-3 sm:h-4 sm:w-4" />
-                YouTube
-              </TabsTrigger>
-              <TabsTrigger
-                value="news"
-                className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm whitespace-nowrap"
-              >
-                <Newspaper className="h-3 w-3 sm:h-4 sm:w-4" />
-                Media Coverage
               </TabsTrigger>
             </TabsList>
           </div>
@@ -404,130 +304,6 @@ export function MediaCenterPage() {
               <div className="text-center py-12">
                 <Video className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">No Videos Found</h3>
-                <p className="text-muted-foreground">
-                  Try adjusting your search terms.
-                </p>
-              </div>
-            )}
-          </TabsContent>
-
-          {/* YouTube Tab Content */}
-          <TabsContent value="youtube" className="mt-4 sm:mt-6">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {youtubePlaylist.map((playlist) => (
-                <Card
-                  key={playlist.id}
-                  className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                >
-                  <div className="relative aspect-video">
-                    <Image
-                      src={playlist.thumbnail || "/placeholder.svg"}
-                      alt={playlist.title}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-8 h-8 sm:w-12 sm:h-12 bg-white/90 rounded-full flex items-center justify-center">
-                        <Youtube className="h-4 w-4 sm:h-6 sm:w-6 text-red-600" />
-                      </div>
-                    </div>
-                    <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
-                      <Badge className="text-xs bg-red-100 text-red-800">
-                        <Youtube className="h-3 w-3 mr-1" />
-                        Playlist
-                      </Badge>
-                    </div>
-                  </div>
-                  <CardContent className="p-3 sm:p-4">
-                    <div className="space-y-2">
-                      <h4 className="text-sm sm:text-base font-semibold leading-tight line-clamp-2">
-                        {playlist.title}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
-                        {playlist.description}
-                      </p>
-                      <div className="text-xs text-muted-foreground">
-                        {playlist.videoCount} videos
-                      </div>
-                      <Button
-                        variant="outline"
-                        className="w-full bg-transparent text-xs sm:text-sm h-8 sm:h-9"
-                        size="sm"
-                      >
-                        View Playlist
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-
-          {/* News/Media Coverage Tab Content */}
-          <TabsContent value="news" className="mt-4 sm:mt-6">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {filteredItems.map((item) => {
-                const TypeIcon = getTypeIcon(item.type);
-                return (
-                  <Card
-                    key={item.id}
-                    className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                  >
-                    <div className="relative aspect-video sm:aspect-[4/3]">
-                      <Image
-                        src={item.thumbnail || "/placeholder.svg"}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
-                        <Badge className={`text-xs ${getTypeColor(item.type)}`}>
-                          <TypeIcon className="h-3 w-3 mr-1" />
-                          {item.type === "press-release"
-                            ? "Press Release"
-                            : "News"}
-                        </Badge>
-                      </div>
-                    </div>
-                    <CardContent className="p-3 sm:p-4">
-                      <div className="space-y-2">
-                        <h4 className="text-sm sm:text-base font-semibold leading-tight line-clamp-2">
-                          {item.title}
-                        </h4>
-                        <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
-                          {item.description}
-                        </p>
-                        <div className="flex items-center justify-between text-xs text-muted-foreground">
-                          <span>
-                            {new Date(item.date).toLocaleDateString()}
-                          </span>
-                          <span>
-                            {item.views?.toLocaleString() ||
-                              item.downloads?.toLocaleString()}{" "}
-                            {item.views ? "views" : "downloads"}
-                          </span>
-                        </div>
-                        <Button
-                          variant="outline"
-                          className="w-full bg-transparent text-xs sm:text-sm h-8 sm:h-9"
-                          size="sm"
-                        >
-                          {item.type === "press-release"
-                            ? "Download"
-                            : "Read Article"}
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-            {filteredItems.length === 0 && (
-              <div className="text-center py-12">
-                <Newspaper className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">
-                  No Media Coverage Found
-                </h3>
                 <p className="text-muted-foreground">
                   Try adjusting your search terms.
                 </p>

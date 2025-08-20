@@ -28,18 +28,15 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import {
-  Camera,
-  Video,
   TrendingUp,
   Heart,
   Award,
-  Newspaper,
-  Quote,
-  Play,
-  Share2,
   Calendar,
   MapPin,
   Target,
+  Camera,
+  Video,
+  Play,
 } from "lucide-react";
 import { heroImages } from "@/constants/images";
 
@@ -58,7 +55,6 @@ interface Campaign {
   images: string[];
   videos: string[];
   volunteers: number;
-  mediaLinks: string[];
   testimonials: {
     name: string;
     role: string;
@@ -92,7 +88,6 @@ const campaigns: Campaign[] = [
       "https://www.youtube.com/watch?v=jmhiHKsEUXU",
     ],
     volunteers: 234,
-    mediaLinks: ["https://example.com/news1", "https://example.com/news2"],
     testimonials: [
       {
         name: "Dr. Adebayo Ogundimu",
@@ -131,7 +126,6 @@ const campaigns: Campaign[] = [
     ],
     videos: ["https://www.youtube.com/watch?v=jmhiHKsEUXU"],
     volunteers: 156,
-    mediaLinks: ["https://example.com/youth-news1"],
     testimonials: [
       {
         name: "Ahmed Musa",
@@ -148,10 +142,6 @@ export function CampaignsPage() {
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign>(
     campaigns[0]
   );
-  const [selectedMedia, setSelectedMedia] = useState<{
-    type: "image" | "video";
-    src: string;
-  } | null>(null);
 
   const getYouTubeThumbnail = (url: string) => {
     const videoId = url.split("v=")[1];
@@ -259,12 +249,6 @@ export function CampaignsPage() {
             >
               Volunteers
             </TabsTrigger>
-            <TabsTrigger
-              className="text-xs whitespace-nowrap px-3 py-1.5"
-              value="media"
-            >
-              Media
-            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
@@ -364,10 +348,7 @@ export function CampaignsPage() {
                     {selectedCampaign.images.slice(0, 4).map((image, index) => (
                       <div
                         key={index}
-                        className="relative aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
-                        onClick={() =>
-                          setSelectedMedia({ type: "image", src: image })
-                        }
+                        className="relative aspect-square rounded-lg overflow-hidden"
                       >
                         <Image
                           src={image || "/placeholder.svg"}
@@ -427,10 +408,7 @@ export function CampaignsPage() {
                     {selectedCampaign.videos.slice(0, 2).map((video, index) => (
                       <div
                         key={index}
-                        className="relative aspect-video rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity bg-gray-100"
-                        onClick={() =>
-                          setSelectedMedia({ type: "video", src: video })
-                        }
+                        className="relative aspect-video rounded-lg overflow-hidden bg-gray-100"
                       >
                         <Image
                           src={getYouTubeThumbnail(video)}
@@ -462,12 +440,7 @@ export function CampaignsPage() {
                       <Carousel>
                         <CarouselContent>
                           {selectedCampaign.videos.map((video, index) => (
-                            <CarouselItem
-                              key={index}
-                              onClick={() =>
-                                setSelectedMedia({ type: "video", src: video })
-                              }
-                            >
+                            <CarouselItem key={index}>
                               <div className="relative aspect-video rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity bg-gray-100">
                                 <Image
                                   src={getYouTubeThumbnail(video)}
@@ -740,123 +713,8 @@ export function CampaignsPage() {
               </CardContent>
             </Card>
           </TabsContent>
-
-          <TabsContent value="media" className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Newspaper className="h-5 w-5" />
-                    Media Coverage
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {selectedCampaign.mediaLinks.map((link, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-3 p-3 border rounded-lg"
-                    >
-                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <Newspaper className="h-5 w-5 text-blue-600" />
-                      </div>
-                      <div className="flex-1">
-                        <h5 className="font-medium">
-                          News Article {index + 1}
-                        </h5>
-                        <p className="text-sm text-muted-foreground">
-                          Media coverage of campaign activities
-                        </p>
-                      </div>
-                      <Button variant="outline" size="sm">
-                        <Share2 className="h-4 w-4 mr-2" />
-                        View
-                      </Button>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Quote className="h-5 w-5" />
-                    Testimonials
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {selectedCampaign.testimonials.map((testimonial, index) => (
-                    <div key={index} className="p-4 border rounded-lg">
-                      <div className="flex items-start gap-3 mb-3">
-                        <Avatar>
-                          <AvatarImage
-                            src={testimonial.avatar || "/placeholder.svg"}
-                            alt={testimonial.name}
-                          />
-                          <AvatarFallback>
-                            {testimonial.name
-                              .split(" ")
-                              .map((n) => n[0])
-                              .join("")}
-                          </AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <h5 className="font-medium">{testimonial.name}</h5>
-                          <p className="text-sm text-muted-foreground">
-                            {testimonial.role}
-                          </p>
-                        </div>
-                      </div>
-                      <p className="text-sm italic">
-                        &quot;{testimonial.content}&quot;
-                      </p>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
         </Tabs>
       </section>
-
-      {/* Media Dialog */}
-      <Dialog
-        open={!!selectedMedia}
-        onOpenChange={() => setSelectedMedia(null)}
-      >
-        <DialogContent className="max-w-4xl">
-          <DialogHeader>
-            <DialogTitle>
-              {selectedMedia?.type === "image"
-                ? "Campaign Photo"
-                : "Campaign Video"}
-            </DialogTitle>
-          </DialogHeader>
-          {selectedMedia &&
-            (selectedMedia.type === "image" ? (
-              <div className="relative aspect-video">
-                <Image
-                  src={selectedMedia.src || "/placeholder.svg"}
-                  alt="Campaign media"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            ) : (
-              <div className="relative aspect-video">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src={`https://www.youtube.com/embed/${
-                    selectedMedia.src.split("v=")[1]
-                  }`}
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            ))}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

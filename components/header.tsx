@@ -13,7 +13,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Menu, Heart, Phone, ChevronRight } from "lucide-react";
+import { Menu, Heart, ChevronRight } from "lucide-react";
 
 const aboutLinks = [
   { title: "Our Story", href: "/about/story" },
@@ -31,7 +31,7 @@ const getInvolvedLinks = [
 const programsLinks = [
   { title: "Blood Drives", href: "/programs/drives" },
   { title: "Campaigns", href: "/programs/campaigns" },
-  { title: "Educational Programs", href: "/programs/education" },
+  // { title: "Educational Programs", href: "/programs/education" },
 ];
 
 const resourcesLinks = [
@@ -239,32 +239,34 @@ export function Header() {
 
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center space-x-2">
-          <Button
+          {/* <Button
             variant="outline"
             size="sm"
             className="bg-white text-red-600 border-red-600 hover:bg-red-50 whitespace-nowrap"
           >
             <Phone className="h-4 w-4 mr-2" />
             Emergency
-          </Button>
-          <Button
-            size="sm"
-            className="bg-red-600 hover:bg-red-700 whitespace-nowrap"
-          >
-            Donate Blood
-          </Button>
+          </Button> */}
+          <Link href="/contact">
+            <Button
+              size="sm"
+              className="bg-red-600 hover:bg-red-700 whitespace-nowrap"
+            >
+              Donate Blood
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu */}
         <div className="flex items-center space-x-1 lg:hidden">
-          <Button
+          {/* <Button
             variant="outline"
             size="sm"
             className="bg-white text-red-600 border-red-600 hover:bg-red-50"
           >
             <Phone className="h-4 w-4" />
             <span className="sr-only">Emergency</span>
-          </Button>
+          </Button> */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="sm" className="px-2">
@@ -394,7 +396,7 @@ export function Header() {
                   variants={itemVariants}
                 >
                   <div className="space-y-2 sm:space-y-3">
-                    <Button
+                    {/* <Button
                       variant="outline"
                       size="sm"
                       className="w-full bg-white/80 backdrop-blur-sm text-red-600 border-red-200 hover:bg-red-50 hover:border-red-300 transition-all duration-300 shadow-sm text-sm"
@@ -402,7 +404,7 @@ export function Header() {
                     >
                       <Phone className="h-4 w-4 mr-2" />
                       Emergency Contact
-                    </Button>
+                    </Button> */}
                     <Button
                       size="sm"
                       className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-md hover:shadow-lg text-sm"

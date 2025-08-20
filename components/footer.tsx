@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
 import {
   Heart,
   Mail,
@@ -17,7 +17,7 @@ export function Footer() {
   return (
     <footer className="bg-slate-900 text-white">
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-6 lg:gap-8">
           {/* Brand Section */}
           <div className="space-y-4 sm:space-y-6">
             <Link href="/" className="inline-flex items-center space-x-2">
@@ -77,7 +77,39 @@ export function Footer() {
             <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2 text-sm">
               <li>
                 <Link
-                  href="/become-donor"
+                  href="/"
+                  className="text-slate-300 hover:text-red-400 transition-colors"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about/story"
+                  className="text-slate-300 hover:text-red-400 transition-colors"
+                >
+                  Our Story
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about/team"
+                  className="text-slate-300 hover:text-red-400 transition-colors"
+                >
+                  Team
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about/mission"
+                  className="text-slate-300 hover:text-red-400 transition-colors"
+                >
+                  Vission & Mission
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/get-involved/become-donor"
                   className="text-slate-300 hover:text-red-400 transition-colors"
                 >
                   Become a Donor
@@ -85,23 +117,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/eligibility"
-                  className="text-slate-300 hover:text-red-400 transition-colors"
-                >
-                  Donation Eligibility
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/programs/drives"
-                  className="text-slate-300 hover:text-red-400 transition-colors"
-                >
-                  Find Blood Drive
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/volunteer"
+                  href="/get-involved/volunteer"
                   className="text-slate-300 hover:text-red-400 transition-colors"
                 >
                   Volunteer
@@ -109,26 +125,18 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/resources/faq"
+                  href="/programs/drives"
                   className="text-slate-300 hover:text-red-400 transition-colors"
                 >
-                  FAQ
+                  Blood Drives
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/privacy"
+                  href="/programs/campaigns"
                   className="text-slate-300 hover:text-red-400 transition-colors"
                 >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms"
-                  className="text-slate-300 hover:text-red-400 transition-colors"
-                >
-                  Terms of Service
+                  Campaigns
                 </Link>
               </li>
             </ul>
@@ -164,7 +172,7 @@ export function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div className="space-y-4 sm:space-y-6">
+          {/* <div className="space-y-4 sm:space-y-6">
             <h3 className="text-base sm:text-lg font-semibold">Stay Updated</h3>
             <p className="text-sm text-slate-300 leading-relaxed">
               Subscribe to our newsletter for blood drive updates and health
@@ -196,7 +204,7 @@ export function Footer() {
                 Call Now
               </Button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
