@@ -5,7 +5,6 @@ import {
   Heart,
   Mail,
   Phone,
-  MapPin,
   Facebook,
   Twitter,
   Instagram,
@@ -29,8 +28,9 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-slate-300 leading-relaxed">
-              The Blood Donation Network is dedicated to saving lives through
-              voluntary blood donation. Every drop counts, every donor matters.
+              The BloodDrive Network is dedicated to saving lives through
+              voluntary blood donation and wellness services. Every blood pint
+              counts, Every donor matters, Join the train today!
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -104,7 +104,7 @@ export function Footer() {
                   href="/about/mission"
                   className="text-slate-300 hover:text-red-400 transition-colors"
                 >
-                  Vission & Mission
+                  Vision & Mission
                 </Link>
               </li>
               <li>
@@ -136,7 +136,7 @@ export function Footer() {
                   href="/programs/campaigns"
                   className="text-slate-300 hover:text-red-400 transition-colors"
                 >
-                  Campaigns
+                  Advocacy Campaigns/Wellness Projects
                 </Link>
               </li>
             </ul>
@@ -146,26 +146,22 @@ export function Footer() {
           <div className="space-y-4 sm:space-y-6">
             <h3 className="text-base sm:text-lg font-semibold">Contact Us</h3>
             <div className="space-y-3 text-sm">
-              <div className="flex items-start space-x-3">
-                <MapPin className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
-                <div className="text-slate-300">
-                  <p className="leading-relaxed">123 Health Street</p>
-                  <p className="leading-relaxed">Medical District</p>
-                  <p className="leading-relaxed">Lagos, Nigeria</p>
-                </div>
-              </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-red-500 flex-shrink-0" />
                 <div className="text-slate-300">
-                  <p>+234 800 BLOOD (25663)</p>
-                  <p className="text-xs text-slate-400">24/7 Emergency Line</p>
+                  <p className="font-medium">+234 704 672 7740</p>
+                  <p className="text-xs text-slate-400">
+                    Contact Number - Inquiries/Partnerships
+                  </p>
+                  <p className="mt-2 font-medium">+234 810 719 5079</p>
+                  <p className="text-xs text-slate-400">Emergency Line</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-red-500 flex-shrink-0" />
                 <div className="text-slate-300">
-                  <p>info@tbdn.org</p>
-                  <p>emergency@tbdn.org</p>
+                  <p>theblooddrivenetwork@gmail.com</p>
+                  <p>www.theblooddrivenetworkfoundation.com</p>
                 </div>
               </div>
             </div>

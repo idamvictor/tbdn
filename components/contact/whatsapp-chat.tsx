@@ -33,21 +33,38 @@ export function WhatsAppChat() {
           <div className="p-6">
             <p className="text-slate-600 mb-4">
               Get instant support for blood donation inquiries, emergency
-              requests, or general questions.
+              requests, or general questions. Choose a hotline to chat on
+              WhatsApp.
             </p>
-            <Button
-              className="w-full bg-emerald-500 hover:bg-emerald-600 text-white"
-              asChild
-            >
-              <a
-                href="https://wa.me/2348001234567?text=Hello! I need help with blood donation."
-                target="_blank"
-                rel="noopener noreferrer"
+            <div className="space-y-3">
+              <Button
+                className="w-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center"
+                asChild
               >
-                <MessageCircle className="h-4 w-4 mr-2" />
-                Start Chat
-              </a>
-            </Button>
+                <a
+                  href="https://wa.me/2348189947640?text=Hello!%20I%20need%20help%20with%20an%20emergency%20blood%20request."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="h-4 w-4 mr-2 inline-block" />
+                  Chat +234 818 994 7640
+                </a>
+              </Button>
+
+              <Button
+                className="w-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center"
+                asChild
+              >
+                <a
+                  href="https://wa.me/2348107195079?text=Hello!%20I%20need%20help%20with%20an%20emergency%20blood%20request."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="h-4 w-4 mr-2 inline-block" />
+                  Chat +234 810 719 5079
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       )}

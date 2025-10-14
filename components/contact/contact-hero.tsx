@@ -42,8 +42,8 @@ export function ContactHero() {
             {[
               {
                 icon: Phone,
-                label: "24/7 Hotline",
-                desc: "Always available",
+                label: "Hotline",
+                desc: "Call or WhatsApp our team",
                 color: "bg-blue-500",
               },
               {
@@ -54,14 +54,14 @@ export function ContactHero() {
               },
               {
                 icon: MapPin,
-                label: "Multiple Locations",
-                desc: "Nationwide coverage",
+                label: "Regional Coverage",
+                desc: "Parts of the South West, Nigeria",
                 color: "bg-slate-500",
               },
               {
                 icon: Clock,
-                label: "Always Available",
-                desc: "Emergency ready",
+                label: "Response",
+                desc: "Rapid response within service area",
                 color: "bg-teal-500",
               },
             ].map((item, index) => (

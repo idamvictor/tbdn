@@ -2,7 +2,7 @@ import { ContactHero } from "@/components/contact/contact-hero";
 import { ContactInfo } from "@/components/contact/contact-info";
 import { ContactForm } from "@/components/contact/contact-form";
 import { EmergencyContact } from "@/components/contact/emergency-contact";
-import { OfficeLocations } from "@/components/contact/office-locations";
+// import { OfficeLocations } from "@/components/contact/office-locations";
 import { SocialLinks } from "@/components/contact/social-links";
 import { WhatsAppChat } from "@/components/contact/whatsapp-chat";
 
@@ -36,9 +36,9 @@ export default function ContactPage() {
         </div>
 
         {/* Office Locations with Map */}
-        <div className="animate-fade-in-up animation-delay-400">
+        {/* <div className="animate-fade-in-up animation-delay-400">
           <OfficeLocations />
-        </div>
+        </div> */}
       </div>
 
       {/* WhatsApp Chat Widget */}

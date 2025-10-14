@@ -1,43 +1,43 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { Phone, Mail, Clock } from "lucide-react";
 
 export function ContactInfo() {
   const contactDetails = [
     {
-      icon: MapPin,
-      title: "Headquarters",
-      details: [
-        "123 Life Avenue, Victoria Island",
-        "Lagos State, Nigeria",
-        "Postal Code: 101241",
-      ],
-      color: "bg-blue-500",
-    },
-    {
       icon: Phone,
       title: "Phone Numbers",
       details: [
-        "Main: +234-1-234-5678",
-        "Donor Services: +234-1-234-5679",
-        "Partnerships: +234-1-234-5680",
+        "Main: +234 704 672 7740",
+        "Main: +234 810 487 0657",
+        "Donor Services: +234 810 719 5079",
+        "Donor Services: +234 812 197 6850",
+        "Partnerships: +234 704 672 7740",
       ],
       color: "bg-teal-500",
     },
     {
       icon: Mail,
-      title: "Email Addresses",
-      details: ["info@tbdn.org", "donors@tbdn.org", "partnerships@tbdn.org"],
+      title: "Email",
+      details: ["theblooddrivenetwork@gmail.com"],
       color: "bg-indigo-500",
     },
     {
       icon: Clock,
-      title: "Office Hours",
+      title: "Operation Hours",
       details: [
-        "Monday - Friday: 8:00 AM - 6:00 PM",
-        "Saturday: 9:00 AM - 4:00 PM",
-        "Sunday: Emergency only",
+        "Monday - Friday: 9:00 AM - 6:00 PM",
+        "Saturday & Sunday: Open to Emergency requests",
       ],
       color: "bg-slate-500",
+    },
+    {
+      icon: Clock,
+      title: "Office Notes",
+      details: [
+        "Team primarily domiciled in Ibadan, Oyo State",
+        "No physical headquarters yet",
+      ],
+      color: "bg-slate-400",
     },
   ];
 

@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Phone, AlertTriangle, Clock, Zap } from "lucide-react";
+import { Phone, AlertTriangle, Zap } from "lucide-react";
 
 export function EmergencyContact() {
   return (
@@ -30,7 +30,7 @@ export function EmergencyContact() {
             <div className="flex items-center space-x-2">
               <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-300" />
               <p className="text-rose-100 text-base sm:text-lg">
-                24/7 Emergency Support Available
+                Emergency support — contact the hotlines below
               </p>
             </div>
           </div>
@@ -38,31 +38,39 @@ export function EmergencyContact() {
 
         <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
           <div className="space-y-4 sm:space-y-6">
-            <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-              <div className="p-2 bg-white/20 rounded-lg">
-                <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+            <div className="flex flex-col space-y-3">
+              <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                <div className="p-2 bg-white/20 rounded-lg">
+                  <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                </div>
+                <div>
+                  <p className="font-semibold text-white text-base sm:text-lg">
+                    Emergency Hotline
+                  </p>
+                  <p className="text-xl sm:text-2xl font-bold text-yellow-300">
+                    +234 818 994 7640
+                  </p>
+                  <p className="text-sm text-rose-100 mt-1">
+                    Also available on WhatsApp
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="font-semibold text-white text-base sm:text-lg">
-                  Emergency Hotline
-                </p>
-                <p className="text-xl sm:text-2xl font-bold text-yellow-300">
-                  +234-800-BLOOD-1
-                </p>
-              </div>
-            </div>
 
-            <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-              <div className="p-2 bg-white/20 rounded-lg">
-                <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
-              </div>
-              <div>
-                <p className="font-semibold text-white text-base sm:text-lg">
-                  Response Time
-                </p>
-                <p className="text-yellow-300 text-lg sm:text-xl font-semibold">
-                  Within 30 minutes
-                </p>
+              <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                <div className="p-2 bg-white/20 rounded-lg">
+                  <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                </div>
+                <div>
+                  <p className="font-semibold text-white text-base sm:text-lg">
+                    Emergency Hotline
+                  </p>
+                  <p className="text-xl sm:text-2xl font-bold text-yellow-300">
+                    +234 810 719 5079
+                  </p>
+                  <p className="text-sm text-rose-100 mt-1">
+                    Also available on WhatsApp
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -75,13 +83,7 @@ export function EmergencyContact() {
               <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3" />
               Call Emergency Line
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-rose-600 font-semibold text-base sm:text-lg h-12 sm:h-14 md:h-16 bg-transparent shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Request Blood Online
-            </Button>
+            {/* Removed 'Request Blood Online' button per content update */}
           </div>
         </div>
       </CardContent>
