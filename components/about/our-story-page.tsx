@@ -122,8 +122,8 @@ const milestones = [
     description:
       "From blood drives and advocacy campaigns in Nigeria and Tanzania",
     icon: Globe,
-    color: "text-purple-600",
-    bgColor: "bg-purple-100",
+    color: "text-indigo-600",
+    bgColor: "bg-indigo-100",
   },
   {
     number: "9600+",
@@ -131,24 +131,24 @@ const milestones = [
     description:
       "Engaged in blood donation advocacy, SRH, SCD and youth wellness programs",
     icon: Globe,
-    color: "text-purple-600",
-    bgColor: "bg-purple-100",
+    color: "text-amber-600",
+    bgColor: "bg-amber-100",
   },
   {
     number: "10+",
     title: "partner hospitals",
     description: "Across Nigeria and Tanzania",
     icon: Globe,
-    color: "text-purple-600",
-    bgColor: "bg-purple-100",
+    color: "text-teal-600",
+    bgColor: "bg-teal-100",
   },
   {
     number: "25+",
     title: "Stakeholder partnerships",
     description: "Across Nigeria and Tanzania",
     icon: Globe,
-    color: "text-purple-600",
-    bgColor: "bg-purple-100",
+    color: "text-violet-600",
+    bgColor: "bg-violet-100",
   },
   {
     number: "4 & 5",
@@ -156,8 +156,8 @@ const milestones = [
     description:
       "For blood requests, SCD screenings, blood drives, advocacy engagements, SRH wellness programs",
     icon: Globe,
-    color: "text-purple-600",
-    bgColor: "bg-purple-100",
+    color: "text-cyan-600",
+    bgColor: "bg-cyan-100",
   },
   {
     number: "3",
@@ -165,17 +165,17 @@ const milestones = [
     description:
       "SheLeadsAfrica. MOONSHOT Global Awards, USA WeAreTogether International Prize, Russia",
     icon: Globe,
-    color: "text-purple-600",
-    bgColor: "bg-purple-100",
+    color: "text-orange-600",
+    bgColor: "bg-orange-100",
   },
   {
     number: "1",
     title: "Grant Award",
     description:
-      "WeAreTogether International Prize for Social impact in the Healthcare and Emergency Response Category",
+      "WeAreTogether International Prize for Social impact in the Healthcare and Emergency Response Category",
     icon: Globe,
-    color: "text-purple-600",
-    bgColor: "bg-purple-100",
+    color: "text-rose-600",
+    bgColor: "bg-rose-100",
   },
 ];
 
@@ -304,7 +304,9 @@ export default function OurStoryPage() {
       {/* ---------------------------------------------------- */}
       <section className="relative h-[50vh] flex items-center justify-center text-center text-white overflow-hidden mb-0">
         <Image
-          src={heroImages.slide1 || "/placeholder.svg"}
+          src={
+            "https://res.cloudinary.com/dyp8gtllq/image/upload/v1760638074/1718608330489_adnmqo.jpg"
+          }
           alt="Our Story Hero Background"
           fill
           className="object-cover"
