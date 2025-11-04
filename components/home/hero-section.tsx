@@ -5,26 +5,28 @@ import { Badge } from "@/components/ui/badge";
 import { Play, Heart, Users, Droplets, Award } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { heroImages } from "@/constants/images";
 
 const heroSlides = [
   {
     id: 1,
-    image: heroImages.slide1,
+    image:
+      "https://res.cloudinary.com/dyp8gtllq/image/upload/v1760638074/1718608330489_adnmqo.jpg",
     title: "Every Drop Counts, Every Donor Matters",
     subtitle: "Join thousands of heroes saving lives through blood donation",
     cta: "Donate Blood Now",
   },
   {
     id: 2,
-    image: heroImages.slide2,
+    image:
+      "https://res.cloudinary.com/dyp8gtllq/image/upload/v1760638654/1695681232968_aayasf.jpg",
     title: "Be Someone's Hero Today",
     subtitle: "Your single donation can save up to three lives",
     cta: "Find Blood Drive",
   },
   {
     id: 3,
-    image: heroImages.slide3,
+    image:
+      "https://res.cloudinary.com/dyp8gtllq/image/upload/v1760637976/1706273083644_hz6nwj.png",
     title: "Together We Save Lives",
     subtitle: "Join our community of voluntary blood donors",
     cta: "Register Now",

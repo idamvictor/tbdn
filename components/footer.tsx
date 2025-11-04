@@ -34,35 +34,35 @@ export function Footer() {
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
-                href="#"
+                href="https://linktr.ee/theblooddrivenetwork?utm_source=linktree_admin_share"
                 className="text-slate-400 hover:text-red-500 transition-colors"
               >
                 <Facebook className="h-4 sm:h-5 w-4 sm:w-5" />
                 <span className="sr-only">Facebook</span>
               </Link>
               <Link
-                href="#"
+                href="https://linktr.ee/theblooddrivenetwork?utm_source=linktree_admin_share"
                 className="text-slate-400 hover:text-red-500 transition-colors"
               >
                 <Twitter className="h-4 sm:h-5 w-4 sm:w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
               <Link
-                href="#"
+                href="https://linktr.ee/theblooddrivenetwork?utm_source=linktree_admin_share"
                 className="text-slate-400 hover:text-red-500 transition-colors"
               >
                 <Instagram className="h-4 sm:h-5 w-4 sm:w-5" />
                 <span className="sr-only">Instagram</span>
               </Link>
               <Link
-                href="#"
+                href="https://linktr.ee/theblooddrivenetwork?utm_source=linktree_admin_share"
                 className="text-slate-400 hover:text-red-500 transition-colors"
               >
                 <Youtube className="h-4 sm:h-5 w-4 sm:w-5" />
                 <span className="sr-only">YouTube</span>
               </Link>
               <Link
-                href="#"
+                href="https://linktr.ee/theblooddrivenetwork?utm_source=linktree_admin_share"
                 className="text-slate-400 hover:text-red-500 transition-colors"
               >
                 <Linkedin className="h-4 sm:h-5 w-4 sm:w-5" />
