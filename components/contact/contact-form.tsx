@@ -1,11 +1,11 @@
 "use client";
 
 import type React from "react";
+
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -14,26 +14,47 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Send, CheckCircle, Sparkles } from "lucide-react";
-import { toast } from "sonner";
-// import { useToast } from "@/hooks/use-toast";
+import { Textarea } from "@/components/ui/textarea";
+import { CheckCircle, Send, Sparkles } from "lucide-react";
 
-export function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export default function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  // const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError("");
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+    };
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-    toast("Message sent successfully!");
+      if (!response.ok) {
+        throw new Error("Failed to send email");
+      }
+
+      setIsSubmitted(true);
+      setIsSubmitting(false);
+    } catch (err) {
+      setError("Failed to send message. Please try again.");
+      setIsSubmitting(false);
+      console.error("Error sending email:", err);
+    }
   };
 
   if (isSubmitted) {
@@ -77,6 +98,11 @@ export function ContactForm() {
         </p>
       </CardHeader>
       <CardContent className="p-6 sm:p-8 pt-4 sm:pt-6">
+        {error && (
+          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+            {error}
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-3">
@@ -88,6 +114,7 @@ export function ContactForm() {
               </Label>
               <Input
                 id="firstName"
+                name="firstName"
                 required
                 className="h-10 sm:h-12 text-sm sm:text-base border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
               />
@@ -101,6 +128,7 @@ export function ContactForm() {
               </Label>
               <Input
                 id="lastName"
+                name="lastName"
                 required
                 className="h-10 sm:h-12 text-sm sm:text-base border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
               />
@@ -116,6 +144,7 @@ export function ContactForm() {
             </Label>
             <Input
               id="email"
+              name="email"
               type="email"
               required
               className="h-10 sm:h-12 text-sm sm:text-base border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
@@ -131,6 +160,7 @@ export function ContactForm() {
             </Label>
             <Input
               id="phone"
+              name="phone"
               type="tel"
               className="h-10 sm:h-12 text-sm sm:text-base border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
             />
@@ -143,8 +173,11 @@ export function ContactForm() {
             >
               Subject *
             </Label>
-            <Select required>
-              <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl">
+            <Select required defaultValue="">
+              <SelectTrigger
+                name="subject"
+                className="h-10 sm:h-12 text-sm sm:text-base border-2 border-slate-200 focus:border-blue-500 transition-colors duration-200 rounded-xl"
+              >
                 <SelectValue placeholder="Select a subject" />
               </SelectTrigger>
               <SelectContent>
@@ -167,6 +200,7 @@ export function ContactForm() {
             </Label>
             <Textarea
               id="message"
+              name="message"
               rows={6}
               placeholder="Tell us how we can help you..."
               required
