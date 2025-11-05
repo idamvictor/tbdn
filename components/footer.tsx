@@ -1,6 +1,12 @@
+"use client";
 import Link from "next/link";
-// import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   Heart,
   Mail,
@@ -10,9 +16,12 @@ import {
   Instagram,
   Youtube,
   Linkedin,
+  CreditCard,
 } from "lucide-react";
+import { useState } from "react";
 
 export function Footer() {
+  const [showDonateDialog, setShowDonateDialog] = useState(false);
   return (
     <footer className="bg-slate-900 text-white">
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
@@ -140,7 +149,58 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
+            <div className="mt-6 space-y-3">
+              <a
+                href="mailto:theblooddrivenetwork@gmail.com"
+                className="inline-block w-full"
+              >
+                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
+                  Partner with Us
+                </Button>
+              </a>
+              <Button
+                onClick={() => setShowDonateDialog(true)}
+                className="w-full bg-white hover:bg-slate-100 text-red-600 border border-red-600"
+                variant="outline"
+              >
+                Support with Funds
+              </Button>
+            </div>
           </div>
+
+          {/* Account Details Dialog */}
+          <Dialog open={showDonateDialog} onOpenChange={setShowDonateDialog}>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <CreditCard className="h-5 w-5 text-red-600" />
+                  Support TBDN with Funds
+                </DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <h4 className="font-medium">Nigeria Account</h4>
+                  <div className="text-sm space-y-1 text-muted-foreground">
+                    <p>Bank: Sterling Bank</p>
+                    <p>Account Name: The BloodDrive Network</p>
+                    <p>Account Number: 0503860385</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="font-medium">International Donations</h4>
+                  <p className="text-sm text-muted-foreground">
+                    For international donations, please contact us at{" "}
+                    <a
+                      href="mailto:theblooddrivenetwork@gmail.com"
+                      className="text-red-600 hover:text-red-700"
+                    >
+                      theblooddrivenetwork@gmail.com
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
 
           {/* Contact Info */}
           <div className="space-y-4 sm:space-y-6">

@@ -1,12 +1,17 @@
-"use client"
+"use client";
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const faqs = [
   {
     question: "Who can donate blood?",
     answer:
-      "Generally, healthy individuals aged 18-65, weighing at least 50kg, and feeling well can donate blood. However, specific eligibility criteria may vary based on health conditions, medications, and recent travel history.",
+      "Generally, healthy individuals aged 18-65yrs, according to the WHO but because of peculiarities with the elderly in Nigeria and Sub Saharan Africa, we peg it at 18 - 55yrs, weighing at least 50kg, feeling well, no blood cancers or infections or high risk sexual exposures in the last 12 months, no tattoos in the last 6 months, not pregnant, menstruating or recently menstruated in the last 2 weeks, can donate blood. However, specific eligibility criteria may vary based on health conditions, medications, and recent travel history.",
   },
   {
     question: "How often can I donate blood?",
@@ -21,7 +26,7 @@ const faqs = [
   {
     question: "How long does the donation process take?",
     answer:
-      "The entire process typically takes 45-60 minutes, including registration, health screening, the actual donation (8-10 minutes), and post-donation rest period.",
+      "The entire process typically takes 60 - 180 minutes, including registration, health screening, the actual donation (8-15 minutes), and post-donation rest period.",
   },
   {
     question: "What should I do before donating?",
@@ -41,9 +46,9 @@ const faqs = [
   {
     question: "Will I feel weak after donating?",
     answer:
-      "Most donors feel fine after donation. You may experience mild fatigue, which is normal. We provide refreshments and recommend avoiding strenuous activities for the rest of the day.",
+      "Most donors feel fine after donation. You may experience mild fatigue, which is normal. Refreshments (a drink, food, snacks, fruits) are essential after donating. We also recommend rest and avoiding strenuous activities for the rest of the day.",
   },
-]
+];
 
 export function FAQSection() {
   return (
@@ -58,12 +63,16 @@ export function FAQSection() {
         <Accordion type="single" collapsible className="w-full">
           {faqs.map((faq, index) => (
             <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
+              <AccordionTrigger className="text-left">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                {faq.answer}
+              </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
       </div>
     </section>
-  )
+  );
 }
