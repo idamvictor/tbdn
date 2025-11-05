@@ -528,7 +528,7 @@ export function DonorTestimonials() {
                     asChild
                     className="bg-white text-red-600 hover:bg-gray-100 px-10 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                   >
-                    <Link href="/contact">
+                    <Link href="mailto:theblooddrivenetwork@gmail.com?subject=My Blood Donation Story">
                       <MessageCircle className="h-5 w-5 mr-2" />
                       Share Your Story
                     </Link>

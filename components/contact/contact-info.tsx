@@ -7,8 +7,8 @@ export function ContactInfo() {
       icon: Phone,
       title: "Phone Numbers",
       details: [
-        "Main: +234 704 672 7740",
-        "Main: +234 810 487 0657",
+        "General Inquiries: +234 704 672 7740",
+        "General Inquiries: +234 810 487 0657",
         "Donor Services: +234 810 719 5079",
         "Donor Services: +234 812 197 6850",
         "Partnerships: +234 704 672 7740",
@@ -33,10 +33,7 @@ export function ContactInfo() {
     {
       icon: Clock,
       title: "Office Notes",
-      details: [
-        "Team primarily domiciled in Ibadan, Oyo State",
-        "No physical headquarters yet",
-      ],
+      details: ["Queen Elizabeth Road,", "Ibadan, Oyo State"],
       color: "bg-slate-400",
     },
   ];

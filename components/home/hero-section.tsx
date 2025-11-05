@@ -34,10 +34,10 @@ const heroSlides = [
 ];
 
 const liveStats = [
-  { icon: Heart, label: "Lives Saved", value: 12847, suffix: "" },
-  { icon: Droplets, label: "Pints Collected", value: 8934, suffix: "" },
-  { icon: Users, label: "Active Donors", value: 5672, suffix: "+" },
-  { icon: Award, label: "Partner Organizations", value: 156, suffix: "" },
+  { icon: Heart, label: "Lives Saved", value: 17000, suffix: "" },
+  { icon: Droplets, label: "Pints Collected", value: 5900, suffix: "" },
+  { icon: Users, label: "Active Donors", value: 230, suffix: "+" },
+  { icon: Award, label: "Partner Organizations", value: 70, suffix: "+" },
 ];
 
 export function HeroSection() {

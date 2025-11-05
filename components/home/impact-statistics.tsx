@@ -18,7 +18,7 @@ const impactStats = [
   {
     icon: Heart,
     label: "Lives Saved This Year",
-    value: 15420,
+    value: 17000,
     suffix: "",
     color: "text-red-600",
     bgColor: "bg-red-100",
@@ -28,7 +28,7 @@ const impactStats = [
   {
     icon: Droplets,
     label: "Total Blood Units Collected",
-    value: 89340,
+    value: 5900,
     suffix: "",
     color: "text-blue-600",
     bgColor: "bg-blue-100",
@@ -38,7 +38,7 @@ const impactStats = [
   {
     icon: Users,
     label: "Active Registered Donors",
-    value: 12567,
+    value: 230,
     suffix: "+",
     color: "text-green-600",
     bgColor: "bg-green-100",
@@ -47,9 +47,10 @@ const impactStats = [
   },
   {
     icon: Building,
-    label: "Partner Organizations",
-    value: 234,
-    suffix: "",
+    label:
+      "Stakeholders and partner organizations across Nigeria and Tanzania ",
+    value: 70,
+    suffix: "+",
     color: "text-purple-600",
     bgColor: "bg-purple-100",
     gradient: "from-purple-500 to-violet-500",
@@ -57,9 +58,9 @@ const impactStats = [
   },
   {
     icon: Calendar,
-    label: "Blood Drives This Month",
-    value: 45,
-    suffix: "",
+    label: "Blood drives in Nigeria and Tanzania",
+    value: 60,
+    suffix: "+",
     color: "text-orange-600",
     bgColor: "bg-orange-100",
     gradient: "from-orange-500 to-red-500",
@@ -67,9 +68,9 @@ const impactStats = [
   },
   {
     icon: MapPin,
-    label: "Cities Reached",
-    value: 28,
-    suffix: "",
+    label: "cities reached in Nigeria and Tanzania",
+    value: 10,
+    suffix: "+",
     color: "text-teal-600",
     bgColor: "bg-teal-100",
     gradient: "from-teal-500 to-cyan-500",
@@ -382,7 +383,10 @@ export function ImpactStatistics() {
                     <span className="flex items-center space-x-2">
                       <Heart className="h-5 w-5" />
                       <span>
-                        <Link href="/contact"> Become a Donor</Link>
+                        <Link href="https://linktr.ee/theblooddrivenetwork?utm_source=linktree_admin_share">
+                          {" "}
+                          Become a Donor
+                        </Link>
                       </span>
                     </span>
                   </motion.button>

@@ -440,10 +440,10 @@ export default function OurStoryPage() {
               </div>
               <div className="border-l-4 border-red-600 pl-6">
                 <p className="text-lg font-semibold text-gray-900">
-                  Dr. Adebayo Ogundimu
+                  Dr. Okoro Chidinma
                 </p>
                 <p className="text-red-600 font-medium">
-                  Founder &amp; CEO, TBDN
+                  Co-Founder & CEO, TBDN
                 </p>
               </div>
             </motion.div>

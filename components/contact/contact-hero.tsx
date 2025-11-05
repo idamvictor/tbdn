@@ -34,8 +34,9 @@ export function ContactHero() {
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-12 text-slate-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-            We&apos;re here to help you save lives through blood donation. Every
-            contact matters, every donation counts.
+            We are here to save lives, one blood pint at a time ❤🩸. Let us make
+            you a hero in your lifetime! Every minute matters, every blood
+            donation counts.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
@@ -54,7 +55,7 @@ export function ContactHero() {
               },
               {
                 icon: MapPin,
-                label: "Regional Coverage",
+                label: "Nigeria and Tanzania",
                 desc: "Parts of the South West, Nigeria",
                 color: "bg-slate-500",
               },

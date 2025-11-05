@@ -21,29 +21,28 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </h1>
             <p className="text-lg sm:text-xl text-gray-700 leading-relaxed px-4 sm:px-0">
               Join our mission to save lives through blood donation. Whether you
-              want to donate, volunteer, or partner with us, there&apos;s a
-              place for you in our community.
+              want to donate blood, donate money to support our blood drives and
+              youth wellness programs, volunteer or partner with us,
+              there&apos;s a place for you in our community
             </p>
             <div className="flex  sm:flex-row gap-4 sm:gap-8 justify-center pt-6 sm:pt-8 px-4 sm:px-0">
               <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 hover:bg-white/20 transition-all w-full sm:w-auto">
                 <div className="text-2xl sm:text-3xl font-bold text-red-600">
-                  5000+
+                  4000+
+                </div>
+                <div className="text-sm sm:text-base text-gray-700">Donors</div>
+              </div>
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 hover:bg-white/20 transition-all w-full sm:w-auto">
+                <div className="text-2xl sm:text-3xl font-bold text-red-600">
+                  40+
                 </div>
                 <div className="text-sm sm:text-base text-gray-700">
-                  Active Donors
+                  Organizational Volunteers/Staff
                 </div>
               </div>
               <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 hover:bg-white/20 transition-all w-full sm:w-auto">
                 <div className="text-2xl sm:text-3xl font-bold text-red-600">
-                  200+
-                </div>
-                <div className="text-sm sm:text-base text-gray-700">
-                  Volunteers
-                </div>
-              </div>
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 hover:bg-white/20 transition-all w-full sm:w-auto">
-                <div className="text-2xl sm:text-3xl font-bold text-red-600">
-                  50+
+                  10+
                 </div>
                 <div className="text-sm sm:text-base text-gray-700">
                   Partner Hospitals
